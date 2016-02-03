@@ -38,13 +38,12 @@ public class MousePanel extends JPanel implements MouseListener{
         g2.drawLine(x1, y1, x2, y2);
     }
 
-    public void mouseExited(MouseEvent e){ }
-    public void mouseEntered(MouseEvent e){}
+    public void mouseExited(MouseEvent e){ System.out.println("mouse exited"); }
+    public void mouseEntered(MouseEvent e){System.out.println("mouse entered");}
     public void mouseClicked(MouseEvent e){ 
-         System.out.println("yelp");
-         repaint();
+         System.out.println("mouse clicked");
     }
-    public void mousePressed(MouseEvent e){}
-    public void mouseReleased(MouseEvent e){}
+    public void mousePressed(MouseEvent e){System.out.println("mouse pressed");}
+    public void mouseReleased(MouseEvent e){System.out.println("mouse released");}
 
 }
