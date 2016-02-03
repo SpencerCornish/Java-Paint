@@ -18,10 +18,10 @@ public class Frame extends JFrame {
        setSize(500, 500);
        setVisible(true);
    }
-   public static MyFrame getInstance()
+   public static Frame getInstance()
    {
        if(inst == null)
-          inst = new MyFrame();
+          inst = new Frame();
       
         return inst;
    }
