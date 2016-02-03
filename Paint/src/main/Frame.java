@@ -13,7 +13,7 @@ public class Frame extends JFrame {
        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
        Container c = getContentPane();
        
-       c.add(ButtonPanel.getInstance(), BorderLayout.NORTH);
+       c.add(ButtonPanel.getInstance(), BorderLayout.WEST);
        getContentPane().add(MousePanel.getInstance(), BorderLayout.CENTER);
        setSize(500, 500);
        setVisible(true);
