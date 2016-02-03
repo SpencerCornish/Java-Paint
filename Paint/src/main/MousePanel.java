@@ -13,7 +13,7 @@ public class MousePanel extends JPanel implements MouseListener{
     
     MousePanel()
     {
-        setBackground(Color.WHITE);
+        setBackground(Color.BLACK);
         addMouseListener(this);
     }
     public static MousePanel getInstance()

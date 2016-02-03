@@ -5,7 +5,7 @@ import javax.swing.*;
 
 public class Frame extends JFrame {
 
-    public static Frame inst;
+    public static Frame frame;
 
    Frame( )
    {
@@ -20,10 +20,10 @@ public class Frame extends JFrame {
    }
    public static Frame getInstance()
    {
-       if(inst == null)
-          inst = new Frame();
+       if(frame == null)
+          frame = new Frame();
       
-        return inst;
+        return frame;
    }
 
 
