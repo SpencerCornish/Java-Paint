@@ -9,7 +9,7 @@ public class Frame extends JFrame {
 	
 	Frame() {
 		super("Paint Program");
-		
+		setDefaultCloseOperation
 	}
 	
 }
