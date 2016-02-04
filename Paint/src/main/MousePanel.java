@@ -53,6 +53,7 @@ public class MousePanel extends JPanel implements MouseListener /*, MouseMotionL
         case 4: g2.drawOval(100, 200, 200, 200); break;	//draw empty oval
         case 5: g2.drawLine(sPoint.x, sPoint.y, ePoint.x, ePoint.y); repaint(); break; 
         }
+        
     }
     
     public void setButton(int button) {
@@ -64,6 +65,8 @@ public class MousePanel extends JPanel implements MouseListener /*, MouseMotionL
     public void mousePressed(MouseEvent e){
     	System.out.println("mouse pressed");
     	e.consume();  
+    	ePoint.x = e.getX(); 
+    	ePoint.y = e.getY();
         sPoint.x = e.getX();  
         sPoint.y = e.getY();
         repaint();
