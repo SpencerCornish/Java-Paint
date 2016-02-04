@@ -27,7 +27,7 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
 
     public ButtonPanel()
     {
-    	//setLayout(new GridLayout(6,1,3,50));
+    	setLayout(new GridLayout(6,1,3,50));
     	
         setBackground(Color.GRAY);		
         buttonClear = new JButton("Clear");						//button 0
