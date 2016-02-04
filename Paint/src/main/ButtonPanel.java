@@ -21,7 +21,7 @@ public class ButtonPanel extends JPanel implements ActionListener {
 
     ButtonPanel()
     {
-        setBackground(Color.BLUE);		//temp color change to see which parts are which
+        setBackground(Color.GRAY);		//temp color change to see which parts are which
         buttonClear = new JButton("Clear");						//button 0
         buttonRectangleF = new JButton("Filled Rectangle");		//button 1
         buttonRectangleE = new JButton("Rectangle"); 			//button 2

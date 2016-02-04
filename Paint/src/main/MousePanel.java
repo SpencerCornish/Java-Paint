@@ -19,7 +19,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
     Point ePoint = new Point(-1, -1);
     MousePanel()
     {
-        setBackground(Color.GREEN);
+        setBackground(Color.WHITE);
         addMouseListener(this);
         addMouseMotionListener(this);
     }
@@ -64,7 +64,14 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
     public void setButton(int button) {
     	this.button = button;
     }
-
+    public void cleanUp()
+    {
+    	MousePanel.getInstance().removeAll(); 
+    	ePoint.x = -1; //Cleans line tracking variables for next line made
+    	ePoint.y = -1;
+        sPoint.x = -1;  
+        sPoint.y = -1;
+    }
     public void mousePressed(MouseEvent e){
     	System.out.println("mouse pressed");
     	e.consume();  
