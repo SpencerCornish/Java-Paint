@@ -15,7 +15,7 @@ public class Frame extends JFrame {
        
        c.add(ButtonPanel.getInstance(), BorderLayout.WEST);
        getContentPane().add(MousePanel.getInstance(), BorderLayout.CENTER);
-       setSize(500, 500);
+       setSize(1000, 1000);
        setVisible(true);
    }
    public static Frame getInstance()
