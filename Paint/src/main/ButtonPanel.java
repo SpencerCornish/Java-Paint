@@ -22,12 +22,12 @@ public class ButtonPanel extends JPanel implements ActionListener {
     ButtonPanel()
     {
         setBackground(Color.GRAY);
-        buttonClear = new JButton("Clear");
-        buttonRectangleF = new JButton("Filled Rectangle");
-        buttonRectangleE = new JButton("Rectangle");
-        buttonOvalF = new JButton("Filled Rectangle");
-        buttonOvalE = new JButton("Filled Rectangle");
-        buttonLineD = new JButton("Line");
+        buttonClear = new JButton("Clear");						//button 0
+        buttonRectangleF = new JButton("Filled Rectangle");		//button 1
+        buttonRectangleE = new JButton("Rectangle"); 			//button 2
+        buttonOvalF = new JButton("Filled Oval");				//button 3
+        buttonOvalE = new JButton("Empty Oval");				//button 4
+        buttonLineD = new JButton("Line");						//button 5
         add(buttonLineD);
         add(buttonOvalE);
         add(buttonOvalF);
@@ -48,10 +48,13 @@ public class ButtonPanel extends JPanel implements ActionListener {
      public void actionPerformed(ActionEvent ae)
      {
          System.out.println(ae.getActionCommand());
-         if(ae.getSource() == buttonRectangleE)
+         if (ae.getSource() == buttonClear){
+        	 MousePanel.getInstance().setButton(0);
+         }
+         else if(ae.getSource() == buttonRectangleE)
          {
         	 System.out.println("EMPTY RECTANGLE");
-        	 
+        	 MousePanel.getInstance().setButton(2);		//feeds button 2 (because it's a rectangle) to button variable in MousePanel class
         	 MousePanel.getInstance().repaint();
          }
          
