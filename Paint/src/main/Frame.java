@@ -13,9 +13,9 @@ public class Frame extends JFrame {
        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
        Container c = getContentPane();
        
-       c.add(ButtonPanel.getInstance(), BorderLayout.WEST);
+       c.add(ButtonPanel.getInstance(), BorderLayout.NORTH);
        getContentPane().add(MousePanel.getInstance(), BorderLayout.CENTER);
-       setSize(1000, 1000);
+       setSize(700, 700);
        setVisible(true);
    }
    public static Frame getInstance()
@@ -25,6 +25,4 @@ public class Frame extends JFrame {
       
         return frame;
    }
-
-
 }

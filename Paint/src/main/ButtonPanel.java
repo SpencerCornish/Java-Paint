@@ -21,7 +21,7 @@ public class ButtonPanel extends JPanel implements ActionListener {
 
     ButtonPanel()
     {
-        setBackground(Color.GRAY);
+        setBackground(Color.BLUE);		//temp color change to see which parts are which
         buttonClear = new JButton("Clear");						//button 0
         buttonRectangleF = new JButton("Filled Rectangle");		//button 1
         buttonRectangleE = new JButton("Rectangle"); 			//button 2
@@ -50,12 +50,13 @@ public class ButtonPanel extends JPanel implements ActionListener {
          System.out.println(ae.getActionCommand());
          if (ae.getSource() == buttonClear){
         	 MousePanel.getInstance().setButton(0);
+        	 MousePanel.getInstance().repaint();
          }
          else if(ae.getSource() == buttonRectangleE)
          {
         	 System.out.println("EMPTY RECTANGLE");
         	 MousePanel.getInstance().setButton(2);		//feeds button 2 (because it's a rectangle) to button variable in MousePanel class
-        	 MousePanel.getInstance().repaint();
+        	 MousePanel.getInstance().repaint();		//this needs to be here so rectangle shows up
          }
          
      }

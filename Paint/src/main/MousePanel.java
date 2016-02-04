@@ -9,13 +9,14 @@ import java.awt.image.BufferedImage;
 import java.util.Random;
 
 public class MousePanel extends JPanel implements MouseListener{
-    BufferedImage grid;
-    Graphics2D gc;
+    //BufferedImage grid;
+    //Graphics2D gc;
     public static MousePanel inst;
+    private int button = -1;	//determines which button is pressed based on a number
     
     MousePanel()
     {
-        setBackground(Color.BLACK);
+        setBackground(Color.GREEN);
         addMouseListener(this);
     }
     public static MousePanel getInstance()
@@ -30,24 +31,31 @@ public class MousePanel extends JPanel implements MouseListener{
     {
         super.paintComponent(g);
         
-        System.out.println("called "+ g);
+        //System.out.println("called "+ g);
         Graphics2D g2 = (Graphics2D)g;
-        if (grid == null) {
+        /*if (grid == null) {				//this commented out code is what is creating random grey box in mousepanel
         	int w = this.getWidth();
         	int h = this.getHeight();
         	grid = (BufferedImage)(this.createImage(w,h));
         	gc = grid.createGraphics();
+        /
+        g2.drawImage(grid, null, 0, 0); */
+        switch(button){
+        case 0: MousePanel.getInstance().removeAll(); break;
+        case 1: g2.drawRect(100, 200, 200, 100); break;	//draw filled rectangle
+        case 2: g2.drawRect(100, 200, 200, 100); break; //draw empty rectangle
+        case 3: break; 									//draw filled oval
+        case 4: break;									//draw empty oval
+        case 5: break; 									//draw line
         }
-        g2.drawImage(grid, null, 0, 0);
-        
-        g2.drawRect(100, 200, 200, 100);
     }
-
-    public void mouseExited(MouseEvent e){ System.out.println("mouse exited"); }
+    
+    public void setButton(int button) {
+    	this.button = button;
+    }
+    public void mouseExited(MouseEvent e){System.out.println("mouse exited"); }
     public void mouseEntered(MouseEvent e){System.out.println("mouse entered");}
-    public void mouseClicked(MouseEvent e){ 
-         System.out.println("mouse clicked");
-    }
+    public void mouseClicked(MouseEvent e){System.out.println("mouse clicked");}
     public void mousePressed(MouseEvent e){System.out.println("mouse pressed");}
     public void mouseReleased(MouseEvent e){System.out.println("mouse released");}
 
