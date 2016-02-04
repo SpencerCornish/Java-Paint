@@ -3,6 +3,7 @@ package main;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.GridLayout;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -26,6 +27,8 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
 
     public ButtonPanel()
     {
+    	//setLayout(new GridLayout(6,1,3,50));
+    	
         setBackground(Color.GRAY);		
         buttonClear = new JButton("Clear");						//button 0
         buttonRectangleF = new JButton("Filled Rectangle");		//button 1
