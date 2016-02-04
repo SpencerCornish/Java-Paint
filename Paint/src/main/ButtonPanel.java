@@ -2,12 +2,15 @@ package main;
 
 
 import java.awt.Color;
+import java.awt.Cursor;
+
 import javax.swing.*;
 import java.awt.event.*;
 
 
 public class ButtonPanel extends JPanel implements ActionListener {
-
+	Cursor cHair = Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR);
+	Cursor cDef = Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
     public static ButtonPanel btnPnl; // Instance of Button Panel
     private JButton buttonClear; // Clear the screen
     private JButton buttonRectangleF; // Draw a Filled Rectangle
@@ -49,36 +52,17 @@ public class ButtonPanel extends JPanel implements ActionListener {
      public void actionPerformed(ActionEvent ae)
      {
          System.out.println(ae.getActionCommand());
-         if (ae.getSource() == buttonClear){
-        	 MousePanel.getInstance().cleanUp();
+     	 MousePanel.getInstance().setCursor(cHair); //Sets the mouse Cursor to a Cross hair for editing
+     	 MousePanel.getInstance().cleanUp();
+         if(ae.getSource() == buttonClear) {
         	 MousePanel.getInstance().setButton(0);
-        	 MousePanel.getInstance().repaint();
+        	 MousePanel.getInstance().setCursor(cDef);
          }
-         else if(ae.getSource() == buttonRectangleF) {
-        	 MousePanel.getInstance().cleanUp();
-        	 MousePanel.getInstance().setButton(1);
-        	 MousePanel.getInstance().repaint();		
-         }
-         else if(ae.getSource() == buttonRectangleE) {
-        	 MousePanel.getInstance().cleanUp();
-        	 MousePanel.getInstance().setButton(2);		//feeds button 2 (because it's a rectangle) to button variable in MousePanel class
-        	 MousePanel.getInstance().repaint();		//this needs to be here so rectangle shows up
-         }
-         else if(ae.getSource() == buttonOvalF) {
-        	 MousePanel.getInstance().cleanUp();
-        	 MousePanel.getInstance().setButton(3);
-        	 MousePanel.getInstance().repaint();		
-         }
-         else if(ae.getSource() == buttonOvalE) {
-        	 MousePanel.getInstance().cleanUp();
-        	 MousePanel.getInstance().setButton(4);
-        	 MousePanel.getInstance().repaint();		
-         }
-         else if(ae.getSource() == buttonLineD) {
-        	 MousePanel.getInstance().cleanUp();
-        	 MousePanel.getInstance().setButton(5);
-        	 MousePanel.getInstance().repaint();		
-         }
-         
+         if(ae.getSource() == buttonRectangleF) MousePanel.getInstance().setButton(1);
+         if(ae.getSource() == buttonRectangleE) MousePanel.getInstance().setButton(2);		//feeds button 2 (because it's a rectangle) to button variable in MousePanel class
+         if(ae.getSource() == buttonOvalF) MousePanel.getInstance().setButton(3);
+         if(ae.getSource() == buttonOvalE) MousePanel.getInstance().setButton(4);
+         if(ae.getSource() == buttonLineD) MousePanel.getInstance().setButton(5);
+    	 MousePanel.getInstance().repaint();
      }
 }
