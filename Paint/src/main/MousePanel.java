@@ -53,7 +53,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
             sPoint.y = -1;
         break;  // The following shapes have weird offsets,as to make the dragging of a shape feel less insane!
         case 1: g2.fillRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); repaint(); break;	//draw filled rectangle
-        case 2: g2.drawRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); repaint(); break; //draw empty rectangle
+        case 2: g2.drawRect(sPoint.x, sPoint.y, (ePoint.x-sPoint.x), (ePoint.y-sPoint.y)); repaint(); break; //draw empty rectangle
         case 3: g2.fillOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); repaint(); break; //draw filled oval
         case 4: g2.drawOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); repaint(); break;	//draw empty oval
         case 5: g2.drawLine(sPoint.x, sPoint.y, ePoint.x, ePoint.y); repaint(); break; 
@@ -92,8 +92,8 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
     	e.consume();  
         ePoint.x = e.getX();  
         ePoint.y = e.getY();
+        System.out.println(e.getY() + " x " + e.getX());
         repaint();
-		
 		}
 	public void mouseMoved(MouseEvent e) { } //This will be useful soon, adding mouse coords to a tooltip in the bottom right corner    
 	public void mouseExited(MouseEvent e){System.out.println("mouse exited");}
