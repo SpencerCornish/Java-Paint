@@ -8,9 +8,7 @@ import javax.swing.JPanel;
 import java.awt.event.*;
 
 public class MousePanel extends JPanel implements MouseListener, MouseMotionListener {
-    /**
-	 * 
-	 */
+    
 	private static final long serialVersionUID = -8595660419538273421L;
 	public static MousePanel inst;
     private int button = -1;				//determines which button is pressed based on a number
