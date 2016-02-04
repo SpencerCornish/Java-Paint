@@ -35,7 +35,11 @@ public class ButtonPanel extends JPanel implements ActionListener {
         add(buttonRectangleF);
         add(buttonClear);
         buttonClear.addActionListener(this);
+        buttonRectangleF.addActionListener(this);
         buttonRectangleE.addActionListener(this);
+        buttonOvalF.addActionListener(this);
+        buttonOvalE.addActionListener(this);
+        buttonLineD.addActionListener(this);
         
     }
      public static ButtonPanel getInstance()
@@ -52,11 +56,25 @@ public class ButtonPanel extends JPanel implements ActionListener {
         	 MousePanel.getInstance().setButton(0);
         	 MousePanel.getInstance().repaint();
          }
-         else if(ae.getSource() == buttonRectangleE)
-         {
-        	 System.out.println("EMPTY RECTANGLE");
+         else if(ae.getSource() == buttonRectangleF) {
+        	 MousePanel.getInstance().setButton(1);
+        	 MousePanel.getInstance().repaint();		
+         }
+         else if(ae.getSource() == buttonRectangleE) {
         	 MousePanel.getInstance().setButton(2);		//feeds button 2 (because it's a rectangle) to button variable in MousePanel class
         	 MousePanel.getInstance().repaint();		//this needs to be here so rectangle shows up
+         }
+         else if(ae.getSource() == buttonOvalF) {
+        	 MousePanel.getInstance().setButton(3);
+        	 MousePanel.getInstance().repaint();		
+         }
+         else if(ae.getSource() == buttonOvalE) {
+        	 MousePanel.getInstance().setButton(4);
+        	 MousePanel.getInstance().repaint();		
+         }
+         else if(ae.getSource() == buttonLineD) {
+        	 MousePanel.getInstance().setButton(5);
+        	 MousePanel.getInstance().repaint();		
          }
          
      }
