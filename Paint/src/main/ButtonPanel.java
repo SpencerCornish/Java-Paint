@@ -5,10 +5,7 @@ import java.awt.Color;
 import javax.swing.*;
 import java.awt.event.*;
 
-/**
- *
- * @author Hunter Lloyd
- */
+
 public class ButtonPanel extends JPanel implements ActionListener {
 
     public static ButtonPanel btnPnl; // Instance of Button Panel
@@ -21,7 +18,7 @@ public class ButtonPanel extends JPanel implements ActionListener {
 
     ButtonPanel()
     {
-        setBackground(Color.GRAY);		//temp color change to see which parts are which
+        setBackground(Color.GRAY);		
         buttonClear = new JButton("Clear");						//button 0
         buttonRectangleF = new JButton("Filled Rectangle");		//button 1
         buttonRectangleE = new JButton("Rectangle"); 			//button 2

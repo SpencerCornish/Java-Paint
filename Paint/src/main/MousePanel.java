@@ -4,19 +4,15 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
-
 import javax.swing.JPanel;
 import java.awt.event.*;
-import java.awt.image.BufferedImage;
-import java.util.Random;
 
-public class MousePanel extends JPanel implements MouseListener, MouseMotionListener {	//maybe need to use motion listener to draw stuff
-    //BufferedImage grid;
-    //Graphics2D gc;
+public class MousePanel extends JPanel implements MouseListener, MouseMotionListener {
     public static MousePanel inst;
-    private int button = -1;	//determines which button is pressed based on a number
+    private int button = -1;				//determines which button is pressed based on a number
     Point sPoint = new Point(-1, -1); 
     Point ePoint = new Point(-1, -1);
+    
     MousePanel()
     {
         setBackground(Color.WHITE);
@@ -34,16 +30,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
-        
-        //System.out.println("called "+ g);
         Graphics2D g2 = (Graphics2D)g;
-        /*if (grid == null) {				//this commented out code is what is creating random grey box in mousepanel
-        	int w = this.getWidth();
-        	int h = this.getHeight();
-        	grid = (BufferedImage)(this.createImage(w,h));
-        	gc = grid.createGraphics();
-        /
-        g2.drawImage(grid, null, 0, 0); */
         switch(button){
         case 0: 
         	MousePanel.getInstance().removeAll(); 
@@ -55,7 +42,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
         case 1: g2.fillRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); repaint(); break;	//draw filled rectangle
         case 2: g2.drawRect(sPoint.x, sPoint.y, (ePoint.x-sPoint.x), (ePoint.y-sPoint.y)); repaint(); break; //draw empty rectangle
         case 3: g2.fillOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); repaint(); break; //draw filled oval
-        case 4: g2.drawOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); repaint(); break;	//draw empty oval
+        case 4: g2.drawOval(sPoint.x, sPoint.y, ePoint.x-sPoint.y, ePoint.y-sPoint.y); repaint(); break;	//draw empty oval
         case 5: g2.drawLine(sPoint.x, sPoint.y, ePoint.x, ePoint.y); repaint(); break; 
         }
         
@@ -67,7 +54,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
     public void cleanUp()
     {
     	MousePanel.getInstance().removeAll(); 
-    	ePoint.x = -1; //Cleans line tracking variables for next line made
+    	ePoint.x = -1; 								//Cleans line tracking variables for next line made
     	ePoint.y = -1;
         sPoint.x = -1;  
         sPoint.y = -1;
@@ -88,7 +75,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
         ePoint.y = e.getY();
         repaint();
     	}
-	public void mouseDragged(MouseEvent e) { //makes the line a live-drag
+	public void mouseDragged(MouseEvent e) { 						//makes the shape a live-drag
     	e.consume();  
         ePoint.x = e.getX();  
         ePoint.y = e.getY();
