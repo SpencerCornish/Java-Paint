@@ -12,6 +12,8 @@ public class MousePanel extends JPanel implements MouseListener{
     BufferedImage grid;
     Graphics2D gc;
     public static MousePanel inst;
+    BufferedImage grid;
+    Graphics2D gc;
     
     MousePanel()
     {
@@ -38,7 +40,6 @@ public class MousePanel extends JPanel implements MouseListener{
         	grid = (BufferedImage)(this.createImage(w,h));
         	gc = grid.createGraphics();
         }
-        
         g2.drawImage(grid, null, 0, 0);
         Random x = new Random(System.currentTimeMillis());
         int x1 = x.nextInt(500);
