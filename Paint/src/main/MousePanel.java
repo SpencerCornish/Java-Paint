@@ -42,11 +42,11 @@ public class MousePanel extends JPanel implements MouseListener{
         g2.drawImage(grid, null, 0, 0); */
         switch(button){
         case 0: MousePanel.getInstance().removeAll(); break;
-        case 1: g2.drawRect(100, 200, 200, 100); break;	//draw filled rectangle
+        case 1: g2.fillRect(100, 200, 200, 100); break;	//draw filled rectangle
         case 2: g2.drawRect(100, 200, 200, 100); break; //draw empty rectangle
-        case 3: break; 									//draw filled oval
-        case 4: break;									//draw empty oval
-        case 5: break; 									//draw line
+        case 3: g2.fillOval(100, 200, 200, 200); break; //draw filled oval
+        case 4: g2.drawOval(100, 200, 200, 200); break;	//draw empty oval
+        case 5: g2.drawLine(100, 200, 650, 300); break; //draw line
         }
     }
     
