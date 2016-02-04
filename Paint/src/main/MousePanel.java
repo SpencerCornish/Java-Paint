@@ -12,8 +12,6 @@ public class MousePanel extends JPanel implements MouseListener{
     BufferedImage grid;
     Graphics2D gc;
     public static MousePanel inst;
-    BufferedImage grid;
-    Graphics2D gc;
     
     MousePanel()
     {
