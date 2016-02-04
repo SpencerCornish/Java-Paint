@@ -27,12 +27,14 @@ public class ButtonPanel extends JPanel implements ActionListener {
         buttonRectangleE = new JButton("Rectangle");
         buttonOvalF = new JButton("Filled Rectangle");
         buttonOvalE = new JButton("Filled Rectangle");
-        
-        
+        buttonLineD = new JButton("Line");
+        add(buttonLineD);
+        add(buttonOvalE);
+        add(buttonOvalF);
+        add(buttonRectangleE);
+        add(buttonRectangleF);
         add(buttonClear);
         buttonClear.addActionListener(this);
-        add(buttonClear);
-
     }
      public static ButtonPanel getInstance()
     {
