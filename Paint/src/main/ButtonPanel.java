@@ -8,10 +8,15 @@ import javax.swing.*;
 import java.awt.event.*;
 
 
-public class ButtonPanel extends JPanel implements ActionListener {
+public class ButtonPanel extends JPanel implements ActionListener, MouseListener {
+	
+	private static final long serialVersionUID = -923758246107102096L;
+	
 	Cursor cHair = Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR);
 	Cursor cDef = Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
+	
     public static ButtonPanel btnPnl; // Instance of Button Panel
+    
     private JButton buttonClear; // Clear the screen
     private JButton buttonRectangleF; // Draw a Filled Rectangle
     private JButton buttonRectangleE; // Draw a Filled Rectangle
@@ -19,7 +24,7 @@ public class ButtonPanel extends JPanel implements ActionListener {
     private JButton buttonOvalE; // Draw an Empty Oval 
     private JButton buttonLineD; // Draw a line
 
-    ButtonPanel()
+    public ButtonPanel()
     {
         setBackground(Color.GRAY);		
         buttonClear = new JButton("Clear");						//button 0
@@ -65,4 +70,13 @@ public class ButtonPanel extends JPanel implements ActionListener {
          if(ae.getSource() == buttonLineD) MousePanel.getInstance().setButton(5);
     	 MousePanel.getInstance().repaint();
      }
+	public void mouseClicked(MouseEvent arg0) {}
+
+	public void mouseEntered(MouseEvent e) {}
+
+	public void mouseExited(MouseEvent e) {}
+
+	public void mousePressed(MouseEvent e) {}
+
+	public void mouseReleased(MouseEvent e) {}
 }

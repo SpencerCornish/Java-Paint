@@ -1,7 +1,6 @@
 package main;
 
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -9,7 +8,11 @@ import javax.swing.JPanel;
 import java.awt.event.*;
 
 public class MousePanel extends JPanel implements MouseListener, MouseMotionListener {
-    public static MousePanel inst;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -8595660419538273421L;
+	public static MousePanel inst;
     private int button = -1;				//determines which button is pressed based on a number
     Point sPoint = new Point(-1, -1); 
     Point ePoint = new Point(-1, -1);
