@@ -3,6 +3,8 @@ package main;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
 import javax.swing.*;
@@ -27,10 +29,11 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
 
     public ButtonPanel()
     {
-    	setLayout(new GridLayout(6,1,3,50));
-    	
-        setBackground(Color.GRAY);		
-        buttonClear = new JButton("Clear");						//button 0
+    	setLayout(new GridLayout(6,1));
+        setBackground(Color.GRAY);	
+        
+        buttonClear = new JButton("Clear");	//button 0
+        Dimension buttonSize = buttonClear.getPreferredSize();
         buttonRectangleF = new JButton("Filled Rectangle");		//button 1
         buttonRectangleE = new JButton("Rectangle"); 			//button 2
         buttonOvalF = new JButton("Filled Oval");				//button 3
@@ -42,13 +45,13 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
         add(buttonRectangleE);
         add(buttonRectangleF);
         add(buttonClear);
+        buttonClear.setToolTipText("HOLY SHIT BEANS MY ASS");
         buttonClear.addActionListener(this);
         buttonRectangleF.addActionListener(this);
         buttonRectangleE.addActionListener(this);
         buttonOvalF.addActionListener(this);
         buttonOvalE.addActionListener(this);
-        buttonLineD.addActionListener(this);
-        
+        buttonLineD.addActionListener(this);  
     }
      public static ButtonPanel getInstance()
     {
