@@ -30,7 +30,7 @@ public class MousePanel extends JPanel implements MouseListener{
     {
         super.paintComponent(g);
         
-        System.out.println("called");
+        System.out.println("called "+ g);
         Graphics2D g2 = (Graphics2D)g;
         if (grid == null) {
         	int w = this.getWidth();
@@ -39,12 +39,8 @@ public class MousePanel extends JPanel implements MouseListener{
         	gc = grid.createGraphics();
         }
         g2.drawImage(grid, null, 0, 0);
-        Random x = new Random(System.currentTimeMillis());
-        int x1 = x.nextInt(500);
-        int y1 = x.nextInt(500);
-        int x2 = x.nextInt(500);
-        int y2 = x.nextInt(500);
-        g2.drawRect(x1, y1, x2, y2);
+        
+        g2.drawRect(100, 200, 200, 100);
     }
 
     public void mouseExited(MouseEvent e){ System.out.println("mouse exited"); }

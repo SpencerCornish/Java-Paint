@@ -35,7 +35,7 @@ public class ButtonPanel extends JPanel implements ActionListener {
         add(buttonRectangleF);
         add(buttonClear);
         buttonClear.addActionListener(this);
-        buttonRectangleF.addActionListener(this);
+        buttonRectangleE.addActionListener(this);
         
     }
      public static ButtonPanel getInstance()
@@ -48,12 +48,12 @@ public class ButtonPanel extends JPanel implements ActionListener {
      public void actionPerformed(ActionEvent ae)
      {
          System.out.println(ae.getActionCommand());
-         if(ae.getSource() == buttonClear)
+         if(ae.getSource() == buttonRectangleE)
          {
-        	 System.out.println("Holy cow! we detected something right! :)");
+        	 System.out.println("EMPTY RECTANGLE");
         	 
-         
+        	 MousePanel.getInstance().repaint();
          }
-         MousePanel.getInstance().repaint();
+         
      }
 }
