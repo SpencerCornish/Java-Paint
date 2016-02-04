@@ -35,7 +35,6 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
         Graphics2D g2 = (Graphics2D)g;
         switch(button){
         case 0: 
-        	MousePanel.getInstance().removeAll(); 
         	ePoint.x = -1; //Cleans line tracking variables for next line made
         	ePoint.y = -1;
             sPoint.x = -1;  
@@ -54,8 +53,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
     	this.button = button;
     }
     public void cleanUp()
-    {
-    	MousePanel.getInstance().removeAll(); 
+    { 
     	ePoint.x = -1; 								//Cleans line tracking variables for next line made
     	ePoint.y = -1;
         sPoint.x = -1;  
