@@ -9,7 +9,8 @@ import java.awt.image.BufferedImage;
 import java.util.Random;
 
 public class MousePanel extends JPanel implements MouseListener{
-
+    BufferedImage grid;
+    Graphics2D gc;
     public static MousePanel inst;
     
     MousePanel()
@@ -31,8 +32,6 @@ public class MousePanel extends JPanel implements MouseListener{
         
         System.out.println("called");
         Graphics2D g2 = (Graphics2D)g;
-        BufferedImage grid;
-        Graphics2D gc;
         if (grid == null) {
         	int w = this.getWidth();
         	int h = this.getHeight();
