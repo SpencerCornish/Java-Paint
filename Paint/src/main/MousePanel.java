@@ -35,15 +35,15 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
         Graphics2D g2 = (Graphics2D)g;
         switch(button){
         case 0: 
-        	ePoint.x = -1; //Cleans line tracking variables for next line made
+        	ePoint.x = -1; 			//Cleans line tracking variables for next line made
         	ePoint.y = -1;
             sPoint.x = -1;  
             sPoint.y = -1;
         break;  // The following shapes have weird offsets,as to make the dragging of a shape feel less insane!
-        case 1: g2.fillRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); repaint(); break;	//draw filled rectangle
-        case 2: g2.drawRect(sPoint.x, sPoint.y, (ePoint.x-sPoint.x), (ePoint.y-sPoint.y)); repaint(); break; //draw empty rectangle
-        case 3: g2.fillOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); repaint(); break; //draw filled oval
-        case 4: g2.drawOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); repaint(); break;	//draw empty oval
+        case 1: g2.fillRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); repaint(); break;		//draw filled rectangle
+        case 2: g2.drawRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); repaint(); break; 		//draw empty rectangle
+        case 3: g2.fillOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); repaint(); break; 		//draw filled oval
+        case 4: g2.drawOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); repaint(); break;		//draw empty oval
         case 5: g2.drawLine(sPoint.x, sPoint.y, ePoint.x, ePoint.y); repaint(); break; 
         }
         
@@ -66,7 +66,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
     	ePoint.y = e.getY();
         sPoint.x = e.getX();  
         sPoint.y = e.getY();
-        repaint();
+        //repaint();
     	}
     public void mouseReleased(MouseEvent e){
     	System.out.println("mouse released");
