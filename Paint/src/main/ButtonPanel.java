@@ -33,7 +33,6 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
         setBackground(Color.GRAY);	
         
         buttonClear = new JButton("Clear");	//button 0
-        Dimension buttonSize = buttonClear.getPreferredSize();
         buttonRectangleF = new JButton("Filled Rectangle");		//button 1
         buttonRectangleE = new JButton("Rectangle"); 			//button 2
         buttonOvalF = new JButton("Filled Oval");				//button 3
@@ -45,7 +44,7 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
         add(buttonRectangleE);
         add(buttonRectangleF);
         add(buttonClear);
-        buttonClear.setToolTipText("HOLY SHIT BEANS MY ASS");
+        buttonClear.setToolTipText("");
         buttonClear.addActionListener(this);
         buttonRectangleF.addActionListener(this);
         buttonRectangleE.addActionListener(this);
