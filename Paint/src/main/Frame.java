@@ -17,7 +17,7 @@ public class Frame extends JFrame
 		setMinimumSize(new Dimension(800, 600));
 		c.add(ButtonPanel.getInstance(), BorderLayout.WEST);
 		getContentPane().add(MousePanel.getInstance(), BorderLayout.CENTER);
-		//setSize(700, 700);
+		//setSize(700, 700); test
 		setVisible(true);
 	}
 	public static Frame getInstance()
