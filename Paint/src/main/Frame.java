@@ -15,9 +15,10 @@ public class Frame extends JFrame
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Container c = getContentPane();
 		setMinimumSize(new Dimension(800, 600));
+		ButtonPanel.getInstance().setPreferredSize(new Dimension(100,30) );;
 		c.add(ButtonPanel.getInstance(), BorderLayout.WEST);
 		c.add(MousePanel.getInstance(), BorderLayout.CENTER);
-		c.setLayout(new BoxLayout(c, 3));
+		
 		//setSize(700, 700);
 		setVisible(true);
 	}

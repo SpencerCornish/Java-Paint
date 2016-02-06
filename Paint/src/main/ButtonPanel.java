@@ -2,6 +2,7 @@ package main;
 
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -30,7 +31,7 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
     public ButtonPanel()
     {
     	
-    	
+    	setAlignmentX(Component.CENTER_ALIGNMENT);
         setBackground(Color.GRAY);	
         
         buttonClear = new JButton("Clear");	//button 0
@@ -45,6 +46,7 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
         add(buttonRectangleE);
         add(buttonRectangleF);
         add(buttonClear);
+        buttonClear.setPreferredSize(new Dimension(50,50));
         buttonClear.setToolTipText("");
         buttonClear.addActionListener(this);
         buttonRectangleF.addActionListener(this);
