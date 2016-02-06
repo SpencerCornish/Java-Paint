@@ -33,10 +33,9 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
     	
     	setAlignmentX(Component.CENTER_ALIGNMENT);
         setBackground(Color.GRAY);	
-        
         buttonClear = new JButton("Clear");	//button 0
-        buttonRectangleF = new JButton("Filled Rectangle");		//button 1
-        buttonRectangleE = new JButton("Rectangle"); 			//button 2
+        buttonRectangleF = new JButton("Filled Rect.");		//button 1
+        buttonRectangleE = new JButton("Empty Rect."); 			//button 2
         buttonOvalF = new JButton("Filled Oval");				//button 3
         buttonOvalE = new JButton("Empty Oval");				//button 4
         buttonLineD = new JButton("Line");						//button 5
@@ -46,8 +45,11 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
         add(buttonRectangleE);
         add(buttonRectangleF);
         add(buttonClear);
-        buttonClear.setPreferredSize(new Dimension(50,50));
+        Dimension d = buttonRectangleF.getPreferredSize();
+        System.out.println(d);
+        //buttonRectangleF.setPreferredSize(new Dimension(120,26));
         buttonClear.setToolTipText("");
+        
         buttonClear.addActionListener(this);
         buttonRectangleF.addActionListener(this);
         buttonRectangleE.addActionListener(this);
@@ -61,7 +63,6 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
            btnPnl =  new ButtonPanel();
         return btnPnl;
     }
-
      public void actionPerformed(ActionEvent ae)
      {
          System.out.println(ae.getActionCommand());
