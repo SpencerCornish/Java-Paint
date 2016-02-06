@@ -12,17 +12,15 @@ public class Frame extends JFrame
 	public Frame()
 	{
 		super("Frame");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Container c = getContentPane();
-		setMinimumSize(new Dimension(800, 600));
-		ButtonPanel.getInstance().setPreferredSize(new Dimension(110,30) );
-		c.add(ButtonPanel.getInstance(), BorderLayout.WEST);
-		c.add(MousePanel.getInstance(), BorderLayout.CENTER);
-		
-		//setSize(700, 700);
-		setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  // Exit on close
+		Container c = getContentPane(); // Returns frame
+		setMinimumSize(new Dimension(800, 600));  // Minimum window size allowed, subject to change
+		ButtonPanel.getInstance().setPreferredSize(new Dimension(110,30) ); // Sets total size of the container 
+		c.add(ButtonPanel.getInstance(), BorderLayout.WEST); // Puts ButtonPanel West
+		c.add(MousePanel.getInstance(), BorderLayout.CENTER); // Centers canvas
+		setVisible(true); 
 	}
-	public static Frame getInstance()
+	public static Frame getInstance() // Gets the current frame instance
 	{
 		if(frame == null)
 			frame = new Frame();
