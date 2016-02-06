@@ -42,7 +42,13 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
         add(buttonRectangleE);
         add(buttonRectangleF);
         add(buttonClear);
-        //buttonRectangleF.setPreferredSize(new Dimension(120,26)); // Left here for future reference
+        Dimension pref = buttonRectangleE.getPreferredSize();
+        buttonRectangleF.setPreferredSize(pref);
+        buttonClear.setPreferredSize(pref);
+        buttonOvalF.setPreferredSize(pref);
+        buttonOvalE.setPreferredSize(pref);
+        buttonLineD.setPreferredSize(pref);
+        
         buttonClear.setToolTipText("");
         
         buttonClear.addActionListener(this); 
