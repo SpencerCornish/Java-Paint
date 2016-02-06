@@ -2,11 +2,9 @@ package main;
 
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-
 import javax.swing.*;
 import java.awt.event.*;
 
@@ -15,8 +13,8 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
 	
 	private static final long serialVersionUID = -923758246107102096L;
 	
-	Cursor cHair = Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR);
-	Cursor cDef = Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
+	Cursor cHair = Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR); // Crosshair cursor
+	Cursor cDef = Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR); // Default cursor
 	
     public static ButtonPanel btnPnl; // Instance of Button Panel
     
@@ -29,23 +27,25 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
 
     public ButtonPanel()
     {
-    	setLayout(new GridLayout(6,1));
-        setBackground(Color.GRAY);	
-        
+    	
+    	setAlignmentX(Component.CENTER_ALIGNMENT); // Button panel alignment? This needs some testing
+        setBackground(Color.GRAY);	// Button Background color
         buttonClear = new JButton("Clear");	//button 0
-        buttonRectangleF = new JButton("Filled Rectangle");		//button 1
-        buttonRectangleE = new JButton("Rectangle"); 			//button 2
+        buttonRectangleF = new JButton("Filled Rect.");		//button 1
+        buttonRectangleE = new JButton("Empty Rect."); 			//button 2
         buttonOvalF = new JButton("Filled Oval");				//button 3
         buttonOvalE = new JButton("Empty Oval");				//button 4
         buttonLineD = new JButton("Line");						//button 5
-        add(buttonLineD);
+        add(buttonLineD); // Add these. We need some polymorphisim in here! :)
         add(buttonOvalE);
         add(buttonOvalF);
         add(buttonRectangleE);
         add(buttonRectangleF);
         add(buttonClear);
+        //buttonRectangleF.setPreferredSize(new Dimension(120,26)); // Left here for future reference
         buttonClear.setToolTipText("");
-        buttonClear.addActionListener(this);
+        
+        buttonClear.addActionListener(this); 
         buttonRectangleF.addActionListener(this);
         buttonRectangleE.addActionListener(this);
         buttonOvalF.addActionListener(this);
@@ -58,7 +58,6 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
            btnPnl =  new ButtonPanel();
         return btnPnl;
     }
-
      public void actionPerformed(ActionEvent ae)
      {
          System.out.println(ae.getActionCommand());
@@ -77,7 +76,7 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
      }
 	public void mouseClicked(MouseEvent arg0) {}
 
-	public void mouseEntered(MouseEvent e) {}
+	public void mouseEntered(MouseEvent e) {System.out.println("Deez");}
 
 	public void mouseExited(MouseEvent e) {}
 
