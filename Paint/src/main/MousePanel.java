@@ -6,19 +6,21 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import javax.swing.JPanel;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 public class MousePanel extends JPanel implements MouseListener, MouseMotionListener {
     
 	private static final long serialVersionUID = -8595660419538273421L;
-	public static MousePanel mouseP; //Instance of the MousePanel
-    private int button = -1;				//determines which button is pressed based on a number
-    Point sPoint = new Point(-1, -1);  //Points used to align shapes and mouse drag
+	public static MousePanel mouseP; 				//Instance of the MousePanel
+    private int button = -1;						//determines which button is pressed based on a number
+    Point sPoint = new Point(-1, -1);  				//Points used to align shapes and mouse drag
     Point ePoint = new Point(-1, -1);
+    private ArrayList<Shape> shapes = new ArrayList<Shape>();
     
     public MousePanel()
     {
-        setBackground(Color.WHITE); // Background Color for canvas
-        addMouseListener(this); //Used to do live track, etc.
+        setBackground(Color.WHITE); 			// Background Color for canvas
+        addMouseListener(this); 				//Used to do live track, etc.
         addMouseMotionListener(this); 
     }
     public static MousePanel getInstance()
@@ -31,20 +33,22 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 
     public void paintComponent(Graphics g)
     {
-        super.paintComponent(g); //Inherits Graphics
+        super.paintComponent(g); 				//Inherits Graphics
         Graphics2D g2 = (Graphics2D)g;
-        switch(button){   			// Switch on which button was pressed.  There may be a better way
+        switch(button){   						// Switch on which button was pressed.  There may be a better way
         case 0: 
-        	ePoint.x = -1; 			//Cleans line tracking variables for next line made
+        	ePoint.x = -1; 						//Cleans line tracking variables for next line made
         	ePoint.y = -1;
             sPoint.x = -1;  
             sPoint.y = -1;
-        break;  // The following shapes have weird offsets,as to make the dragging of a shape feel less insane!
-        case 1: g2.fillRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); repaint(); break;		// Draw filled rectangle
-        case 2: g2.drawRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); repaint(); break; 		// Draw empty rectangle
-        case 3: g2.fillOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); repaint(); break; 		// Draw filled oval
-        case 4: g2.drawOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); repaint(); break;		// Draw empty oval
-        case 5: g2.drawLine(sPoint.x, sPoint.y, ePoint.x, ePoint.y); repaint(); break; 							// Draw Line
+            shapes.clear();
+            break;  // The following shapes have weird offsets,as to make the dragging of a shape feel less insane!
+        case 1: Shape rF = new Shape(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); shapes.add(rF); rF.draw(g2, 1); break;		// Draw filled rectangle
+        case 2: Shape rE = new Shape(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); rE.draw(g2, 2); shapes.add(rE); break; 		// Draw empty rectangle
+        case 3: Shape oF = new Shape(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); oF.draw(g2, 3); shapes.add(oF); break; 		// Draw filled oval
+        case 4: Shape oE = new Shape(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); oE.draw(g2, 4); shapes.add(oE); break;		// Draw empty oval
+        case 5: Shape ln = new Shape(sPoint.x, sPoint.y, ePoint.x, ePoint.y); ln.draw(g2, 5); shapes.add(ln); break; 						// Draw Line
+        
         }
         
     }
@@ -73,9 +77,9 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
     	e.consume();  
         ePoint.x = e.getX();  
         ePoint.y = e.getY();
-        repaint();
+        //repaint();
     	}
-	public void mouseDragged(MouseEvent e) { 	//makes the shape a live-drag
+	public void mouseDragged(MouseEvent e) { 		//makes the shape a live-drag
     	e.consume();  
         ePoint.x = e.getX();  
         ePoint.y = e.getY();
