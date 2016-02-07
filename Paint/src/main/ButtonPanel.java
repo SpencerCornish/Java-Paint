@@ -13,30 +13,30 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
 	
 	private static final long serialVersionUID = -923758246107102096L;
 	
-	Cursor cHair = Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR); // Crosshair cursor
-	Cursor cDef = Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR); // Default cursor
+	Cursor cHair = Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR); 		// Crosshair cursor
+	Cursor cDef = Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR); 			// Default cursor
 	
-    public static ButtonPanel btnPnl; // Instance of Button Panel
+    public static ButtonPanel btnP; 		// Instance of Button Panel
     
-    private JButton buttonClear; // Clear the screen
-    private JButton buttonRectangleF; // Draw a Filled Rectangle
-    private JButton buttonRectangleE; // Draw a Filled Rectangle
-    private JButton buttonOvalF; // Draw a Filled Oval
-    private JButton buttonOvalE; // Draw an Empty Oval 
-    private JButton buttonLineD; // Draw a line
+    private JButton buttonClear; 			// Clear the screen
+    private JButton buttonRectangleF; 		// Draw a Filled Rectangle
+    private JButton buttonRectangleE; 		// Draw a Filled Rectangle
+    private JButton buttonOvalF; 			// Draw a Filled Oval
+    private JButton buttonOvalE; 			// Draw an Empty Oval 
+    private JButton buttonLineD; 			// Draw a line
 
     public ButtonPanel()
     {
     	
-    	setAlignmentX(Component.CENTER_ALIGNMENT); // Button panel alignment? This needs some testing
-        setBackground(Color.GRAY);	// Button Background color
-        buttonClear = new JButton("Clear");	//button 0
-        buttonRectangleF = new JButton("Filled Rect.");		//button 1
+    	setAlignmentX(Component.CENTER_ALIGNMENT); 				// Button panel alignment? This needs some testing
+        setBackground(Color.GRAY);								// Button panel Background color
+        buttonClear = new JButton("Clear");						//button 0
+        buttonRectangleF = new JButton("Filled Rect.");			//button 1
         buttonRectangleE = new JButton("Empty Rect."); 			//button 2
         buttonOvalF = new JButton("Filled Oval");				//button 3
         buttonOvalE = new JButton("Empty Oval");				//button 4
         buttonLineD = new JButton("Line");						//button 5
-        add(buttonLineD); // Add these. We need some polymorphisim in here! :)
+        add(buttonLineD); 										// Add these. We need some polymorphisim in here! :)
         add(buttonOvalE);
         add(buttonOvalF);
         add(buttonRectangleE);
@@ -60,9 +60,9 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
     }
      public static ButtonPanel getInstance()
     {
-        if(btnPnl == null)
-           btnPnl =  new ButtonPanel();
-        return btnPnl;
+        if(btnP == null)
+           btnP =  new ButtonPanel();
+        return btnP;
     }
      public void actionPerformed(ActionEvent ae)
      {

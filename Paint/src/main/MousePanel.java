@@ -10,7 +10,7 @@ import java.awt.event.*;
 public class MousePanel extends JPanel implements MouseListener, MouseMotionListener {
     
 	private static final long serialVersionUID = -8595660419538273421L;
-	public static MousePanel inst; //Instance of the MousePanel
+	public static MousePanel mouseP; //Instance of the MousePanel
     private int button = -1;				//determines which button is pressed based on a number
     Point sPoint = new Point(-1, -1);  //Points used to align shapes and mouse drag
     Point ePoint = new Point(-1, -1);
@@ -23,9 +23,9 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
     }
     public static MousePanel getInstance()
     {
-        if(inst == null) // If there is no instance...
-            inst =  new MousePanel(); // Make one!
-         return inst; // Send back the made instance
+        if(mouseP == null) 					// If there is no instance...
+            mouseP =  new MousePanel(); 		// Make one!
+         return mouseP; 						// Send back the made instance
         
     }
 
@@ -33,7 +33,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
     {
         super.paintComponent(g); //Inherits Graphics
         Graphics2D g2 = (Graphics2D)g;
-        switch(button){   // Switch on which button was pressed.  There may be a better way
+        switch(button){   			// Switch on which button was pressed.  There may be a better way
         case 0: 
         	ePoint.x = -1; 			//Cleans line tracking variables for next line made
         	ePoint.y = -1;
@@ -49,7 +49,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
         
     }
     
-    public void setButton(int button) {  // Sets our button tracking variable
+    public void setButton(int button) {  			// Sets our button tracking variable
     	this.button = button;
     }
     public void cleanUp()							// Currently on the chopping block
@@ -59,7 +59,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
         sPoint.x = -1;  
         sPoint.y = -1;
     }
-    public void mousePressed(MouseEvent e){		// Initial coords for shape
+    public void mousePressed(MouseEvent e){			// Initial coords for shape
     	//System.out.println("mouse pressed");
     	e.consume();  
     	ePoint.x = e.getX(); 
@@ -68,7 +68,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
         sPoint.y = e.getY();
         //repaint();
     	}
-    public void mouseReleased(MouseEvent e){	//Final coords for shape
+    public void mouseReleased(MouseEvent e){		//Final coords for shape
     	//System.out.println("mouse released");
     	e.consume();  
         ePoint.x = e.getX();  
