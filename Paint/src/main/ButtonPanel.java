@@ -17,7 +17,6 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
 	Cursor cDef = Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR); 			// Default cursor
 	
     public static ButtonPanel btnP; 		// Instance of Button Panel
-    
     private JButton buttonClear; 			// Clear the screen
     private JButton buttonRectangleF; 		// Draw a Filled Rectangle
     private JButton buttonRectangleE; 		// Draw a Filled Rectangle
@@ -48,9 +47,7 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
         buttonOvalF.setPreferredSize(pref);
         buttonOvalE.setPreferredSize(pref);
         buttonLineD.setPreferredSize(pref);
-        
         buttonClear.setToolTipText("");
-        
         buttonClear.addActionListener(this); 
         buttonRectangleF.addActionListener(this);
         buttonRectangleE.addActionListener(this);
@@ -79,7 +76,7 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
          else if(ae.getSource() == buttonOvalF) MousePanel.getInstance().setButton(3);
          else if(ae.getSource() == buttonOvalE) MousePanel.getInstance().setButton(4);
          else if(ae.getSource() == buttonLineD) MousePanel.getInstance().setButton(5);
-    	 //MousePanel.getInstance().repaint();
+    	 MousePanel.getInstance().repaint();
      }
 	public void mouseClicked(MouseEvent arg0) {}
 
