@@ -23,7 +23,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
     }
     public static MousePanel getInstance()
     {
-        if(mouseP == null) 					// If there is no instance...
+        if(mouseP == null) 						// If there is no instance...
             mouseP =  new MousePanel(); 		// Make one!
          return mouseP; 						// Send back the made instance
         
