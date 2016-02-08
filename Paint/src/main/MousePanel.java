@@ -30,10 +30,10 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
            // sPoint.y = e.getY();
         //  }
        // });
-    	bufferImg = new BufferedImage(Frame.WIDTH,Frame.HEIGHT, BufferedImage.TYPE_INT_RGB);
+    	bufferImg = new BufferedImage(1000,1000, BufferedImage.TYPE_INT_RGB);
     	Graphics buffer = bufferImg.getGraphics();
     	buffer.setColor(Color.ORANGE);
-    	buffer.fillRect(0, 0, Frame.WIDTH, Frame.HEIGHT);
+    	buffer.fillRect(0, 0, bufferImg.getWidth(),bufferImg.getHeight());
         addMouseListener(this); 				//Used to do live track, etc.
         addMouseMotionListener(this); 
         repaint();
@@ -71,17 +71,19 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
     	}
     public void mouseReleased(MouseEvent e){		//Final coords for shape
     	System.out.println("mouse released");
-    	Graphics buffer = bufferImg.getGraphics();
+    	Graphics buffer = bufferImg.createGraphics();
     	buffer.setColor(Color.RED);
     	e.consume();  
         ePoint.x = e.getX();  
         ePoint.y = e.getY();
         switch(button){   						// Switch on which button was pressed.  There may be a better way
         case 0: 
-        	buffer.fillRect(0, 0, Frame.WIDTH, Frame.HEIGHT);
+        	buffer.setColor(Color.WHITE);
+        	buffer.fillRect(0, 0, 500, 500);
+        	repaint();
             break;  // The following shapes have weird offsets,as to make the dragging of a shape feel less insane!
-        case 1: buffer.fillRect(sPoint.x, sPoint.y, ePoint.x, ePoint.y); repaint(); break;		// Draw filled rectangle
-        case 2: buffer.drawRect(sPoint.x, sPoint.y, ePoint.x, ePoint.y); repaint(); break; 		// Draw empty rectangle
+        case 1: buffer.fillRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); repaint(); break;		// Draw filled rectangle
+        case 2: buffer.drawRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); repaint(); break; 		// Draw empty rectangle
         case 3: buffer.fillOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); repaint(); break; 		// Draw filled oval
         case 4: buffer.drawOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); repaint(); break;		// Draw empty oval
         case 5: buffer.drawLine(sPoint.x, sPoint.y, ePoint.x, ePoint.y); repaint(); break; 							// Draw Line */
@@ -91,7 +93,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
     	//e.consume();  
         //ePoint.x = e.getX();  
        // ePoint.y = e.getY();
-       // System.out.println(e.getY() + " x " + e.getX());
+        System.out.println(e.getY() + " x " + e.getX());
        // repaint();
 		}
 	public void mouseMoved(MouseEvent e) { } //This will be useful soon, adding mouse coords to a tooltip in the bottom right corner    

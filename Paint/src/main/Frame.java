@@ -15,6 +15,7 @@ public class Frame extends JFrame
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  						// Exit on close
 		Container c = getContentPane(); 										// Returns frame
 		setMinimumSize(new Dimension(800, 600));  								// Minimum window size allowed, subject to change
+		setSize(new Dimension(1000,1000));
 		ButtonPanel.getInstance().setPreferredSize(new Dimension(110,30) ); 	// Sets total size of the container 
 		c.add(ButtonPanel.getInstance(), BorderLayout.WEST); 					// Puts ButtonPanel West
 		c.add(MousePanel.getInstance(), BorderLayout.CENTER); 					// Centers canvas
