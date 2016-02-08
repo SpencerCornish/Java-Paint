@@ -43,6 +43,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
     {
         super.paintComponent(g); 				//Inherits Graphics
         Graphics2D g2 = (Graphics2D)g;
+        Graphics2D g3 = (Graphics2D)g;
         switch(button){   						// Switch on which button was pressed.  There may be a better way
         case 0: 
         	ePoint.x = -1; 						//Cleans line tracking variables for next line made
@@ -50,11 +51,20 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
             sPoint.x = -1;  
             sPoint.y = -1;
             break;  // The following shapes have weird offsets,as to make the dragging of a shape feel less insane!
+<<<<<<< Upstream, based on branch 'master' of https://github.com/SpencerCornish/Paint-prog.git
         case 1: Shape rF = new Shape(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); rF.draw(g2, 1); break;		// Draw filled rectangle
         case 2: Shape rE = new Shape(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); rE.draw(g2, 2); break; 		// Draw empty rectangle
         case 3: Shape oF = new Shape(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); oF.draw(g2, 3); break; 		// Draw filled oval
         case 4: Shape oE = new Shape(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); oE.draw(g2, 4); break;		// Draw empty oval
         case 5: Shape ln = new Shape(sPoint.x, sPoint.y, ePoint.x, ePoint.y); ln.draw(g2, 5); break; 						// Draw Line
+=======
+        //case 1: Shape rF = new Shape(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); shapes.add(rF); rF.draw(g2, 1); break;		// Draw filled rectangle
+        case 1: Rectangle2D r2 = new Rectangle2D.Float(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  g2.fill(r2); break;
+        case 2: Shape rE = new Shape(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); rE.draw(g, 2); shapes.add(rE); break; 		// Draw empty rectangle
+        case 3: Shape oF = new Shape(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); oF.draw(g, 3); shapes.add(oF); break; 		// Draw filled oval
+        case 4: Shape oE = new Shape(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); oE.draw(g, 4); shapes.add(oE); break;		// Draw empty oval
+        case 5: Shape ln = new Shape(sPoint.x, sPoint.y, ePoint.x, ePoint.y); ln.draw(g, 5); shapes.add(ln); break; 						// Draw Line
+>>>>>>> 087bd03 Fixed
         }
     }
     
@@ -85,11 +95,19 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
         //repaint();
     	}
 	public void mouseDragged(MouseEvent e) { 		//makes the shape a live-drag
+<<<<<<< Upstream, based on branch 'master' of https://github.com/SpencerCornish/Paint-prog.git
     	e.consume();  
         ePoint.x = e.getX();  
         ePoint.y = e.getY();
         System.out.println(e.getY() + " x " + e.getX());
         repaint();
+=======
+    	//e.consume();  
+        //ePoint.x = e.getX();  
+       // ePoint.y = e.getY();
+       // System.out.println(e.getY() + " x " + e.getX());
+       // repaint();
+>>>>>>> 087bd03 Fixed
 		}
 	public void mouseMoved(MouseEvent e) { } //This will be useful soon, adding mouse coords to a tooltip in the bottom right corner    
 	public void mouseExited(MouseEvent e){//System.out.println("mouse exited");
