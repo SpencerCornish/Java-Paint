@@ -65,18 +65,18 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
      {
          System.out.println(ae.getActionCommand());
      	 MousePanel.getInstance().setCursor(cHair); //Sets the mouse Cursor to a Cross hair for editing
-     	 MousePanel.getInstance().cleanUp();
+     	 
          if(ae.getSource() == buttonClear) {
         	 MousePanel.getInstance().setButton(0);
         	 MousePanel.getInstance().setCursor(cDef);
-        	 MousePanel.getInstance().repaint();
+        	 //MousePanel.getInstance().repaint();
          }
          else if(ae.getSource() == buttonRectangleF) MousePanel.getInstance().setButton(1);
          else if(ae.getSource() == buttonRectangleE) MousePanel.getInstance().setButton(2);		//feeds button 2 (because it's a rectangle) to button variable in MousePanel class
          else if(ae.getSource() == buttonOvalF) MousePanel.getInstance().setButton(3);
          else if(ae.getSource() == buttonOvalE) MousePanel.getInstance().setButton(4);
          else if(ae.getSource() == buttonLineD) MousePanel.getInstance().setButton(5);
-    	 MousePanel.getInstance().repaint();
+    	 //MousePanel.getInstance().repaint();
      }
 	public void mouseClicked(MouseEvent arg0) {}
 
