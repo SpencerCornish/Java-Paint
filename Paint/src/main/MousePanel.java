@@ -3,8 +3,8 @@ package main;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image.*;
 import java.awt.Point;
+import java.awt.RenderingHints;
 import javax.swing.JPanel;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
@@ -30,7 +30,11 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
            // sPoint.y = e.getY();
         //  }
        // });
-    	bufferImg = new BufferedImage(1000,1000, BufferedImage.TYPE_INT_RGB);
+    	
+    	//FIX ME FIX ME
+    	bufferImg = new BufferedImage(50,50,BufferedImage.TYPE_INT_RGB); // FIX ME FIX ME FIX ME FIX ME
+    	//FIX ME FIX ME 
+    	
     	Graphics buffer = bufferImg.getGraphics();
     	buffer.setColor(Color.ORANGE);
     	buffer.fillRect(0, 0, bufferImg.getWidth(),bufferImg.getHeight());
@@ -49,6 +53,8 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
     public void paintComponent(Graphics g)
     {
     	g.drawImage(bufferImg, 0, 0, getWidth(), getHeight(), null);
+    	RenderingHints rh = new RenderingHints(RenderingHints.KEY_TEXT_ANTIALIASING,RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+    	((Graphics2D) g).setRenderingHints(rh);
     }
     
     public void setButton(int button) {  			// Sets our button tracking variable
