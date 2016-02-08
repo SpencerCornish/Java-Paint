@@ -61,6 +61,14 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
         //sPoint.x = 200;  
         //sPoint.y = 200;
     }
+    public void clearAll()
+    {
+    	Graphics buffer = bufferImg.createGraphics();
+    	buffer.setColor(Color.WHITE);
+    	buffer.fillRect(0, 0, bufferImg.getHeight(), bufferImg.getWidth());
+    	repaint();
+    	
+    }
     public void mousePressed(MouseEvent e){			// Initial coords for shape
     	System.out.println("mouse pressed");
     	e.consume();
@@ -75,17 +83,15 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
         ePoint.x = e.getX();  
         ePoint.y = e.getY();
         switch(button){   						// Switch on which button was pressed.  There may be a better way
-        case 0: 
-        	buffer.setColor(Color.WHITE);
-        	buffer.fillRect(0, 0, 500, 500);
-        	repaint();
-            break;  // The following shapes have weird offsets,as to make the dragging of a shape feel less insane!
-        case 1: buffer.fillRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); repaint(); break;		// Draw filled rectangle
-        case 2: buffer.drawRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); repaint(); break; 		// Draw empty rectangle
-        case 3: buffer.fillOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); repaint(); break; 		// Draw filled oval
-        case 4: buffer.drawOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); repaint(); break;		// Draw empty oval
-        case 5: buffer.drawLine(sPoint.x, sPoint.y, ePoint.x, ePoint.y); repaint(); break; 							// Draw Line */
+        case 0: break;  // The following shapes have weird offsets,as to make the dragging of a shape feel less insane!
+        case 1: buffer.fillRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break;		// Draw filled rectangle
+        case 2: buffer.drawRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break; 		// Draw empty rectangle
+        case 3: buffer.fillOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break; 		// Draw filled oval
+        case 4: buffer.drawOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break;		// Draw empty oval
+        case 5: buffer.drawLine(sPoint.x, sPoint.y, ePoint.x, ePoint.y); break; 							// Draw Line
+        default:break;
         }
+        repaint();
     	}
 	public void mouseDragged(MouseEvent e) { 		//makes the shape a live-drag
     	//e.consume();  

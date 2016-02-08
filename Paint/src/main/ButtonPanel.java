@@ -15,7 +15,7 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
 	
 	Cursor cHair = Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR); 		// Crosshair cursor
 	Cursor cDef = Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR); 			// Default cursor
-	
+	private Dimension PREF;					// The preferred button dimension
     public static ButtonPanel btnP; 		// Instance of Button Panel
     private JButton buttonClear; 			// Clear the screen
     private JButton buttonRectangleF; 		// Draw a Filled Rectangle
@@ -41,12 +41,12 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
         add(buttonRectangleE);
         add(buttonRectangleF);
         add(buttonClear);
-        Dimension pref = buttonRectangleE.getPreferredSize();
-        buttonRectangleF.setPreferredSize(pref);
-        buttonClear.setPreferredSize(pref);
-        buttonOvalF.setPreferredSize(pref);
-        buttonOvalE.setPreferredSize(pref);
-        buttonLineD.setPreferredSize(pref);
+        PREF = buttonRectangleE.getPreferredSize();
+        buttonRectangleF.setPreferredSize(PREF);
+        buttonClear.setPreferredSize(PREF);
+        buttonOvalF.setPreferredSize(PREF);
+        buttonOvalE.setPreferredSize(PREF);
+        buttonLineD.setPreferredSize(PREF);
         buttonClear.setToolTipText("");
         buttonClear.addActionListener(this); 
         buttonRectangleF.addActionListener(this);
@@ -69,6 +69,7 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
          if(ae.getSource() == buttonClear) {
         	 MousePanel.getInstance().setButton(0);
         	 MousePanel.getInstance().setCursor(cDef);
+        	 MousePanel.getInstance().clearAll();
         	 //MousePanel.getInstance().repaint();
          }
          else if(ae.getSource() == buttonRectangleF) MousePanel.getInstance().setButton(1);
@@ -76,7 +77,7 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
          else if(ae.getSource() == buttonOvalF) MousePanel.getInstance().setButton(3);
          else if(ae.getSource() == buttonOvalE) MousePanel.getInstance().setButton(4);
          else if(ae.getSource() == buttonLineD) MousePanel.getInstance().setButton(5);
-    	 //MousePanel.getInstance().repaint();
+    	 MousePanel.getInstance().repaint();
      }
 	public void mouseClicked(MouseEvent arg0) {}
 
