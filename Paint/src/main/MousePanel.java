@@ -100,7 +100,6 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
        // ePoint.y = e.getY();
        // System.out.println(e.getY() + " x " + e.getX());
        // repaint();
->>>>>>> 087bd03 Fixed
 		}
 	public void mouseMoved(MouseEvent e) { } //This will be useful soon, adding mouse coords to a tooltip in the bottom right corner    
 	public void mouseExited(MouseEvent e){//System.out.println("mouse exited");
