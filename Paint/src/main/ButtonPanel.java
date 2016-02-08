@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.awt.event.*;
 
 
-public class ButtonPanel extends JPanel implements ActionListener, MouseListener {
+public class ButtonPanel extends JPanel implements ActionListener, MouseListener { //remove mouselistener :D
 	
 	private static final long serialVersionUID = -923758246107102096L;
 	

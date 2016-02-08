@@ -63,9 +63,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
     }
     public void mousePressed(MouseEvent e){			// Initial coords for shape
     	System.out.println("mouse pressed");
-    	e.consume();  
-    	//ePoint.x = e.getX(); 
-    	//ePoint.y = e.getY();
+    	e.consume();
         sPoint.x = e.getX();  
         sPoint.y = e.getY();
     	}
