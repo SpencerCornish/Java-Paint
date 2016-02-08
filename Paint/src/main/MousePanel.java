@@ -95,13 +95,6 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
         //repaint();
     	}
 	public void mouseDragged(MouseEvent e) { 		//makes the shape a live-drag
-<<<<<<< Upstream, based on branch 'master' of https://github.com/SpencerCornish/Paint-prog.git
-    	e.consume();  
-        ePoint.x = e.getX();  
-        ePoint.y = e.getY();
-        System.out.println(e.getY() + " x " + e.getX());
-        repaint();
-=======
     	//e.consume();  
         //ePoint.x = e.getX();  
        // ePoint.y = e.getY();
