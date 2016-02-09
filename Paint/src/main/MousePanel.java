@@ -113,7 +113,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		ePoint.x = e.getX();  
 		ePoint.y = e.getY();
 		fixDirections();
-		switch(button){   // Switch on which button was pressed
+		switch(button){   //Switch on which button was pressed
 		case 0: break;
 		case 1: buffer.fillRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break;		// Draw filled rectangle
 		case 2: buffer.drawRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break; 		// Draw empty rectangle
