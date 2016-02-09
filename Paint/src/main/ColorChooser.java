@@ -9,7 +9,6 @@ public class ColorChooser extends JPanel {
 	private static final long serialVersionUID = -9134135157727043422L;
 	private JFrame frame;
 	protected JColorChooser chooser;
-	private Color colorChoice;
 
 	public ColorChooser() {
 		super(new BorderLayout());

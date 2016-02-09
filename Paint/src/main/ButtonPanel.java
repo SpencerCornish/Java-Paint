@@ -17,6 +17,7 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
 	Cursor cDef = Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR); 			// Default cursor
 	private final Dimension PREF = new Dimension(101,26);					// The preferred button dimension
 	public static ButtonPanel btnP; 		// Instance of Button Panel
+	public static  ColorChooser colorF;
 	private JButton buttonClear; 			// Clear the screen
 	private JButton buttonRectangleF; 		// Draw a Filled Rectangle
 	private JButton buttonRectangleE; 		// Draw a Filled Rectangle
@@ -26,6 +27,7 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
 	private JButton buttonColor;
 
 	public ButtonPanel() {
+		colorF = new ColorChooser();
 		setAlignmentX(Component.CENTER_ALIGNMENT); 				// Button alignment within panel
 		setBackground(Color.GRAY);								// Button panel Background color
 
@@ -88,7 +90,7 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
 		else if(ae.getSource() == buttonOvalF) MousePanel.getInstance().setButton(3);
 		else if(ae.getSource() == buttonOvalE) MousePanel.getInstance().setButton(4);
 		else if(ae.getSource() == buttonLineD) MousePanel.getInstance().setButton(5);
-		else if(ae.getSource() == buttonColor) new ColorChooser(); }
+		else if(ae.getSource() == buttonColor) colorF.showColors(); }
 	
 	public void mouseClicked(MouseEvent e) {}
 
