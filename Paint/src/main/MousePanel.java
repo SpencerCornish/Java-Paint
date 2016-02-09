@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -7,6 +8,7 @@ import java.awt.Point;
 import java.awt.RenderingHints;
 import javax.swing.JPanel;
 import java.awt.event.*;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 
@@ -22,14 +24,12 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 	private boolean paintStatusLive = false;
 	public MousePanel() {
 		bufferImg = new BufferedImage(5000,5000, BufferedImage.TYPE_INT_RGB); 
-
 		Graphics buffer = bufferImg.getGraphics();
 		buffer.setColor(Color.WHITE);
 		buffer.fillRect(0, 0, bufferImg.getWidth(),bufferImg.getHeight());
 		addMouseListener(this); 				//Used to do live track, etc.
 		addMouseMotionListener(this); 
 		repaint(); 
-
 	}
 	public static MousePanel getInstance()
 	{
@@ -74,8 +74,6 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 	public void fixDirections()
 	{
 		if(button != 5){
-
-
 			if(sPoint.x > ePoint.x){
 				int sTemp = sPoint.x;
 				sPoint.x = ePoint.x;
@@ -94,10 +92,10 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		e.consume();
 		sPoint.x = e.getX();  
 		sPoint.y = e.getY();
-		paintStatusLive = true;
+		//paintStatusLive = true;
 	}
 	public void mouseReleased(MouseEvent e){		//Final coords for shape
-		paintStatusLive = false;
+		//paintStatusLive = false;
 		repaint();
 		System.out.println("mouse released");
 		Graphics buffer = bufferImg.createGraphics();
@@ -118,14 +116,17 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		repaint();
 	}
 	public void mouseDragged(MouseEvent e) { 		//makes the shape a live-drag
-		bufferImgLive = new BufferedImage(5000,5000, BufferedImage.TYPE_INT_RGB);
+		bufferImgLive = new BufferedImage(5000,5000, BufferedImage.TYPE_INT_ARGB);
 		Graphics buffer2 = bufferImgLive.createGraphics();
-		buffer2.setColor(Color.green);
+		((Graphics2D) buffer2).setComposite(AlphaComposite.Clear);
+		buffer2.fillRect(0, 0, bufferImg.getWidth(), bufferImg.getHeight());
 		e.consume();  
 		ePoint.x = e.getX();  
 		ePoint.y = e.getY();
 		System.out.println(e.getY() + " x " + e.getX());
-		fixDirections();
+		((Graphics2D) buffer2).setComposite(AlphaComposite.SrcIn);
+		buffer2.setColor(Color.GREEN);
+		//fixDirections();
 		switch(button){   						// Switch on which button was pressed.  There may be a better way
 		case 0: break;  // The following shapes have weird offsets,as to make the dragging of a shape feel less insane!
 		case 1: buffer2.fillRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break;		// Draw filled rectangle
