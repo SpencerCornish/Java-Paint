@@ -20,9 +20,10 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 	private BufferedImage bufferImgLive;			//Buffered image for live drawing
 	private boolean paintStatusFlag = false;		//Tells paintComponent the source to paint on the panel
 	private int button = -1;						//Determines which button is pressed based on a number
-	private Point startP = new Point(-1, -1);		//Starting point for live drag
-	private Point sPoint = new Point(-1, -1);  		//Start Point
-	private Point ePoint = new Point(-1, -1);		//End Point
+	private Point startP = new Point(-1, -1);		//final start point
+	private Point endP = new Point(-1, -1);			//final end point
+	private Point sPoint = new Point(-1, -1);  		//temporary start Point
+	private Point ePoint = new Point(-1, -1);		//temporary end Point
 
 	public MousePanel() {
 		bufferImg = new BufferedImage(2000,2000, BufferedImage.TYPE_INT_RGB); 
@@ -82,9 +83,9 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 				startP.x = ePoint.x;
 				ePoint.x = sTemp;
 			}
-			if(sPoint.y > ePoint.y){
-				int sTemp = sPoint.y;
-				sPoint.y = ePoint.y;
+			if(startP.y > ePoint.y){
+				int sTemp = startP.y;
+				startP.y = ePoint.y;
 				ePoint.y = sTemp;
 			}
 		}
@@ -133,11 +134,11 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		fixLiveDirections();
 		switch(button){   						// Switch on which button was pressed
 		case 0: break;  
-		case 1: buffer2.fillRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break;			// Draw filled rectangle
-		case 2: buffer2.drawRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break; 		// Draw empty rectangle
-		case 3: buffer2.fillOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break; 		// Draw filled oval
-		case 4: buffer2.drawOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break;			// Draw empty oval
-		case 5: buffer2.drawLine(sPoint.x, sPoint.y, ePoint.x, ePoint.y); break; 							// Draw Line
+		case 1: buffer2.fillRect(startP.x, startP.y, ePoint.x-sPoint.x, ePoint.y-startP.y);  break;			// Draw filled rectangle
+		case 2: buffer2.drawRect(startP.x, startP.y, ePoint.x-sPoint.x, ePoint.y-startP.y);  break; 		// Draw empty rectangle
+		case 3: buffer2.fillOval(startP.x, startP.y, ePoint.x-sPoint.x, ePoint.y-startP.y);  break; 		// Draw filled oval
+		case 4: buffer2.drawOval(startP.x, startP.y, ePoint.x-sPoint.x, ePoint.y-startP.y);  break;			// Draw empty oval
+		case 5: buffer2.drawLine(startP.x, startP.y, ePoint.x, ePoint.y); break; 							// Draw Line
 		default: break;
 		}
 		bufferImgLive.flush();
@@ -156,11 +157,11 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		fixDirections();
 		switch(button){   //Switch on which button was pressed
 		case 0: break;
-		case 1: buffer.fillRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break;		// Draw filled rectangle
-		case 2: buffer.drawRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break; 		// Draw empty rectangle
-		case 3: buffer.fillOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break; 		// Draw filled oval
-		case 4: buffer.drawOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break;		// Draw empty oval
-		case 5: buffer.drawLine(sPoint.x, sPoint.y, ePoint.x, ePoint.y); break; 						// Draw Line
+		case 1: buffer.fillRect(startP.x, startP.y, ePoint.x-startP.x, ePoint.y-startP.y);  break;		// Draw filled rectangle
+		case 2: buffer.drawRect(startP.x, startP.y, ePoint.x-startP.x, ePoint.y-startP.y);  break; 		// Draw empty rectangle
+		case 3: buffer.fillOval(startP.x, startP.y, ePoint.x-startP.x, ePoint.y-startP.y);  break; 		// Draw filled oval
+		case 4: buffer.drawOval(startP.x, startP.y, ePoint.x-startP.x, ePoint.y-startP.y);  break;		// Draw empty oval
+		case 5: buffer.drawLine(startP.x, startP.y, ePoint.x, ePoint.y); break; 						// Draw Line
 		default: break;
 		}
 		repaint();
