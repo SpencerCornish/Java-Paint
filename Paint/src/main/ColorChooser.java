@@ -14,7 +14,7 @@ public class ColorChooser extends JPanel {
 		super(new BorderLayout());
 		chooser = new JColorChooser();
 		JFrame frame = new JFrame("Pick a Color");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		JComponent content =  chooser;
 		content.setOpaque(true);
 		frame.setContentPane(content);

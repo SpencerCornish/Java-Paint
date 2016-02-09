@@ -15,7 +15,7 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
 
 	Cursor cHair = Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR); 		// Crosshair cursor
 	Cursor cDef = Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR); 			// Default cursor
-	private Dimension PREF;					// The preferred button dimension
+	private final Dimension PREF = new Dimension(101,26);					// The preferred button dimension
 	public static ButtonPanel btnP; 		// Instance of Button Panel
 	private JButton buttonClear; 			// Clear the screen
 	private JButton buttonRectangleF; 		// Draw a Filled Rectangle
@@ -23,37 +23,58 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
 	private JButton buttonOvalF; 			// Draw a Filled Oval
 	private JButton buttonOvalE; 			// Draw an Empty Oval 
 	private JButton buttonLineD; 			// Draw a line
+	private JButton buttonColor;
 
 	public ButtonPanel()
 	{
 
 		setAlignmentX(Component.CENTER_ALIGNMENT); 				// Button alignment within panel
 		setBackground(Color.GRAY);								// Button panel Background color
-		buttonClear = new JButton("Clear");						//button 0
+
 		buttonRectangleF = new JButton("Filled Rect.");			//button 1
-		buttonRectangleE = new JButton("Empty Rect."); 			//button 2
-		buttonOvalF = new JButton("Filled Oval");				//button 3
-		buttonOvalE = new JButton("Empty Oval");				//button 4
-		buttonLineD = new JButton("Line");						//button 5
-		add(buttonLineD); 										// Add these. We need some polymorphism in here! :)
-		add(buttonOvalE);
-		add(buttonOvalF);
-		add(buttonRectangleE);
 		add(buttonRectangleF);
-		add(buttonClear);
-		PREF = buttonRectangleE.getPreferredSize();				//sets button's size
 		buttonRectangleF.setPreferredSize(PREF);
-		buttonClear.setPreferredSize(PREF);
-		buttonOvalF.setPreferredSize(PREF);
-		buttonOvalE.setPreferredSize(PREF);
-		buttonLineD.setPreferredSize(PREF);
-		buttonClear.setToolTipText("");
-		buttonClear.addActionListener(this); 					//add action listeners to buttons so they work
 		buttonRectangleF.addActionListener(this);
+		buttonRectangleF.setToolTipText("Draw a filled rectangle");
+		
+		buttonRectangleE = new JButton("Empty Rect."); 			//button 2
+		add(buttonRectangleE);
+		buttonRectangleE.setPreferredSize(PREF);
 		buttonRectangleE.addActionListener(this);
+		buttonRectangleE.setToolTipText("Draw an empty rectangle");
+
+		
+		buttonOvalF = new JButton("Filled Oval");				//button 3
+		add(buttonOvalF);
+		buttonOvalF.setPreferredSize(PREF);
 		buttonOvalF.addActionListener(this);
+		buttonOvalF.setToolTipText("Draw a filled oval");
+
+		buttonOvalE = new JButton("Empty Oval");				//button 4
+		add(buttonOvalE);
+		buttonOvalE.setPreferredSize(PREF);
 		buttonOvalE.addActionListener(this);
+		buttonOvalE.setToolTipText("Draw an empty oval");
+
+		buttonLineD = new JButton("Line");						//button 5
+		add(buttonLineD); 
+		buttonLineD.setPreferredSize(PREF);
 		buttonLineD.addActionListener(this);  
+		buttonLineD.setToolTipText("Draw a straight line");
+		
+		buttonClear = new JButton("Clear");						//button 0
+		add(buttonClear);
+		buttonClear.setPreferredSize(PREF);
+		buttonClear.addActionListener(this);
+		buttonClear.setToolTipText("Clear the canvas");
+
+		buttonColor = new JButton("Color...");					// Color button
+		add(buttonColor);
+		buttonColor.setPreferredSize(PREF);
+		buttonColor.addActionListener(this);
+		buttonColor.setToolTipText("Choose a color");
+
+		  
 	}
 	public static ButtonPanel getInstance()						//get instance of button panel
 	{
@@ -77,6 +98,7 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
 		else if(ae.getSource() == buttonOvalF) MousePanel.getInstance().setButton(3);
 		else if(ae.getSource() == buttonOvalE) MousePanel.getInstance().setButton(4);
 		else if(ae.getSource() == buttonLineD) MousePanel.getInstance().setButton(5);
+		else if(ae.getSource() == buttonColor) new ColorChooser();
 		MousePanel.getInstance().repaint();	//do we need this anymore?
 	}
 	public void mouseClicked(MouseEvent e) {}
