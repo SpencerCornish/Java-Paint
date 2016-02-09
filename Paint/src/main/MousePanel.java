@@ -21,16 +21,16 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
     private Graphics g;
     public MousePanel() {
         
-    	setDoubleBuffered(false);       
-        addMouseListener(new MouseAdapter() {
-          public void mousePressed(MouseEvent e) {
-          sPoint.x = e.getX();
-          sPoint.y = e.getY();
-          }
-        });
+    	//setDoubleBuffered(false);       
+        //addMouseListener(new MouseAdapter() {
+        //  public void mousePressed(MouseEvent e) {
+        //  sPoint.x = e.getX();
+        //  sPoint.y = e.getY();
+      //    }
+      //  });
     	
     	//FIX ME FIX ME
-    	//bufferImg = new BufferedImage(); // FIX ME FIX ME FIX ME FIX ME
+    	bufferImg = new BufferedImage(5000,5000, BufferedImage.TYPE_INT_RGB); // FIX ME FIX ME FIX ME FIX ME
     	//FIX ME FIX ME 
     	
     	Graphics buffer = bufferImg.getGraphics();
