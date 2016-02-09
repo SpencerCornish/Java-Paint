@@ -20,7 +20,7 @@ public class ColorChooser extends JPanel {
 		frame.setContentPane(content);
 		
 		frame.pack();
-		frame.setVisible(true));
+		frame.setVisible(true);
 	}
 
 }
