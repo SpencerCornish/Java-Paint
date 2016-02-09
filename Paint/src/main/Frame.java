@@ -21,7 +21,7 @@ public class Frame extends JFrame
 		c.add(MousePanel.getInstance(), BorderLayout.CENTER); 					// Centers canvas
 		setVisible(true); 
 	}
-	public static Frame getInstance()
+	public static Frame getInstance()	//gets instance of frame and makes one if none exist
 	{
 		if(frame == null)
 			frame = new Frame();

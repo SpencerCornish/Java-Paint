@@ -27,7 +27,7 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
 	public ButtonPanel()
 	{
 
-		setAlignmentX(Component.CENTER_ALIGNMENT); 				// Button panel alignment? This needs some testing
+		setAlignmentX(Component.CENTER_ALIGNMENT); 				// Button alignment within panel
 		setBackground(Color.GRAY);								// Button panel Background color
 		buttonClear = new JButton("Clear");						//button 0
 		buttonRectangleF = new JButton("Filled Rect.");			//button 1
@@ -35,27 +35,27 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
 		buttonOvalF = new JButton("Filled Oval");				//button 3
 		buttonOvalE = new JButton("Empty Oval");				//button 4
 		buttonLineD = new JButton("Line");						//button 5
-		add(buttonLineD); 										// Add these. We need some polymorphisim in here! :)
+		add(buttonLineD); 										// Add these. We need some polymorphism in here! :)
 		add(buttonOvalE);
 		add(buttonOvalF);
 		add(buttonRectangleE);
 		add(buttonRectangleF);
 		add(buttonClear);
-		PREF = buttonRectangleE.getPreferredSize();
+		PREF = buttonRectangleE.getPreferredSize();				//sets button's size
 		buttonRectangleF.setPreferredSize(PREF);
 		buttonClear.setPreferredSize(PREF);
 		buttonOvalF.setPreferredSize(PREF);
 		buttonOvalE.setPreferredSize(PREF);
 		buttonLineD.setPreferredSize(PREF);
 		buttonClear.setToolTipText("");
-		buttonClear.addActionListener(this); 
+		buttonClear.addActionListener(this); 					//add action listeners to buttons so they work
 		buttonRectangleF.addActionListener(this);
 		buttonRectangleE.addActionListener(this);
 		buttonOvalF.addActionListener(this);
 		buttonOvalE.addActionListener(this);
 		buttonLineD.addActionListener(this);  
 	}
-	public static ButtonPanel getInstance()
+	public static ButtonPanel getInstance()						//get instance of button panel
 	{
 		if(btnP == null)
 			btnP =  new ButtonPanel();
@@ -63,10 +63,10 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
 	}
 	public void actionPerformed(ActionEvent ae)
 	{
-		System.out.println(ae.getActionCommand());
-		MousePanel.getInstance().setCursor(cHair); //Sets the mouse Cursor to a Cross hair for editing
+		//System.out.println(ae.getActionCommand());
+		MousePanel.getInstance().setCursor(cHair); 		//Sets the mouse Cursor to a Cross hair for editing
 
-		if(ae.getSource() == buttonClear) {
+		if(ae.getSource() == buttonClear) {				//clears if user clicks clear button
 			MousePanel.getInstance().setButton(0);
 			MousePanel.getInstance().setCursor(cDef);
 			MousePanel.getInstance().clearAll();
@@ -77,11 +77,11 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
 		else if(ae.getSource() == buttonOvalF) MousePanel.getInstance().setButton(3);
 		else if(ae.getSource() == buttonOvalE) MousePanel.getInstance().setButton(4);
 		else if(ae.getSource() == buttonLineD) MousePanel.getInstance().setButton(5);
-		MousePanel.getInstance().repaint();
+		MousePanel.getInstance().repaint();	//do we need this anymore?
 	}
-	public void mouseClicked(MouseEvent arg0) {}
+	public void mouseClicked(MouseEvent e) {}
 
-	public void mouseEntered(MouseEvent e) {System.out.println("Deez");}
+	public void mouseEntered(MouseEvent e) {}
 
 	public void mouseExited(MouseEvent e) {}
 
