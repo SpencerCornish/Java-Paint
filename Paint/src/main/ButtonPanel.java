@@ -1,5 +1,12 @@
 package main;
-
+/**
+ * Paint Program
+ * Authors:
+ * 		Nate Tranel
+ * 		Spencer Cornish
+ * 		
+ * 
+ */
 
 import java.awt.Color;
 import java.awt.Component;
@@ -17,7 +24,9 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
 	Cursor cDef = Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR); 			// Default cursor
 	private final Dimension PREF = new Dimension(101,26);					// The preferred button dimension
 	public static ButtonPanel btnP; 		// Instance of Button Panel
-	public static  ColorChooser colorF;
+	public static  ColorChooser colorF;		// Fill Color
+	public static  ColorChooser colorBG;	// Background Color (Future)
+	public static  ColorChooser colorOL;	// Outline Color (Future)
 	private JButton buttonClear; 			// Clear the screen
 	private JButton buttonRectangleF; 		// Draw a Filled Rectangle
 	private JButton buttonRectangleE; 		// Draw a Filled Rectangle
@@ -36,14 +45,14 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
 		buttonRectangleF.setPreferredSize(PREF);
 		buttonRectangleF.addActionListener(this);
 		buttonRectangleF.setToolTipText("Draw a filled rectangle");
-		
+
 		buttonRectangleE = new JButton("Rectangle"); 			//button 2
 		add(buttonRectangleE);
 		buttonRectangleE.setPreferredSize(PREF);
 		buttonRectangleE.addActionListener(this);
 		buttonRectangleE.setToolTipText("Draw an empty rectangle");
 
-		
+
 		buttonOvalF = new JButton("Filled Oval");				//button 3
 		add(buttonOvalF);
 		buttonOvalF.setPreferredSize(PREF);
@@ -61,7 +70,7 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
 		buttonLineD.setPreferredSize(PREF);
 		buttonLineD.addActionListener(this);  
 		buttonLineD.setToolTipText("Draw a straight line");
-		
+
 		buttonClear = new JButton("Clear");						//button 0
 		add(buttonClear);
 		buttonClear.setPreferredSize(PREF);
@@ -72,7 +81,10 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
 		add(buttonColor);
 		buttonColor.setPreferredSize(PREF);
 		buttonColor.addActionListener(this);
-		buttonColor.setToolTipText("Choose a color"); }
+		buttonColor.setToolTipText("Choose a color"); 
+		buttonColor.setEnabled(false);
+	}
+
 	public static ButtonPanel getInstance()	{					//get instance of button panel
 		if(btnP == null)
 			btnP =  new ButtonPanel();
@@ -91,7 +103,7 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
 		else if(ae.getSource() == buttonOvalE) MousePanel.getInstance().setButton(4);
 		else if(ae.getSource() == buttonLineD) MousePanel.getInstance().setButton(5);
 		else if(ae.getSource() == buttonColor) colorF.showColors(); }
-	
+
 	public void mouseClicked(MouseEvent e) {}
 
 	public void mouseEntered(MouseEvent e) {}

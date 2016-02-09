@@ -1,8 +1,14 @@
 package main;
-
+/**
+ * Paint Program
+ * Authors:
+ * 		Nate Tranel
+ * 		Spencer Cornish
+ * 		
+ * 
+ */
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 
 
 public class ColorChooser extends JPanel {
@@ -23,12 +29,12 @@ public class ColorChooser extends JPanel {
 	public void showColors()
 	{
 		frame.setVisible(true);
-	
+
 	}
 	public Color getColor()
 	{
 		return chooser.getColor();//s
 	}
-	
+
 
 }
