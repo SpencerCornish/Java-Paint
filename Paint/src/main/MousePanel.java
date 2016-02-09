@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 import java.awt.event.*;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
+import java.awt.image.WritableRaster;
 
 
 public class MousePanel extends JPanel implements MouseListener, MouseMotionListener {
@@ -23,7 +25,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 	private BufferedImage bufferImgLive;
 	private boolean paintStatusLive = false;
 	public MousePanel() {
-		bufferImg = new BufferedImage(5000,5000, BufferedImage.TYPE_INT_RGB); 
+		bufferImg = new BufferedImage(2000,2000, BufferedImage.TYPE_INT_RGB); 
 		Graphics buffer = bufferImg.getGraphics();
 		buffer.setColor(Color.WHITE);
 		buffer.fillRect(0, 0, bufferImg.getWidth(),bufferImg.getHeight());
@@ -86,15 +88,22 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		}
 
 	}
+	public static BufferedImage deepCopy(BufferedImage bi) {
+		 ColorModel cm = bi.getColorModel();
+		 boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
+		 WritableRaster raster = bi.copyData(null);
+		 return new BufferedImage(cm, raster, isAlphaPremultiplied, null);
+		}
+
 	public void mousePressed(MouseEvent e){			// Initial coords for shape
 		System.out.println("mouse pressed");
 		e.consume();
 		sPoint.x = e.getX();  
 		sPoint.y = e.getY();
-		//paintStatusLive = true;
+		paintStatusLive = true;
 	}
 	public void mouseReleased(MouseEvent e){		//Final coords for shape
-		//paintStatusLive = false;
+		paintStatusLive = false;
 		repaint();
 		System.out.println("mouse released");
 		Graphics buffer = bufferImg.createGraphics();
@@ -115,28 +124,29 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		repaint();
 	}
 	public void mouseDragged(MouseEvent e) { 		//makes the shape a live-drag
-		bufferImgLive = new BufferedImage(5000,5000, BufferedImage.TYPE_INT_ARGB);	//draw on buffered image instead of panel component
+		bufferImgLive = deepCopy(bufferImg);
 		Graphics buffer2 = bufferImgLive.createGraphics();
-		((Graphics2D) buffer2).setComposite(AlphaComposite.Clear);
-		buffer2.fillRect(0, 0, bufferImg.getWidth(), bufferImg.getHeight());
+		//((Graphics2D) buffer2).setComposite(AlphaComposite.Clear);
+		//buffer2.fillRect(0, 0, bufferImg.getWidth(), bufferImg.getHeight());
 		e.consume();  
 		ePoint.x = e.getX();  
 		ePoint.y = e.getY();
 		System.out.println(e.getY() + " x " + e.getX());
-		((Graphics2D) buffer2).setComposite(AlphaComposite.SrcIn);
-		buffer2.setColor(Color.GREEN);
-		//fixDirections();
-		switch(button){   	// Switch on which button was pressed, again
-		case 0: break;  	//these statements are repeated here for live drag
-		case 1: buffer2.fillRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break;			// Draw filled rectangle
+		//((Graphics2D) buffer2).setComposite(AlphaComposite.SrcIn);
+		buffer2.setColor(Color.BLACK);
+		fixDirections();
+		switch(button){   						// Switch on which button was pressed.  There may be a better way
+		case 0: break;  // The following shapes have weird offsets,as to make the dragging of a shape feel less insane!
+		case 1: buffer2.fillRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break;		// Draw filled rectangle
 		case 2: buffer2.drawRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break; 		// Draw empty rectangle
 		case 3: buffer2.fillOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break; 		// Draw filled oval
 		case 4: buffer2.drawOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break;			// Draw empty oval
 		case 5: buffer2.drawLine(sPoint.x, sPoint.y, ePoint.x, ePoint.y); break; 							// Draw Line
 		default: break;
 		}
+		bufferImgLive.flush();
 		repaint();
-		//buffer2.dispose();
+		buffer2.dispose();
 	}
 	public void mouseMoved(MouseEvent e) {}  
 	public void mouseExited(MouseEvent e){//System.out.println("mouse exited");	//commented out code is for testing
