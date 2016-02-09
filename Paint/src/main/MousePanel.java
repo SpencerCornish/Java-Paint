@@ -18,21 +18,9 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 	private Point sPoint = new Point(-1, -1);  				//Points used to align shapes and mouse drag
 	private Point ePoint = new Point(-1, -1);
 	private BufferedImage bufferImg;
-	private Graphics g;
+
 	public MousePanel() {
-
-		//setDoubleBuffered(false);       
-		//addMouseListener(new MouseAdapter() {
-		//  public void mousePressed(MouseEvent e) {
-		//  sPoint.x = e.getX();
-		//  sPoint.y = e.getY();
-		//    }
-		//  });
-
-		//FIX ME FIX ME
-		bufferImg = new BufferedImage(5000,5000, BufferedImage.TYPE_INT_RGB); // FIX ME FIX ME FIX ME FIX ME
-		//FIX ME FIX ME 
-
+		bufferImg = new BufferedImage(5000,5000, BufferedImage.TYPE_INT_RGB); 
 		Graphics buffer = bufferImg.getGraphics();
 		buffer.setColor(Color.ORANGE);
 		buffer.fillRect(0, 0, bufferImg.getWidth(),bufferImg.getHeight());
@@ -45,7 +33,6 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		if(mouseP == null) 						// If there is no instance...
 			mouseP =  new MousePanel(); 		// Make one!
 		return mouseP; 						// Send back the made instance
-
 	}
 
 	public void paintComponent(Graphics g)
@@ -53,24 +40,17 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		if (bufferImg == null) {
 			bufferImg = (BufferedImage) createImage(getSize().width, getSize().height);
 			g = (Graphics2D) bufferImg.getGraphics();
-			RenderingHints rh = new RenderingHints(RenderingHints.KEY_TEXT_ANTIALIASING,RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-			((Graphics2D) g).setRenderingHints(rh);
 			clearAll();
-
 		}
+		RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
+		RenderingHints rh2 = new RenderingHints(RenderingHints.KEY_RENDERING,RenderingHints.VALUE_RENDER_QUALITY);
+		((Graphics2D) g).setRenderingHints(rh);
+		((Graphics2D) g).setRenderingHints(rh2);
 		g.drawImage(bufferImg, 0, 0, null);
-		//getWidth(), getHeight(),
 	}
 
 	public void setButton(int button) {  			// Sets our button tracking variable
 		this.button = button;
-
-		//buffer.fillRect(30,30, 300, 100);
-		//repaint();
-		//ePoint.x = 20; 						//Cleans line tracking variables for next line made
-		//ePoint.y = 20;
-		//sPoint.x = 200;  
-		//sPoint.y = 200;
 	}
 	public void clearAll()
 	{
@@ -78,7 +58,21 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		buffer.setColor(Color.WHITE);
 		buffer.fillRect(0, 0, bufferImg.getHeight(), bufferImg.getWidth());
 		repaint();
-
+	}
+	public void fixDirections()
+	{
+		if(sPoint.x > ePoint.x){
+			int sTemp = sPoint.x;
+			sPoint.x = ePoint.x;
+			ePoint.x = sTemp;
+		}
+		if(sPoint.y > ePoint.y){
+			int sTemp = sPoint.y;
+			sPoint.y = ePoint.y;
+			ePoint.y = sTemp;
+		}
+		
+		
 	}
 	public void mousePressed(MouseEvent e){			// Initial coords for shape
 		System.out.println("mouse pressed");
@@ -93,6 +87,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		e.consume();  
 		ePoint.x = e.getX();  
 		ePoint.y = e.getY();
+		fixDirections();
 		switch(button){   						// Switch on which button was pressed.  There may be a better way
 		case 0: break;  // The following shapes have weird offsets,as to make the dragging of a shape feel less insane!
 		case 1: buffer.fillRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break;		// Draw filled rectangle
