@@ -33,7 +33,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		addMouseMotionListener(this); 			//Used for mouseDragged()
 		repaint(); 								//Repaints panel to initialize
 	}
-	public static MousePanel getInstance() // Returns Instance of MousePanel
+	public static MousePanel getInstance() 	// Returns Instance of MousePanel
 	{
 		if(mouseP == null) 						
 			mouseP =  new MousePanel(); 		
@@ -42,7 +42,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 
 	public void paintComponent(Graphics g)	//no need to call superclass.
 	{
-		if (bufferImg == null) {		//fills the buffer if it hasn't been filled already
+		if (bufferImg == null) {			//fills the buffer if it hasn't been filled already
 			bufferImg = (BufferedImage) createImage(getSize().width, getSize().height);
 			g = (Graphics2D) bufferImg.getGraphics();
 			clearAll();
@@ -50,9 +50,9 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		
 		RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);	//Turns on Antialiasing
 		RenderingHints rh2 = new RenderingHints(RenderingHints.KEY_RENDERING,RenderingHints.VALUE_RENDER_QUALITY);  //Uses quality rendering
-		((Graphics2D) g).setRenderingHints(rh); //Sets Hints
+		((Graphics2D) g).setRenderingHints(rh); 		//Sets Hints
 		((Graphics2D) g).setRenderingHints(rh2);
-		if(paintStatusFlag == true)	//Used for the live preview
+		if(paintStatusFlag == true)						//Used for the live preview
 		{
 			g.drawImage(bufferImgLive, 0, 0, null);
 		}
@@ -99,9 +99,9 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 	public void mousePressed(MouseEvent e){			// Initial coords for shape
 		System.out.println("mouse pressed");
 		e.consume();
-		sPoint.x = e.getX();  // Sets start points
+		sPoint.x = e.getX();  						// Sets start points
 		sPoint.y = e.getY();
-		paintStatusFlag = true; // Starts painting the live preview
+		paintStatusFlag = true; 					// Starts painting the live preview
 	}
 	public void mouseReleased(MouseEvent e){		//Final coords for shape
 		paintStatusFlag = false;
@@ -136,9 +136,9 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		//((Graphics2D) buffer2).setComposite(AlphaComposite.SrcIn);
 		buffer2.setColor(Color.BLACK);
 		fixDirections();
-		switch(button){   						// Switch on which button was pressed.  There may be a better way
-		case 0: break;  // The following shapes have weird offsets,as to make the dragging of a shape feel less insane!
-		case 1: buffer2.fillRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break;		// Draw filled rectangle
+		switch(button){   						// Switch on which button was pressed
+		case 0: break;  
+		case 1: buffer2.fillRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break;			// Draw filled rectangle
 		case 2: buffer2.drawRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break; 		// Draw empty rectangle
 		case 3: buffer2.fillOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break; 		// Draw filled oval
 		case 4: buffer2.drawOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break;			// Draw empty oval
