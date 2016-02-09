@@ -127,13 +127,10 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 	public void mouseDragged(MouseEvent e) { 		//makes the shape a live-drag
 		bufferImgLive = deepCopy(bufferImg);
 		Graphics buffer2 = bufferImgLive.createGraphics();
-		//((Graphics2D) buffer2).setComposite(AlphaComposite.Clear);
-		//buffer2.fillRect(0, 0, bufferImg.getWidth(), bufferImg.getHeight());
 		e.consume();  
 		ePoint.x = e.getX();  
 		ePoint.y = e.getY();
 		System.out.println(e.getY() + " x " + e.getX());
-		//((Graphics2D) buffer2).setComposite(AlphaComposite.SrcIn);
 		buffer2.setColor(Color.BLACK);
 		fixDirections();
 		switch(button){   						// Switch on which button was pressed
