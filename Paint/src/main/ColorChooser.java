@@ -33,7 +33,7 @@ public class ColorChooser extends JPanel {
 	}
 	public Color getColor()
 	{
-		return chooser.getColor();//s
+		return chooser.getColor();
 	}
 
 
