@@ -37,7 +37,7 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
 		buttonRectangleF.addActionListener(this);
 		buttonRectangleF.setToolTipText("Draw a filled rectangle");
 		
-		buttonRectangleE = new JButton("Empty Rect."); 			//button 2
+		buttonRectangleE = new JButton("Rectangle"); 			//button 2
 		add(buttonRectangleE);
 		buttonRectangleE.setPreferredSize(PREF);
 		buttonRectangleE.addActionListener(this);
@@ -50,7 +50,7 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
 		buttonOvalF.addActionListener(this);
 		buttonOvalF.setToolTipText("Draw a filled oval");
 
-		buttonOvalE = new JButton("Empty Oval");				//button 4
+		buttonOvalE = new JButton("Oval");				//button 4
 		add(buttonOvalE);
 		buttonOvalE.setPreferredSize(PREF);
 		buttonOvalE.addActionListener(this);
