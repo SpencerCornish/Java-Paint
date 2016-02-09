@@ -25,9 +25,7 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
 	private JButton buttonLineD; 			// Draw a line
 	private JButton buttonColor;
 
-	public ButtonPanel()
-	{
-
+	public ButtonPanel() {
 		setAlignmentX(Component.CENTER_ALIGNMENT); 				// Button alignment within panel
 		setBackground(Color.GRAY);								// Button panel Background color
 
@@ -72,35 +70,26 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
 		add(buttonColor);
 		buttonColor.setPreferredSize(PREF);
 		buttonColor.addActionListener(this);
-		buttonColor.setToolTipText("Choose a color");
-
-		  
-	}
-	public static ButtonPanel getInstance()						//get instance of button panel
-	{
+		buttonColor.setToolTipText("Choose a color"); }
+	public static ButtonPanel getInstance()	{					//get instance of button panel
 		if(btnP == null)
 			btnP =  new ButtonPanel();
-		return btnP;
-	}
-	public void actionPerformed(ActionEvent ae)
-	{
+		return btnP; }
+	public void actionPerformed(ActionEvent ae) {
 		//System.out.println(ae.getActionCommand());
 		MousePanel.getInstance().setCursor(cHair); 		//Sets the mouse Cursor to a Cross hair for editing
 
 		if(ae.getSource() == buttonClear) {				//clears if user clicks clear button
 			MousePanel.getInstance().setButton(0);
 			MousePanel.getInstance().setCursor(cDef);
-			MousePanel.getInstance().clearAll();
-			//MousePanel.getInstance().repaint();
-		}
+			MousePanel.getInstance().clearAll(); }
 		else if(ae.getSource() == buttonRectangleF) MousePanel.getInstance().setButton(1);
 		else if(ae.getSource() == buttonRectangleE) MousePanel.getInstance().setButton(2);		//feeds button 2 (because it's a rectangle) to button variable in MousePanel class
 		else if(ae.getSource() == buttonOvalF) MousePanel.getInstance().setButton(3);
 		else if(ae.getSource() == buttonOvalE) MousePanel.getInstance().setButton(4);
 		else if(ae.getSource() == buttonLineD) MousePanel.getInstance().setButton(5);
-		else if(ae.getSource() == buttonColor) new ColorChooser();
-		MousePanel.getInstance().repaint();	//do we need this anymore?
-	}
+		else if(ae.getSource() == buttonColor) new ColorChooser(); }
+	
 	public void mouseClicked(MouseEvent e) {}
 
 	public void mouseEntered(MouseEvent e) {}
@@ -109,5 +98,4 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
 
 	public void mousePressed(MouseEvent e) {}
 
-	public void mouseReleased(MouseEvent e) {}
-}
+	public void mouseReleased(MouseEvent e) {} }
