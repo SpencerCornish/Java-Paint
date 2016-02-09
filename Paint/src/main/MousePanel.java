@@ -1,6 +1,5 @@
 package main;
 
-import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -8,7 +7,6 @@ import java.awt.Point;
 import java.awt.RenderingHints;
 import javax.swing.JPanel;
 import java.awt.event.*;
-import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
@@ -18,40 +16,43 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 
 	private static final long serialVersionUID = -8595660419538273421L;
 	public static MousePanel mouseP; 				//Instance of the MousePanel
-	private int button = -1;						//determines which button is pressed based on a number
-	private Point sPoint = new Point(-1, -1);  		//Points used to align shapes and mouse drag
-	private Point ePoint = new Point(-1, -1);
 	private BufferedImage bufferImg;				//buffered image to draw on
-	private BufferedImage bufferImgLive;
-	private boolean paintStatusLive = false;
+	private BufferedImage bufferImgLive;			//Buffered image for live drawing
+	private boolean paintStatusFlag = false;		//Tells paintComponent the source to paint on the panel
+	private int button = -1;						//Determines which button is pressed based on a number
+	private Point sPoint = new Point(-1, -1);  		//Start Point
+	private Point ePoint = new Point(-1, -1);		//End Point
+	
 	public MousePanel() {
 		bufferImg = new BufferedImage(2000,2000, BufferedImage.TYPE_INT_RGB); 
 		Graphics buffer = bufferImg.getGraphics();
 		buffer.setColor(Color.WHITE);
 		buffer.fillRect(0, 0, bufferImg.getWidth(),bufferImg.getHeight());
-		addMouseListener(this); 				//Used to do live track, etc.
-		addMouseMotionListener(this); 
-		repaint(); 
+		
+		addMouseListener(this); 				//Used to get coordinates of shape
+		addMouseMotionListener(this); 			//Used for mouseDragged()
+		repaint(); 								//Repaints panel to initialize
 	}
-	public static MousePanel getInstance()
+	public static MousePanel getInstance() // Returns Instance of MousePanel
 	{
-		if(mouseP == null) 						// If there is no instance...
-			mouseP =  new MousePanel(); 		// Make one!
-		return mouseP; 							// Send back the made instance
+		if(mouseP == null) 						
+			mouseP =  new MousePanel(); 		
+		return mouseP; 							
 	}
 
-	public void paintComponent(Graphics g)	//no call to super so override fully works
+	public void paintComponent(Graphics g)	//no need to call superclass.
 	{
-		if (bufferImg == null) {		//create new image if none exist
+		if (bufferImg == null) {		//fills the buffer if it hasn't been filled already
 			bufferImg = (BufferedImage) createImage(getSize().width, getSize().height);
 			g = (Graphics2D) bufferImg.getGraphics();
 			clearAll();
 		}
-		RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);	//makes shapes look better
-		RenderingHints rh2 = new RenderingHints(RenderingHints.KEY_RENDERING,RenderingHints.VALUE_RENDER_QUALITY);
-		((Graphics2D) g).setRenderingHints(rh);
+		
+		RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);	//Turns on Antialiasing
+		RenderingHints rh2 = new RenderingHints(RenderingHints.KEY_RENDERING,RenderingHints.VALUE_RENDER_QUALITY);  //Uses quality rendering
+		((Graphics2D) g).setRenderingHints(rh); //Sets Hints
 		((Graphics2D) g).setRenderingHints(rh2);
-		if(paintStatusLive == true)	//live drag
+		if(paintStatusFlag == true)	//Used for the live preview
 		{
 			g.drawImage(bufferImgLive, 0, 0, null);
 		}
@@ -98,12 +99,12 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 	public void mousePressed(MouseEvent e){			// Initial coords for shape
 		System.out.println("mouse pressed");
 		e.consume();
-		sPoint.x = e.getX();  
+		sPoint.x = e.getX();  // Sets start points
 		sPoint.y = e.getY();
-		paintStatusLive = true;
+		paintStatusFlag = true; // Starts painting the live preview
 	}
 	public void mouseReleased(MouseEvent e){		//Final coords for shape
-		paintStatusLive = false;
+		paintStatusFlag = false;
 		repaint();
 		System.out.println("mouse released");
 		Graphics buffer = bufferImg.createGraphics();
