@@ -19,6 +19,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 	private Point ePoint = new Point(-1, -1);
 	private BufferedImage bufferImg;
 	private BufferedImage bufferImgLive;
+	private boolean paintStatusLive = false;
 	public MousePanel() {
 		bufferImg = new BufferedImage(5000,5000, BufferedImage.TYPE_INT_RGB); 
 
@@ -39,6 +40,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 
 	public void paintComponent(Graphics g)
 	{
+		
 		if (bufferImg == null) {
 			bufferImg = (BufferedImage) createImage(getSize().width, getSize().height);
 			g = (Graphics2D) bufferImg.getGraphics();
@@ -48,7 +50,15 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		RenderingHints rh2 = new RenderingHints(RenderingHints.KEY_RENDERING,RenderingHints.VALUE_RENDER_QUALITY);
 		((Graphics2D) g).setRenderingHints(rh);
 		((Graphics2D) g).setRenderingHints(rh2);
-		g.drawImage(bufferImg, 0, 0, null);
+		if(paintStatusLive == true)
+		{
+			g.drawImage(bufferImgLive, 0, 0, null);
+		}
+		else
+		{
+			g.drawImage(bufferImg, 0, 0, null);			
+		}
+		
 	}
 
 	public void setButton(int button) {  			// Sets our button tracking variable
@@ -84,8 +94,11 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		e.consume();
 		sPoint.x = e.getX();  
 		sPoint.y = e.getY();
+		paintStatusLive = true;
 	}
 	public void mouseReleased(MouseEvent e){		//Final coords for shape
+		paintStatusLive = false;
+		repaint();
 		System.out.println("mouse released");
 		Graphics buffer = bufferImg.createGraphics();
 		buffer.setColor(Color.BLACK);
@@ -112,10 +125,10 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		ePoint.x = e.getX();  
 		ePoint.y = e.getY();
 		System.out.println(e.getY() + " x " + e.getX());
-		//fixDirections();
+		fixDirections();
 		switch(button){   						// Switch on which button was pressed.  There may be a better way
 		case 0: break;  // The following shapes have weird offsets,as to make the dragging of a shape feel less insane!
-		case 1: buffer2.fillRect(sPoint.x, sPoint.y, ePoint.x, ePoint.y);  break;		// Draw filled rectangle
+		case 1: buffer2.fillRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break;		// Draw filled rectangle
 		case 2: buffer2.drawRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break; 		// Draw empty rectangle
 		case 3: buffer2.fillOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break; 		// Draw filled oval
 		case 4: buffer2.drawOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break;		// Draw empty oval
@@ -123,7 +136,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		default:break;
 		}
 		repaint();
-		buffer2.dispose();
+		//buffer2.dispose();
 	}
 	public void mouseMoved(MouseEvent e) { } //This will be useful soon, adding mouse coords to a tooltip in the bottom right corner    
 	public void mouseExited(MouseEvent e){//System.out.println("mouse exited");
