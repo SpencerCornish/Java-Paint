@@ -18,15 +18,18 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 	private Point sPoint = new Point(-1, -1);  				//Points used to align shapes and mouse drag
 	private Point ePoint = new Point(-1, -1);
 	private BufferedImage bufferImg;
-
+	private BufferedImage bufferImgLive;
 	public MousePanel() {
 		bufferImg = new BufferedImage(5000,5000, BufferedImage.TYPE_INT_RGB); 
+		
 		Graphics buffer = bufferImg.getGraphics();
-		buffer.setColor(Color.ORANGE);
+		buffer.setColor(Color.WHITE);
 		buffer.fillRect(0, 0, bufferImg.getWidth(),bufferImg.getHeight());
 		addMouseListener(this); 				//Used to do live track, etc.
 		addMouseMotionListener(this); 
 		repaint();
+		bufferImgLive = new BufferedImage(5000,5000, BufferedImage.TYPE_INT_RGB); 
+		
 	}
 	public static MousePanel getInstance()
 	{
@@ -83,7 +86,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 	public void mouseReleased(MouseEvent e){		//Final coords for shape
 		System.out.println("mouse released");
 		Graphics buffer = bufferImg.createGraphics();
-		buffer.setColor(Color.RED);
+		buffer.setColor(Color.BLACK);
 		e.consume();  
 		ePoint.x = e.getX();  
 		ePoint.y = e.getY();
@@ -100,10 +103,25 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		repaint();
 	}
 	public void mouseDragged(MouseEvent e) { 		//makes the shape a live-drag
+		Graphics bufferI = bufferImg.getGraphics();
+		bufferI.setColor(Color.RED);
+		bufferI.fillRect(0, 0, bufferImg.getWidth(),bufferImg.getHeight());
+		Graphics buffer2 = bufferImgLive.createGraphics();
+		buffer2.setColor(Color.BLACK);
 		e.consume();  
 		ePoint.x = e.getX();  
 		ePoint.y = e.getY();
 		System.out.println(e.getY() + " x " + e.getX());
+		fixDirections();
+		switch(button){   						// Switch on which button was pressed.  There may be a better way
+		case 0: break;  // The following shapes have weird offsets,as to make the dragging of a shape feel less insane!
+		case 1: buffer2.fillRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break;		// Draw filled rectangle
+		case 2: buffer2.drawRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break; 		// Draw empty rectangle
+		case 3: buffer2.fillOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break; 		// Draw filled oval
+		case 4: buffer2.drawOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break;		// Draw empty oval
+		case 5: buffer2.drawLine(sPoint.x, sPoint.y, ePoint.x, ePoint.y); break; 							// Draw Line
+		default:break;
+		}
 		repaint();
 	}
 	public void mouseMoved(MouseEvent e) { } //This will be useful soon, adding mouse coords to a tooltip in the bottom right corner    
