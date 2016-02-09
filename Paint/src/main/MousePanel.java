@@ -20,9 +20,9 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 	private BufferedImage bufferImgLive;			//Buffered image for live drawing
 	private boolean paintStatusFlag = false;		//Tells paintComponent the source to paint on the panel
 	private int button = -1;						//Determines which button is pressed based on a number
-	private Point startP = new Point(-1, -1);		//final start point	
-	private Point sPoint = new Point(-1, -1);  		//temporary start Point
-	private Point ePoint = new Point(-1, -1);		//temporary end Point
+	private Point startP = new Point();				//final start point	
+	private Point sPoint = new Point();  			//temporary start Point
+	private Point ePoint = new Point();				//temporary end Point
 
 	public MousePanel() {
 		bufferImg = new BufferedImage(2000,2000, BufferedImage.TYPE_INT_RGB); 
