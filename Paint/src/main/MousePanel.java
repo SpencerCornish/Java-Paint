@@ -21,18 +21,16 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
     private Graphics g;
     public MousePanel() {
         
-    	
-    	//setDoubleBuffered(false);       
-        //addMouseListener(new MouseAdapter() {
-          //public void mousePressed(MouseEvent e) {
-            // save coord when mouse is pressed
-         // sPoint.x = e.getX();
-           // sPoint.y = e.getY();
-        //  }
-       // });
+    	setDoubleBuffered(false);       
+        addMouseListener(new MouseAdapter() {
+          public void mousePressed(MouseEvent e) {
+          sPoint.x = e.getX();
+          sPoint.y = e.getY();
+          }
+        });
     	
     	//FIX ME FIX ME
-    	bufferImg = new BufferedImage(50,50,BufferedImage.TYPE_INT_RGB); // FIX ME FIX ME FIX ME FIX ME
+    	//bufferImg = new BufferedImage(); // FIX ME FIX ME FIX ME FIX ME
     	//FIX ME FIX ME 
     	
     	Graphics buffer = bufferImg.getGraphics();
@@ -52,9 +50,16 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 
     public void paintComponent(Graphics g)
     {
-    	g.drawImage(bufferImg, 0, 0, getWidth(), getHeight(), null);
-    	RenderingHints rh = new RenderingHints(RenderingHints.KEY_TEXT_ANTIALIASING,RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-    	((Graphics2D) g).setRenderingHints(rh);
+    	if (bufferImg == null) {
+    	      bufferImg = (BufferedImage) createImage(getSize().width, getSize().height);
+    	      g = (Graphics2D) bufferImg.getGraphics();
+    	      RenderingHints rh = new RenderingHints(RenderingHints.KEY_TEXT_ANTIALIASING,RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+    	      ((Graphics2D) g).setRenderingHints(rh);
+    	      clearAll();
+    	      
+    	    }
+    	g.drawImage(bufferImg, 0, 0, null);
+    	//getWidth(), getHeight(),
     }
     
     public void setButton(int button) {  			// Sets our button tracking variable
