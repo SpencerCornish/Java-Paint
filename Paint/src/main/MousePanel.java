@@ -47,10 +47,12 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		return mouseP; }
 
 	public void paintComponent(Graphics g) {
-		if (bufferImg == null) {					//fills the buffer if it hasn't been filled already
+		if (bufferImg == null) 
+		{					//fills the buffer if it hasn't been filled already
 			bufferImg = (BufferedImage) createImage(getSize().width, getSize().height);
 			g = (Graphics2D) bufferImg.getGraphics();
-			clearAll(); }
+			clearAll(); 
+		}
 
 		RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);	//Turns on Antialiasing
 		RenderingHints rh2 = new RenderingHints(RenderingHints.KEY_RENDERING,RenderingHints.VALUE_RENDER_QUALITY);  //Uses quality rendering

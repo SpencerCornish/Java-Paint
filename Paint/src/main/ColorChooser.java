@@ -15,6 +15,9 @@ public class ColorChooser extends JPanel {
 	private static final long serialVersionUID = -9134135157727043422L;
 	private JFrame frame;
 	protected JColorChooser chooser;
+	private Color bgColor;
+	private Color fColor;
+	private Color olColor;
 
 	public ColorChooser() {
 		super(new BorderLayout());
@@ -28,12 +31,20 @@ public class ColorChooser extends JPanel {
 	}
 	public void showColors()
 	{
-		frame.setVisible(true);
-
+		//frame.setVisible(true);
+		JColorChooser.showDialog(null, "JColorChooser Sample", null);
 	}
-	public Color getColor()
+	public Color getColor(String source) // We should meet and talk about our color options.. We have quite a few choices re: color selections!
 	{
-		return chooser.getColor();
+		switch(source)
+		{
+		case "outline": return olColor;
+		case "fill": return fColor;
+		case "background": return olColor;
+		default:break;
+		}
+		return new Color(0);
+		
 	}
 
 
