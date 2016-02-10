@@ -29,6 +29,7 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
 	public static  ColorChooser colorBG;	// Background Color (Future)
 	public static  ColorChooser colorOL;	// Outline Color (Future)
 	private JButton buttonClear; 			// Clear the screen
+	private JButton buttonUndo;				// Undo last change
 	private JButton buttonRectangleF; 		// Draw a Filled Rectangle
 	private JButton buttonRectangleE; 		// Draw a Filled Rectangle
 	private JButton buttonOvalF; 			// Draw a Filled Oval
@@ -53,7 +54,6 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
 		buttonRectangleE.addActionListener(this);
 		buttonRectangleE.setToolTipText("Draw an empty rectangle");
 
-
 		buttonOvalF = new JButton(new ButtonIcon(3));						//button 3
 		add(buttonOvalF);
 		buttonOvalF.setPreferredSize(PREF);
@@ -72,12 +72,18 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
 		buttonLineD.addActionListener(this);  
 		buttonLineD.setToolTipText("Draw a straight line");
 		
-		buttonColor = new JButton("Color...");								// Color button
+		buttonColor = new JButton("Color...");								//Color button
 		add(buttonColor);
 		buttonColor.setPreferredSize(PREF2);
 		buttonColor.addActionListener(this);
 		buttonColor.setToolTipText("Choose a color"); 
 		buttonColor.setEnabled(true);
+		
+		buttonUndo = new JButton("Undo");									//undo button - coming soon!
+		add(buttonUndo);
+		buttonUndo.setPreferredSize(PREF2);
+		buttonUndo.addActionListener(this);
+		buttonUndo.setToolTipText("Undo last change");
 
 		buttonClear = new JButton("Clear");									//button 0
 		add(buttonClear);
@@ -97,12 +103,13 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
 			MousePanel.getInstance().setButton(0);
 			MousePanel.getInstance().setCursor(cDef);
 			MousePanel.getInstance().clearAll(); }
+		else if(ae.getSource() == buttonUndo) MousePanel.getInstance().undo();
 		else if(ae.getSource() == buttonRectangleF) MousePanel.getInstance().setButton(1);
 		else if(ae.getSource() == buttonRectangleE) MousePanel.getInstance().setButton(2);		//feeds button 2 (because it's a rectangle) to button variable in MousePanel class
 		else if(ae.getSource() == buttonOvalF) MousePanel.getInstance().setButton(3);
 		else if(ae.getSource() == buttonOvalE) MousePanel.getInstance().setButton(4);
 		else if(ae.getSource() == buttonLineD) MousePanel.getInstance().setButton(5);
-		else if(ae.getSource() == buttonColor) colorF.showColors();
+		if(ae.getSource() == buttonColor) colorF.showColors();
 		}
 
 	public void mouseClicked(MouseEvent e) {}

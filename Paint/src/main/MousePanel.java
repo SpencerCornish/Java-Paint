@@ -139,7 +139,9 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		System.gc(); 	//Solves the issue of having a ton of Buffered Images stuck in the memory for the live preview.  I wish there was a better way
 		repaint();
 	}
-
+	public void undo() {	//this should actually do something :D
+		System.out.println("FALSE. YOU MAY NOT UNDO THINGS IN LIFE. DEAL WITH YOUR MISTAKE!"); 
+	}
 	public void mouseReleased(MouseEvent e){		//Final coords for shape
 		paintStatusFlag = false;
 		Graphics buffer = bufferImg.createGraphics();
