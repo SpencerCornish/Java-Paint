@@ -41,45 +41,45 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
 		setAlignmentX(Component.CENTER_ALIGNMENT); 				// Button alignment within panel
 		setBackground(Color.GRAY);								// Button panel Background color
 
-		buttonRectangleF = new JButton(new ButtonIcon(2));			//button 1
+		buttonRectangleF = new JButton(new ButtonIcon(1));					//button 1
 		add(buttonRectangleF);
 		buttonRectangleF.setPreferredSize(PREF);
 		buttonRectangleF.addActionListener(this);
 		buttonRectangleF.setToolTipText("Draw a filled rectangle");
 
-		buttonRectangleE = new JButton(new ButtonIcon(3)); 			//button 2
+		buttonRectangleE = new JButton(new ButtonIcon(2)); 					//button 2
 		add(buttonRectangleE);
 		buttonRectangleE.setPreferredSize(PREF);
 		buttonRectangleE.addActionListener(this);
 		buttonRectangleE.setToolTipText("Draw an empty rectangle");
 
 
-		buttonOvalF = new JButton(new ButtonIcon(4));				//button 3
+		buttonOvalF = new JButton(new ButtonIcon(3));						//button 3
 		add(buttonOvalF);
 		buttonOvalF.setPreferredSize(PREF);
 		buttonOvalF.addActionListener(this);
 		buttonOvalF.setToolTipText("Draw a filled oval");
 
-		buttonOvalE = new JButton(new ButtonIcon(5));						//button 4
+		buttonOvalE = new JButton(new ButtonIcon(4));						//button 4
 		add(buttonOvalE);
 		buttonOvalE.setPreferredSize(PREF);
 		buttonOvalE.addActionListener(this);
 		buttonOvalE.setToolTipText("Draw an empty oval");
 
-		buttonLineD = new JButton(new ButtonIcon(6));						//button 5
+		buttonLineD = new JButton(new ButtonIcon(5));						//button 5
 		add(buttonLineD); 
 		buttonLineD.setPreferredSize(PREF);
 		buttonLineD.addActionListener(this);  
 		buttonLineD.setToolTipText("Draw a straight line");
 		
-		buttonColor = new JButton("Color...");					// Color button
+		buttonColor = new JButton("Color...");								// Color button
 		add(buttonColor);
 		buttonColor.setPreferredSize(PREF2);
 		buttonColor.addActionListener(this);
 		buttonColor.setToolTipText("Choose a color"); 
 		buttonColor.setEnabled(true);
 
-		buttonClear = new JButton("Clear");						//button 0
+		buttonClear = new JButton("Clear");									//button 0
 		add(buttonClear);
 		buttonClear.setPreferredSize(PREF2);
 		buttonClear.addActionListener(this);

@@ -25,11 +25,11 @@ public class ButtonIcon implements Icon{
 	public void paintIcon(Component c, Graphics g, int x, int y) {
 		g.setColor(Color.BLACK);
 		switch(shape) {
-		case 2: g.fillRect(x, y, getIconWidth(), getIconHeight()); break;
-		case 3: g.drawRect(x, y, getIconWidth(), getIconHeight()); break;
-		case 4: g.fillOval(x, y, getIconWidth(), getIconHeight()); break;
-		case 5: g.drawOval(x, y, getIconWidth(), getIconHeight()); break;
-		case 6: g.drawLine(8, 18, 40, 8); break;
+		case 1: g.fillRect(x, y, getIconWidth(), getIconHeight()); break;
+		case 2: g.drawRect(x, y, getIconWidth(), getIconHeight()); break;
+		case 3: g.fillOval(x, y, getIconWidth(), getIconHeight()); break;
+		case 4: g.drawOval(x, y, getIconWidth(), getIconHeight()); break;
+		case 5: g.drawLine(8, 18, 40, 8); break;
 		}
 	}
 }
