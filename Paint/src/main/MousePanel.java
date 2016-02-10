@@ -105,45 +105,36 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		ePoint.y = e.getY();
 		System.out.println(e.getY() + " x " + e.getX());
 		buffer2.setColor(Color.BLACK);
+		int x1 = -1, y1 = -1, width = -1, height = -1;
 		if (button != 5) {										//when drawing things other than a button...
-			if (sPoint.x < ePoint.x && sPoint.y < ePoint.y) {	//the following statements, though ugly, allow live draw from all directions
-				switch(button){  
-				case 0: break;				//just set variables live, then draw after
-				case 1: buffer2.fillRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break;		
-				case 2: buffer2.drawRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break; 
-				case 3: buffer2.fillOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break; 	
-				case 4: buffer2.drawOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break;					
-				default: break; } 
-			}
+			if (sPoint.x < ePoint.x && sPoint.y < ePoint.y) {	//the following statements allow live draw from all directions
+				x1 = sPoint.x;
+				y1 = sPoint.y;
+				width = ePoint.x-sPoint.x;
+				height = ePoint.y-sPoint.y; }
 			else if (sPoint.x > ePoint.x && sPoint.y < ePoint.y) {
-				switch(button){   
-				case 0: break;
-				case 1: buffer2.fillRect(ePoint.x, sPoint.y, sPoint.x-ePoint.x, ePoint.y-sPoint.y);  break;		
-				case 2: buffer2.drawRect(ePoint.x, sPoint.y, sPoint.x-ePoint.x, ePoint.y-sPoint.y);  break; 
-				case 3: buffer2.fillOval(ePoint.x, sPoint.y, sPoint.x-ePoint.x, ePoint.y-sPoint.y);  break; 	
-				case 4: buffer2.drawOval(ePoint.x, sPoint.y, sPoint.x-ePoint.x, ePoint.y-sPoint.y);  break;				
-				default: break; }
-			}
+				x1 = ePoint.x;
+				y1 = sPoint.y;
+				width = sPoint.x-ePoint.x;
+				height = ePoint.y-sPoint.y; }
 			else if (sPoint.x < ePoint.x && sPoint.y > ePoint.y) {
-				switch(button){  
-				case 0: break;
-				case 1: buffer2.fillRect(sPoint.x, ePoint.y, ePoint.x-sPoint.x, sPoint.y-ePoint.y);  break;		
-				case 2: buffer2.drawRect(sPoint.x, ePoint.y, ePoint.x-sPoint.x, sPoint.y-ePoint.y);  break; 
-				case 3: buffer2.fillOval(sPoint.x, ePoint.y, ePoint.x-sPoint.x, sPoint.y-ePoint.y);  break; 	
-				case 4: buffer2.drawOval(sPoint.x, ePoint.y, ePoint.x-sPoint.x, sPoint.y-ePoint.y);  break;						
-				default: break; }
-			}
+				x1 = sPoint.x;
+				y1 = ePoint.y;
+				width = ePoint.x-sPoint.x;
+				height = sPoint.y-ePoint.y; }
 			else if (sPoint.x > ePoint.x && sPoint.y > ePoint.y) {
-				switch(button){  
-				case 0: break;
-				case 1: buffer2.fillRect(ePoint.x, ePoint.y, sPoint.x-ePoint.x, sPoint.y-ePoint.y);  break;		
-				case 2: buffer2.drawRect(ePoint.x, ePoint.y, sPoint.x-ePoint.x, sPoint.y-ePoint.y);  break; 
-				case 3: buffer2.fillOval(ePoint.x, ePoint.y, sPoint.x-ePoint.x, sPoint.y-ePoint.y);  break; 	
-				case 4: buffer2.drawOval(ePoint.x, ePoint.y, sPoint.x-ePoint.x, sPoint.y-ePoint.y);  break;				
-				default: break; }
-			}
-		}
-		if (button == 5) buffer2.drawLine(sPoint.x, sPoint.y, ePoint.x, ePoint.y);
+				x1 = ePoint.x;
+				y1 = ePoint.y;
+				width = sPoint.x-ePoint.x;
+				height = sPoint.y-ePoint.y; }}
+		switch(button){  
+		case 0: break;
+		case 1: buffer2.fillRect(x1, y1, width, height);  break;		
+		case 2: buffer2.drawRect(x1, y1, width, height);  break; 
+		case 3: buffer2.fillOval(x1, y1, width, height);  break; 	
+		case 4: buffer2.drawOval(x1, y1, width, height);  break;	
+		case 5: buffer2.drawLine(sPoint.x, sPoint.y, ePoint.x, ePoint.y); break;
+		default: break; }
 		buffer2.dispose();
 		System.gc(); 	//Solves the issue of having a ton of Buffered Image stuck in the memory for the live preview.  I wish there was a better way
 		repaint();
