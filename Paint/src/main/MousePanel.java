@@ -28,9 +28,8 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 	private BufferedImage bufferImgLive;			//Buffered image for live drawing
 	private boolean paintStatusFlag = false;		//Tells paintComponent the source to paint on the panel
 	private int button = -1;						//Determines which button is pressed based on a number
-	private Point startP = new Point();				//final start point	
-	private Point sPoint = new Point();  			//temporary start Point
-	private Point ePoint = new Point();				//temporary end Point
+	private Point sPoint = new Point();  			//start Point
+	private Point ePoint = new Point();				//end Point
 
 	public MousePanel() {
 		bufferImg = new BufferedImage(2000,2000, BufferedImage.TYPE_INT_RGB); 
@@ -71,17 +70,17 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		buffer.setColor(Color.WHITE);
 		buffer.fillRect(0, 0, bufferImg.getHeight(), bufferImg.getWidth());
 		repaint(); }
-	public void fixDirections()	{						//allows user to draw from any direction
+	public void fixDirections()	{						//makes sure final coordinates are good to paint with
 		repaint();
 		if(button != 5){
-			if(startP.x > ePoint.x){
-				int sTemp = startP.x;
-				startP.x = ePoint.x;
+			if(sPoint.x > ePoint.x){
+				int sTemp = sPoint.x;
+				sPoint.x = ePoint.x;
 				ePoint.x = sTemp;
 				ePoint.x = ePoint.x; }
-			if(startP.y > ePoint.y) {
-				int sTemp = startP.y;
-				startP.y = ePoint.y;
+			if(sPoint.y > ePoint.y) {
+				int sTemp = sPoint.y;
+				sPoint.y = ePoint.y;
 				ePoint.y = sTemp; } } }
 
 	public static BufferedImage deepCopy(BufferedImage bi) 
@@ -96,8 +95,6 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		e.consume();
 		sPoint.x = e.getX();  						// Sets start points
 		sPoint.y = e.getY();
-		startP.x = sPoint.x;
-		startP.y = sPoint.y;
 		paintStatusFlag = true; }					// Starts painting the live preview
 
 	public void mouseDragged(MouseEvent e) { 		//makes the shape a live-drag
@@ -109,44 +106,44 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		System.out.println(e.getY() + " x " + e.getX());
 		buffer2.setColor(Color.BLACK);
 		if (button != 5) {										//when drawing things other than a button...
-			if (startP.x < ePoint.x && startP.y < ePoint.y) {	//the following statements, though ugly, allow live draw from all directions
+			if (sPoint.x < ePoint.x && sPoint.y < ePoint.y) {	//the following statements, though ugly, allow live draw from all directions
 				switch(button){  
-				case 0: break;
-				case 1: buffer2.fillRect(startP.x, startP.y, ePoint.x-startP.x, ePoint.y-startP.y);  break;		
-				case 2: buffer2.drawRect(startP.x, startP.y, ePoint.x-startP.x, ePoint.y-startP.y);  break; 
-				case 3: buffer2.fillOval(startP.x, startP.y, ePoint.x-startP.x, ePoint.y-startP.y);  break; 	
-				case 4: buffer2.drawOval(startP.x, startP.y, ePoint.x-startP.x, ePoint.y-startP.y);  break;					
+				case 0: break;				//just set variables live, then draw after
+				case 1: buffer2.fillRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break;		
+				case 2: buffer2.drawRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break; 
+				case 3: buffer2.fillOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break; 	
+				case 4: buffer2.drawOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break;					
 				default: break; } 
 			}
-			else if (startP.x > ePoint.x && startP.y < ePoint.y) {
+			else if (sPoint.x > ePoint.x && sPoint.y < ePoint.y) {
 				switch(button){   
 				case 0: break;
-				case 1: buffer2.fillRect(ePoint.x, startP.y, startP.x-ePoint.x, ePoint.y-startP.y);  break;		
-				case 2: buffer2.drawRect(ePoint.x, startP.y, startP.x-ePoint.x, ePoint.y-startP.y);  break; 
-				case 3: buffer2.fillOval(ePoint.x, startP.y, startP.x-ePoint.x, ePoint.y-startP.y);  break; 	
-				case 4: buffer2.drawOval(ePoint.x, startP.y, startP.x-ePoint.x, ePoint.y-startP.y);  break;				
+				case 1: buffer2.fillRect(ePoint.x, sPoint.y, sPoint.x-ePoint.x, ePoint.y-sPoint.y);  break;		
+				case 2: buffer2.drawRect(ePoint.x, sPoint.y, sPoint.x-ePoint.x, ePoint.y-sPoint.y);  break; 
+				case 3: buffer2.fillOval(ePoint.x, sPoint.y, sPoint.x-ePoint.x, ePoint.y-sPoint.y);  break; 	
+				case 4: buffer2.drawOval(ePoint.x, sPoint.y, sPoint.x-ePoint.x, ePoint.y-sPoint.y);  break;				
 				default: break; }
 			}
-			else if (startP.x < ePoint.x && startP.y > ePoint.y) {
+			else if (sPoint.x < ePoint.x && sPoint.y > ePoint.y) {
 				switch(button){  
 				case 0: break;
-				case 1: buffer2.fillRect(startP.x, ePoint.y, ePoint.x-startP.x, startP.y-ePoint.y);  break;		
-				case 2: buffer2.drawRect(startP.x, ePoint.y, ePoint.x-startP.x, startP.y-ePoint.y);  break; 
-				case 3: buffer2.fillOval(startP.x, ePoint.y, ePoint.x-startP.x, startP.y-ePoint.y);  break; 	
-				case 4: buffer2.drawOval(startP.x, ePoint.y, ePoint.x-startP.x, startP.y-ePoint.y);  break;						
+				case 1: buffer2.fillRect(sPoint.x, ePoint.y, ePoint.x-sPoint.x, sPoint.y-ePoint.y);  break;		
+				case 2: buffer2.drawRect(sPoint.x, ePoint.y, ePoint.x-sPoint.x, sPoint.y-ePoint.y);  break; 
+				case 3: buffer2.fillOval(sPoint.x, ePoint.y, ePoint.x-sPoint.x, sPoint.y-ePoint.y);  break; 	
+				case 4: buffer2.drawOval(sPoint.x, ePoint.y, ePoint.x-sPoint.x, sPoint.y-ePoint.y);  break;						
 				default: break; }
 			}
-			else if (startP.x > ePoint.x && startP.y > ePoint.y) {
+			else if (sPoint.x > ePoint.x && sPoint.y > ePoint.y) {
 				switch(button){  
 				case 0: break;
-				case 1: buffer2.fillRect(ePoint.x, ePoint.y, startP.x-ePoint.x, startP.y-ePoint.y);  break;		
-				case 2: buffer2.drawRect(ePoint.x, ePoint.y, startP.x-ePoint.x, startP.y-ePoint.y);  break; 
-				case 3: buffer2.fillOval(ePoint.x, ePoint.y, startP.x-ePoint.x, startP.y-ePoint.y);  break; 	
-				case 4: buffer2.drawOval(ePoint.x, ePoint.y, startP.x-ePoint.x, startP.y-ePoint.y);  break;				
+				case 1: buffer2.fillRect(ePoint.x, ePoint.y, sPoint.x-ePoint.x, sPoint.y-ePoint.y);  break;		
+				case 2: buffer2.drawRect(ePoint.x, ePoint.y, sPoint.x-ePoint.x, sPoint.y-ePoint.y);  break; 
+				case 3: buffer2.fillOval(ePoint.x, ePoint.y, sPoint.x-ePoint.x, sPoint.y-ePoint.y);  break; 	
+				case 4: buffer2.drawOval(ePoint.x, ePoint.y, sPoint.x-ePoint.x, sPoint.y-ePoint.y);  break;				
 				default: break; }
 			}
 		}
-		if (button == 5) buffer2.drawLine(startP.x, startP.y, ePoint.x, ePoint.y);
+		if (button == 5) buffer2.drawLine(sPoint.x, sPoint.y, ePoint.x, ePoint.y);
 		buffer2.dispose();
 		System.gc(); 	//Solves the issue of having a ton of Buffered Image stuck in the memory for the live preview.  I wish there was a better way
 		repaint();
@@ -155,19 +152,19 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 	public void mouseReleased(MouseEvent e){		//Final coords for shape
 		paintStatusFlag = false;
 		Graphics buffer = bufferImg.createGraphics();
-		buffer.setColor(Color.BLACK);
-		e.consume();  
+		buffer.setColor(Color.BLACK);		//Could we use this command to change color? If Color.BLACK was changed to something generic and then
+		e.consume();  						//if we had an instance variable representing color sent from buttonpanel class, possibly from a menu?
 		ePoint.x = e.getX();  
 		ePoint.y = e.getY();
 		fixDirections();
 
 		switch(button){   //Switch on which button was pressed
 		case 0: break;
-		case 1: buffer.fillRect(startP.x, startP.y, ePoint.x-startP.x, ePoint.y-startP.y);  break;		// Draw filled rectangle
-		case 2: buffer.drawRect(startP.x, startP.y, ePoint.x-startP.x, ePoint.y-startP.y);  break; 		// Draw empty rectangle
-		case 3: buffer.fillOval(startP.x, startP.y, ePoint.x-startP.x, ePoint.y-startP.y);  break; 		// Draw filled oval
-		case 4: buffer.drawOval(startP.x, startP.y, ePoint.x-startP.x, ePoint.y-startP.y);  break;		// Draw empty oval
-		case 5: buffer.drawLine(startP.x, startP.y, ePoint.x, ePoint.y); break; 						// Draw Line
+		case 1: buffer.fillRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break;		// Draw filled rectangle
+		case 2: buffer.drawRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break; 		// Draw empty rectangle
+		case 3: buffer.fillOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break; 		// Draw filled oval
+		case 4: buffer.drawOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break;		// Draw empty oval
+		case 5: buffer.drawLine(sPoint.x, sPoint.y, ePoint.x, ePoint.y); break; 						// Draw Line
 		default: break; } }
 
 	public void mouseMoved(MouseEvent e) {} 
