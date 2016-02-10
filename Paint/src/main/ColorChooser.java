@@ -16,9 +16,8 @@ public class ColorChooser extends JPanel {
 	private JFrame frame;
 	protected JColorChooser chooser;
 	private Color bgColor;
-	private Color fColor;
 	private Color olColor;
-	private static Color color = Color.BLACK;
+	private static Color fColor = Color.BLACK;	//fill color
 
 	public ColorChooser() {
 		super(new BorderLayout());
@@ -33,23 +32,25 @@ public class ColorChooser extends JPanel {
 	public void showColors()
 	{
 		//frame.setVisible(true);
-		color = JColorChooser.showDialog(null, "Pick a Color", null);
+		fColor = JColorChooser.showDialog(null, "Pick a Color", null);
 	}
-	public Color getColor(String source) // We should meet and talk about our color options.. We have quite a few choices re: color selections!
+	public static Color getColor() // We should meet and talk about our color options.. We have quite a few choices re: color selections!
 	{
-		switch(source)
+		/* switch(source)
 		{
 		case "outline": return olColor;
 		case "fill": return fColor;
 		case "background": return olColor;
 		default:break;
 		}
-		return new Color(0);
+		return new Color(0); */
+		return fColor;
 		
 	}
 	
-	public static Color color() {
-		return color;
+	public static Color resetColor(){
+		fColor = Color.BLACK;
+		return fColor;
 	}
 
 
