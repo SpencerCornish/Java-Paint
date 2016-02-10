@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,8 +12,11 @@ public class ColorPanel extends JPanel implements ActionListener  {
 	public static ColorPanel colorP;
 	private final Dimension PREF = new Dimension(50,26); 						// The preferred button dimensions
 	private JButton buttonBColor; // Background Color
+	private Color bColor = Color.WHITE;
 	private JButton buttonOColor; // Outline Color
+	private Color oColor = Color.BLACK;
 	private JButton buttonFColor; // Fill Color
+	private Color fColor = Color.BLACK;
 	public ColorPanel()
 	
 	{
@@ -49,7 +53,7 @@ public class ColorPanel extends JPanel implements ActionListener  {
 		Object jk = arg0.getSource();
 		if(jk == buttonFColor){
 			System.out.println("Fill Color");
-			
+			fColor = ColorChooser.getColor();
 		}
 		else if(jk == buttonOColor){
 			System.out.println("Outline Color");
