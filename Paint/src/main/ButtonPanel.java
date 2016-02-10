@@ -16,7 +16,7 @@ import javax.swing.*;
 import java.awt.event.*;
 
 
-public class ButtonPanel extends JPanel implements ActionListener, MouseListener { //remove mouselistener :D
+public class ButtonPanel extends JPanel implements ActionListener { 
 
 	private static final long serialVersionUID = -923758246107102096L;
 
@@ -110,14 +110,4 @@ public class ButtonPanel extends JPanel implements ActionListener, MouseListener
 		else if(ae.getSource() == buttonOvalE) MousePanel.getInstance().setButton(4);
 		else if(ae.getSource() == buttonLineD) MousePanel.getInstance().setButton(5);
 		if(ae.getSource() == buttonColor) colorF.showColors();
-		}
-
-	public void mouseClicked(MouseEvent e) {}
-
-	public void mouseEntered(MouseEvent e) {}
-
-	public void mouseExited(MouseEvent e) {}
-
-	public void mousePressed(MouseEvent e) {}
-
-	public void mouseReleased(MouseEvent e) {} }
+		} }
