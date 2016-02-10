@@ -77,31 +77,12 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 			if(startP.x > ePoint.x){
 				int sTemp = startP.x;
 				startP.x = ePoint.x;
-				ePoint.x = sTemp; }
+				ePoint.x = sTemp;
+				ePoint.x = ePoint.x; }
 			if(startP.y > ePoint.y) {
 				int sTemp = startP.y;
 				startP.y = ePoint.y;
 				ePoint.y = sTemp; } } }
-
-	public void fixLiveDirections() //makes shape not mess up when dragging from other directions
-	{					
-		if(button != 5)
-		{
-			if(sPoint.x > ePoint.x)
-			{
-				int sTemp = sPoint.x;
-				sPoint.x = ePoint.x;
-				ePoint.x = sTemp; 
-			}
-			if(sPoint.y > ePoint.y)
-			{
-				int sTemp = sPoint.y;
-				sPoint.y = ePoint.y;
-				ePoint.y = sTemp; 
-			} 
-			repaint();
-		} 
-	}
 
 	public static BufferedImage deepCopy(BufferedImage bi) 
 	{
@@ -127,17 +108,47 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		ePoint.y = e.getY();
 		System.out.println(e.getY() + " x " + e.getX());
 		buffer2.setColor(Color.BLACK);
-		fixLiveDirections();
-		switch(button){   						// Switch on which button was pressed
-		case 0: break;  
-		case 1: buffer2.fillRect(startP.x, startP.y, ePoint.x-sPoint.x, ePoint.y-startP.y);  break;			// Draw filled rectangle
-		case 2: buffer2.drawRect(startP.x, startP.y, ePoint.x-sPoint.x, ePoint.y-startP.y);  break; 		// Draw empty rectangle
-		case 3: buffer2.fillOval(startP.x, startP.y, ePoint.x-sPoint.x, ePoint.y-startP.y);  break; 		// Draw filled oval
-		case 4: buffer2.drawOval(startP.x, startP.y, ePoint.x-sPoint.x, ePoint.y-startP.y);  break;			// Draw empty oval
-		case 5: buffer2.drawLine(startP.x, startP.y, ePoint.x, ePoint.y); break; 							// Draw Line
-		default: break; }
+		if (button != 5) {										//when drawing things other than a button...
+			if (startP.x < ePoint.x && startP.y < ePoint.y) {	//the following statements, though ugly, allow live draw from all directions
+				switch(button){  
+				case 0: break;
+				case 1: buffer2.fillRect(startP.x, startP.y, ePoint.x-startP.x, ePoint.y-startP.y);  break;		
+				case 2: buffer2.drawRect(startP.x, startP.y, ePoint.x-startP.x, ePoint.y-startP.y);  break; 
+				case 3: buffer2.fillOval(startP.x, startP.y, ePoint.x-startP.x, ePoint.y-startP.y);  break; 	
+				case 4: buffer2.drawOval(startP.x, startP.y, ePoint.x-startP.x, ePoint.y-startP.y);  break;					
+				default: break; } 
+			}
+			else if (startP.x > ePoint.x && startP.y < ePoint.y) {
+				switch(button){   
+				case 0: break;
+				case 1: buffer2.fillRect(ePoint.x, startP.y, startP.x-ePoint.x, ePoint.y-startP.y);  break;		
+				case 2: buffer2.drawRect(ePoint.x, startP.y, startP.x-ePoint.x, ePoint.y-startP.y);  break; 
+				case 3: buffer2.fillOval(ePoint.x, startP.y, startP.x-ePoint.x, ePoint.y-startP.y);  break; 	
+				case 4: buffer2.drawOval(ePoint.x, startP.y, startP.x-ePoint.x, ePoint.y-startP.y);  break;				
+				default: break; }
+			}
+			else if (startP.x < ePoint.x && startP.y > ePoint.y) {
+				switch(button){  
+				case 0: break;
+				case 1: buffer2.fillRect(startP.x, ePoint.y, ePoint.x-startP.x, startP.y-ePoint.y);  break;		
+				case 2: buffer2.drawRect(startP.x, ePoint.y, ePoint.x-startP.x, startP.y-ePoint.y);  break; 
+				case 3: buffer2.fillOval(startP.x, ePoint.y, ePoint.x-startP.x, startP.y-ePoint.y);  break; 	
+				case 4: buffer2.drawOval(startP.x, ePoint.y, ePoint.x-startP.x, startP.y-ePoint.y);  break;						
+				default: break; }
+			}
+			else if (startP.x > ePoint.x && startP.y > ePoint.y) {
+				switch(button){  
+				case 0: break;
+				case 1: buffer2.fillRect(ePoint.x, ePoint.y, startP.x-ePoint.x, startP.y-ePoint.y);  break;		
+				case 2: buffer2.drawRect(ePoint.x, ePoint.y, startP.x-ePoint.x, startP.y-ePoint.y);  break; 
+				case 3: buffer2.fillOval(ePoint.x, ePoint.y, startP.x-ePoint.x, startP.y-ePoint.y);  break; 	
+				case 4: buffer2.drawOval(ePoint.x, ePoint.y, startP.x-ePoint.x, startP.y-ePoint.y);  break;				
+				default: break; }
+			}
+		}
+		if (button == 5) buffer2.drawLine(startP.x, startP.y, ePoint.x, ePoint.y);
 		buffer2.dispose();
-		System.gc(); // Solves the issue of having a ton of Buffered Image stuck in the memory for the live preview.  I wish there was a better way
+		System.gc(); 	//Solves the issue of having a ton of Buffered Image stuck in the memory for the live preview.  I wish there was a better way
 		repaint();
 	}
 
