@@ -30,6 +30,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 	private int button = -1;						//Determines which button is pressed based on a number
 	private Point sPoint = new Point();  			//start Point
 	private Point ePoint = new Point();				//end Point
+	private Color color;
 
 	public MousePanel() {
 		bufferImg = new BufferedImage(2000,2000, BufferedImage.TYPE_INT_RGB); 
@@ -106,7 +107,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		ePoint.x = e.getX();  
 		ePoint.y = e.getY();
 		System.out.println(e.getY() + " x " + e.getX());
-		buffer2.setColor(Color.BLACK);
+		buffer2.setColor(color);
 		int x1 = -1, y1 = -1, width = -1, height = -1;
 		if (button != 5) {										//when drawing things other than a button...
 			if (sPoint.x < ePoint.x && sPoint.y < ePoint.y) {	//the following statements allow live draw from all directions
@@ -147,7 +148,8 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 	public void mouseReleased(MouseEvent e){		//Final coords for shape
 		paintStatusFlag = false;
 		Graphics buffer = bufferImg.createGraphics();
-		buffer.setColor(Color.BLACK);		//Could we use this command to change color? If Color.BLACK was changed to something generic and then
+		color = ColorChooser.color();
+		buffer.setColor(color);		//Could we use this command to change color? If Color.BLACK was changed to something generic and then
 		e.consume();  						//if we had an instance variable representing color sent from buttonpanel class, possibly from a menu?
 		ePoint.x = e.getX();  
 		ePoint.y = e.getY();
