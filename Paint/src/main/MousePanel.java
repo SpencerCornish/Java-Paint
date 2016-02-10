@@ -136,7 +136,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		case 5: buffer2.drawLine(sPoint.x, sPoint.y, ePoint.x, ePoint.y); break;
 		default: break; }
 		buffer2.dispose();
-		System.gc(); 	//Solves the issue of having a ton of Buffered Image stuck in the memory for the live preview.  I wish there was a better way
+		System.gc(); 	//Solves the issue of having a ton of Buffered Images stuck in the memory for the live preview.  I wish there was a better way
 		repaint();
 	}
 
