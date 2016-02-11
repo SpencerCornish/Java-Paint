@@ -78,8 +78,8 @@ public class ColorPanel extends JPanel implements ActionListener  {
 
 	public void actionPerformed(ActionEvent arg0) {
 		Color fColorTemp = fColor;  // These are here, just in case the user clicks cancel
-		Color oColorTemp = fColor;
-		Color bColorTemp = fColor;
+		Color oColorTemp = oColor;
+		Color bColorTemp = bColor;
 		Object bt = arg0.getSource();
 		if(bt == buttonRST){
 			fColor = FDEF;  // Sets back to final default colors
@@ -91,7 +91,7 @@ public class ColorPanel extends JPanel implements ActionListener  {
 			//buttonBColor.setBackground(bColor);
 		} else if(bt == buttonFColor){
 			System.out.println("Fill Color");
-			fColor = JColorChooser.showDialog(null, "Pick a Color", fColor);
+			fColor = JColorChooser.showDialog(null, "Pick a Fill Color", fColor);
 			if(fColor != null)
 			{
 				//buttonFColor.setBackground(fColor);
@@ -100,7 +100,7 @@ public class ColorPanel extends JPanel implements ActionListener  {
 		}
 		else if(bt == buttonOColor){
 			System.out.println("Outline Color");
-			oColor = JColorChooser.showDialog(null, "Pick a Color", oColor);
+			oColor = JColorChooser.showDialog(null, "Pick an Outline Color", oColor);
 			if(fColor != null)
 			{
 				//buttonOColor.setBackground(oColor);
@@ -109,7 +109,7 @@ public class ColorPanel extends JPanel implements ActionListener  {
 		}
 		else if(bt == buttonBColor){
 			System.out.println("Background Color");
-			bColor = JColorChooser.showDialog(null, "Pick a Color", bColor);
+			bColor = JColorChooser.showDialog(null, "Pick a Background Color", bColor);
 			if(fColor != null)
 			{
 				//buttonBColor.setBackground(bColor);
@@ -117,7 +117,7 @@ public class ColorPanel extends JPanel implements ActionListener  {
 		}
 	}
 	public Color getColor(int c){
-		switch(c){	//why don't these need break statements? It throws an error when you write break :O
+		switch(c){	
 		case 0: return fColor; // Fill Color
 		case 1: return oColor; // Outline Color
 		case 2: return bColor; // Background Color
