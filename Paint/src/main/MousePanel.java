@@ -73,7 +73,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		buffer.setColor(Color.WHITE);
 		buffer.fillRect(0, 0, bufferImg.getHeight(), bufferImg.getWidth());
 		repaint();
-		color = ColorChooser.resetColor(); }
+		}
 	public void fixDirections()	{						//makes sure final coordinates are good to paint with
 		repaint();
 		if(button != 5){
@@ -99,7 +99,10 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		e.consume();
 		sPoint.x = e.getX();  						// Sets start points
 		sPoint.y = e.getY();
-		paintStatusFlag = true; }					// Starts painting the live preview
+		paintStatusFlag = true; 
+		color = ColorPanel.getInstance().getColor(0);
+		
+	}					// Starts painting the live preview
 
 	public void mouseDragged(MouseEvent e) { 		//makes the shape a live-drag
 		bufferImgLive = deepCopy(bufferImg);
@@ -108,7 +111,6 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		ePoint.x = e.getX();  
 		ePoint.y = e.getY();
 		System.out.println(e.getY() + " x " + e.getX());
-		color = ColorChooser.getColor();
 		buffer2.setColor(color);
 		int x1 = -1, y1 = -1, width = -1, height = -1;
 		if (button != 5) {										//when drawing things other than a button...
@@ -150,7 +152,6 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 	public void mouseReleased(MouseEvent e){		//Final coords for shape
 		paintStatusFlag = false;
 		Graphics buffer = bufferImg.createGraphics();
-		color = ColorChooser.getColor();
 		buffer.setColor(color);		
 		e.consume();  						
 		ePoint.x = e.getX();  
