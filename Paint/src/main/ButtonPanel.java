@@ -35,8 +35,6 @@ public class ButtonPanel extends JPanel implements ActionListener {
 	private JButton buttonOvalF; 			// Draw a Filled Oval
 	private JButton buttonOvalE; 			// Draw an Empty Oval 
 	private JButton buttonLineD; 			// Draw a line
-	private JButton buttonColor;
-
 	public ButtonPanel() {
 		colorF = new ColorChooser();
 		setAlignmentX(Component.CENTER_ALIGNMENT); 				// Button alignment within panel
@@ -72,12 +70,7 @@ public class ButtonPanel extends JPanel implements ActionListener {
 		buttonLineD.addActionListener(this);  
 		buttonLineD.setToolTipText("Draw a straight line");
 		
-		buttonColor = new JButton("Color...");								//Color button
-		add(buttonColor);
-		buttonColor.setPreferredSize(PREF2);
-		buttonColor.addActionListener(this);
-		buttonColor.setToolTipText("Choose a color"); 
-		buttonColor.setEnabled(true);
+
 		
 		buttonUndo = new JButton("Undo");									//undo button - coming soon!
 		add(buttonUndo);
@@ -109,5 +102,5 @@ public class ButtonPanel extends JPanel implements ActionListener {
 		else if(ae.getSource() == buttonOvalF) MousePanel.getInstance().setButton(3);
 		else if(ae.getSource() == buttonOvalE) MousePanel.getInstance().setButton(4);
 		else if(ae.getSource() == buttonLineD) MousePanel.getInstance().setButton(5);
-		if(ae.getSource() == buttonColor) colorF.showColors();
+		if(ae.getSource() == null) colorF.showColors();
 		} }

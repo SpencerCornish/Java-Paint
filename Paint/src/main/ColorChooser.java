@@ -15,8 +15,6 @@ public class ColorChooser extends JPanel {
 	private static final long serialVersionUID = -9134135157727043422L;
 	private JFrame frame;
 	protected JColorChooser chooser;
-	private Color bgColor;
-	private Color olColor;
 	private static Color fColor = Color.BLACK;	//fill color
 
 	public ColorChooser() {
@@ -29,10 +27,11 @@ public class ColorChooser extends JPanel {
 		//frame.setContentPane(content);
 		//frame.pack();
 	}
-	public void showColors()
+	public Color showColors()
 	{
 		//frame.setVisible(true);
 		fColor = JColorChooser.showDialog(null, "Pick a Color", null);
+		return fColor;
 	}
 	public static Color getColor() // We should meet and talk about our color options.. We have quite a few choices re: color selections!
 	{

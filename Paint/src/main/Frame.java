@@ -23,8 +23,12 @@ public class Frame extends JFrame
 		Container c = getContentPane(); 										// Returns frame
 		setMinimumSize(new Dimension(800, 600));  								// Minimum window size allowed, subject to change
 		setSize(new Dimension(800,600));
-		ButtonPanel.getInstance().setPreferredSize(new Dimension(110,30) ); 	// Sets total size of the container 
-		c.add(ButtonPanel.getInstance(), BorderLayout.WEST); 					// Puts ButtonPanel West
+		JPanel container = new JPanel();
+		container.setLayout(new BorderLayout());
+		container.add(ButtonPanel.getInstance(), BorderLayout.NORTH);
+		container.add(ColorPanel.getInstance(), BorderLayout.SOUTH);
+		ButtonPanel.getInstance().setPreferredSize(new Dimension(110,150) ); 	// Sets total size of the container 
+		c.add(container, BorderLayout.WEST); 					// Puts ButtonPanel West
 		c.add(MousePanel.getInstance(), BorderLayout.CENTER); 					// Centers canvas
 		setVisible(true); 
 	}
