@@ -101,7 +101,7 @@ public class ColorPanel extends JPanel implements ActionListener  {
 		else if(bt == buttonOColor){
 			System.out.println("Outline Color");
 			oColor = JColorChooser.showDialog(null, "Pick an Outline Color", oColor);
-			if(fColor != null)
+			if(oColor != null)
 			{
 				//buttonOColor.setBackground(oColor);
 
@@ -110,7 +110,7 @@ public class ColorPanel extends JPanel implements ActionListener  {
 		else if(bt == buttonBColor){
 			System.out.println("Background Color");
 			bColor = JColorChooser.showDialog(null, "Pick a Background Color", bColor);
-			if(fColor != null)
+			if(bColor != null)
 			{
 				//buttonBColor.setBackground(bColor);
 			} else bColor = bColorTemp;

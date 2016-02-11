@@ -34,7 +34,7 @@ public class ButtonPanel extends JPanel implements ActionListener {
 	private JButton buttonLineD; 			// Draw a line
 	public ButtonPanel() {
 		setAlignmentX(Component.CENTER_ALIGNMENT); 				// Button alignment within panel
-		setBackground(Color.GRAY);								// Button panel Background color
+		//setBackground(Color.GRAY);								// Button panel Background color
 
 		buttonRectangleF = new JButton(new ButtonIcon(1));					//button 1
 		add(buttonRectangleF);
