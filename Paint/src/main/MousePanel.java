@@ -30,8 +30,6 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 	private int button = -1;						//Determines which button is pressed based on a number
 	private Point sPoint = new Point();  			//start Point
 	private Point ePoint = new Point();				//end Point
-	private Color fColor;							//color to use in drawing filled shapes
-	private Color oColor;							//color to use in drawing empty shapes and outlines of filled shapes
 
 	public MousePanel() {
 		bufferImg = new BufferedImage(2000,2000, BufferedImage.TYPE_INT_RGB); 
@@ -100,9 +98,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		e.consume();
 		sPoint.x = e.getX();  						// Sets start points
 		sPoint.y = e.getY();
-		paintStatusFlag = true; 
-		fColor = ColorPanel.getInstance().getColor(0);
-		oColor = ColorPanel.getInstance().getColor(1);
+		paintStatusFlag = true;
 		
 	}					// Starts painting the live preview
 
@@ -112,8 +108,6 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		e.consume();  
 		ePoint.x = e.getX();  
 		ePoint.y = e.getY();
-		buffer2.setColor(oColor);
-		buffer2.setColor(fColor);
 		int x1 = -1, y1 = -1, width = -1, height = -1;
 		if (button != 5) {										//when drawing things other than a button...
 			if (sPoint.x < ePoint.x && sPoint.y < ePoint.y) {	//the following statements allow live draw from all directions
@@ -138,11 +132,11 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 				height = sPoint.y-ePoint.y; }}
 		switch(button){  
 		case 0: break;
-		case 1: buffer2.fillRect(x1, y1, width, height);  break;		
-		case 2: buffer2.drawRect(x1, y1, width, height);  break; 
-		case 3: buffer2.fillOval(x1, y1, width, height);  break; 	
-		case 4: buffer2.drawOval(x1, y1, width, height);  break;	
-		case 5: buffer2.drawLine(sPoint.x, sPoint.y, ePoint.x, ePoint.y); break;
+		case 1: buffer2.setColor(ColorPanel.getInstance().getColor(0)); buffer2.fillRect(x1, y1, width, height);  break;		
+		case 2: buffer2.setColor(ColorPanel.getInstance().getColor(1)); buffer2.drawRect(x1, y1, width, height);  break; 
+		case 3: buffer2.setColor(ColorPanel.getInstance().getColor(0)); buffer2.fillOval(x1, y1, width, height);  break; 	
+		case 4: buffer2.setColor(ColorPanel.getInstance().getColor(1)); buffer2.drawOval(x1, y1, width, height);  break;	
+		case 5: buffer2.setColor(ColorPanel.getInstance().getColor(1)); buffer2.drawLine(sPoint.x, sPoint.y, ePoint.x, ePoint.y); break;
 		default: break; }
 		buffer2.dispose();
 		System.gc(); 	//Solves the issue of having a ton of Buffered Images stuck in the memory for the live preview.  I wish there was a better way
@@ -158,15 +152,13 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		ePoint.x = e.getX();  
 		ePoint.y = e.getY();
 		fixDirections();
-		buffer.setColor(fColor);
-		buffer.setColor(oColor); 
 		switch(button){   //Switch on which button was pressed
 		case 0: break;
-		case 1: buffer.fillRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break;		// Draw filled rectangle
-		case 2: buffer.drawRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break; 		// Draw empty rectangle
-		case 3: buffer.fillOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break; 		// Draw filled oval
-		case 4: buffer.drawOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break;		// Draw empty oval
-		case 5: buffer.drawLine(sPoint.x, sPoint.y, ePoint.x, ePoint.y); break; 						// Draw Line
+		case 1: buffer.setColor(ColorPanel.getInstance().getColor(0)); buffer.fillRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break;		// Draw filled rectangle
+		case 2: buffer.setColor(ColorPanel.getInstance().getColor(1)); buffer.drawRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break; 		// Draw empty rectangle
+		case 3: buffer.setColor(ColorPanel.getInstance().getColor(0)); buffer.fillOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break; 		// Draw filled oval
+		case 4: buffer.setColor(ColorPanel.getInstance().getColor(1)); buffer.drawOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break;		// Draw empty oval
+		case 5: buffer.setColor(ColorPanel.getInstance().getColor(1)); buffer.drawLine(sPoint.x, sPoint.y, ePoint.x, ePoint.y); break; 						// Draw Line
 		default: break; } }
 
 	public void mouseMoved(MouseEvent e) {} 
