@@ -36,7 +36,6 @@ public class ColorPanel extends JPanel implements ActionListener  {
 
 	{
 		setAlignmentX(Component.CENTER_ALIGNMENT); 				// Button alignment within panel
-		
 		buttonBColor = new JButton("BG Color");								//Color button
 		add(buttonBColor);
 		buttonBColor.setPreferredSize(PREF);

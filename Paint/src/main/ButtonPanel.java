@@ -73,6 +73,7 @@ public class ButtonPanel extends JPanel implements ActionListener {
 		buttonUndo.setPreferredSize(PREF2);
 		buttonUndo.addActionListener(this);
 		buttonUndo.setToolTipText("Undo last change");
+		buttonUndo.setEnabled(false);
 
 		buttonClear = new JButton("Clear");									//button 0
 		add(buttonClear);

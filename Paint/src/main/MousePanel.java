@@ -110,7 +110,6 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		e.consume();  
 		ePoint.x = e.getX();  
 		ePoint.y = e.getY();
-		System.out.println(e.getY() + " x " + e.getX());
 		buffer2.setColor(color);
 		int x1 = -1, y1 = -1, width = -1, height = -1;
 		if (button != 5) {										//when drawing things other than a button...
