@@ -42,8 +42,6 @@ public class ColorPanel extends JPanel implements ActionListener  {
 		buttonBColor.addActionListener(this);
 		buttonBColor.setToolTipText("Choose a background color"); 
 		buttonBColor.setEnabled(true);
-		//buttonBColor.setBackground(bColor);
-		//buttonBColor.setBorderPainted(false);
 
 		buttonOColor = new JButton("OtLn", new ButtonIcon(7));								//Color button
 		add(buttonOColor);
@@ -51,8 +49,6 @@ public class ColorPanel extends JPanel implements ActionListener  {
 		buttonOColor.addActionListener(this);
 		buttonOColor.setToolTipText("Choose an outline color"); 
 		buttonOColor.setEnabled(true);
-		//buttonOColor.setBackground(oColor);
-		//buttonOColor.setBorderPainted(false);
 
 		buttonFColor = new JButton("Fill", new ButtonIcon(8));								//Color button
 		add(buttonFColor);
@@ -60,8 +56,6 @@ public class ColorPanel extends JPanel implements ActionListener  {
 		buttonFColor.addActionListener(this);
 		buttonFColor.setToolTipText("Choose a fill color"); 
 		buttonFColor.setEnabled(true);
-		//buttonFColor.setBackground(fColor);
-		//buttonFColor.setBorderPainted(false);
 		
 		buttonRST = new JButton("Reset");								//Color button
 		add(buttonRST);
@@ -86,34 +80,20 @@ public class ColorPanel extends JPanel implements ActionListener  {
 			bColor = BDEF;
 			oColor = ODEF;
 			repaint();
-			//buttonFColor.setBackground(fColor);
-			//buttonOColor.setBackground(oColor);
-			//buttonBColor.setBackground(bColor);
 		} else if(bt == buttonFColor){
 			System.out.println("Fill Color");
 			fColor = JColorChooser.showDialog(null, "Pick a Fill Color", fColor);
-			if(fColor != null)
-			{
-				//buttonFColor.setBackground(fColor);
-
-			} else fColor = fColorTemp;
+			if(fColor == null) fColor = fColorTemp;
 		}
 		else if(bt == buttonOColor){
 			System.out.println("Outline Color");
 			oColor = JColorChooser.showDialog(null, "Pick an Outline Color", oColor);
-			if(oColor != null)
-			{
-				//buttonOColor.setBackground(oColor);
-
-			} else oColor = oColorTemp;
+			if(oColor == null) oColor = oColorTemp;
 		}
 		else if(bt == buttonBColor){
 			System.out.println("Background Color");
 			bColor = JColorChooser.showDialog(null, "Pick a Background Color", bColor);
-			if(bColor != null)
-			{
-				//buttonBColor.setBackground(bColor);
-			} else bColor = bColorTemp;
+			if(bColor == null) bColor = bColorTemp;
 		}
 	}
 	public Color getColor(int c){
