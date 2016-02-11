@@ -101,7 +101,8 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		sPoint.x = e.getX();  						// Sets start points
 		sPoint.y = e.getY();
 		paintStatusFlag = true; 
-		color = ColorPanel.getInstance().getColor(0);
+		fColor = ColorPanel.getInstance().getColor(0);
+		oColor = ColorPanel.getInstance().getColor(1);
 		
 	}					// Starts painting the live preview
 
