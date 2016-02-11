@@ -13,19 +13,14 @@ import java.awt.*;
 
 public class ColorChooser extends JPanel {
 	private static final long serialVersionUID = -9134135157727043422L;
-	private JFrame frame;
 	protected JColorChooser chooser;
 	private static Color fColor = Color.BLACK;	//fill color
 
 	public ColorChooser() {
 		super(new BorderLayout());
 		chooser = new JColorChooser();
-		//frame = new JFrame("Pick a Color");
-		//frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		JComponent content =  chooser;
 		content.setOpaque(true);
-		//frame.setContentPane(content);
-		//frame.pack();
 	}
 	public Color showColors()
 	{

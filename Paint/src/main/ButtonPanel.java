@@ -25,9 +25,6 @@ public class ButtonPanel extends JPanel implements ActionListener {
 	private final Dimension PREF = new Dimension(50,26); 						// The preferred button dimensions
 	private final Dimension PREF2 = new Dimension(101, 26);
 	public static ButtonPanel btnP; 		// Instance of Button Panel
-	public static  ColorChooser colorF;		// Fill Color
-	public static  ColorChooser colorBG;	// Background Color (Future)
-	public static  ColorChooser colorOL;	// Outline Color (Future)
 	private JButton buttonClear; 			// Clear the screen
 	private JButton buttonUndo;				// Undo last change
 	private JButton buttonRectangleF; 		// Draw a Filled Rectangle
@@ -36,7 +33,6 @@ public class ButtonPanel extends JPanel implements ActionListener {
 	private JButton buttonOvalE; 			// Draw an Empty Oval 
 	private JButton buttonLineD; 			// Draw a line
 	public ButtonPanel() {
-		colorF = new ColorChooser();
 		setAlignmentX(Component.CENTER_ALIGNMENT); 				// Button alignment within panel
 		setBackground(Color.GRAY);								// Button panel Background color
 
@@ -102,5 +98,5 @@ public class ButtonPanel extends JPanel implements ActionListener {
 		else if(ae.getSource() == buttonOvalF) MousePanel.getInstance().setButton(3);
 		else if(ae.getSource() == buttonOvalE) MousePanel.getInstance().setButton(4);
 		else if(ae.getSource() == buttonLineD) MousePanel.getInstance().setButton(5);
-		if(ae.getSource() == null) colorF.showColors();
+		if(ae.getSource() == null) ;
 		} }
