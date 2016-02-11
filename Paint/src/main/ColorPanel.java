@@ -36,32 +36,32 @@ public class ColorPanel extends JPanel implements ActionListener  {
 
 	{
 		setAlignmentX(Component.CENTER_ALIGNMENT); 				// Button alignment within panel
-		buttonBColor = new JButton("BG Color");								//Color button
+		buttonBColor = new JButton("BG", new ButtonIcon(6));								//Color button
 		add(buttonBColor);
 		buttonBColor.setPreferredSize(PREF);
 		buttonBColor.addActionListener(this);
-		buttonBColor.setToolTipText("Choose a color"); 
+		buttonBColor.setToolTipText("Choose a background color"); 
 		buttonBColor.setEnabled(true);
-		buttonBColor.setBackground(bColor);
-		buttonBColor.setBorderPainted(false);
+		//buttonBColor.setBackground(bColor);
+		//buttonBColor.setBorderPainted(false);
 
-		buttonOColor = new JButton("Outline");								//Color button
+		buttonOColor = new JButton("OtLn", new ButtonIcon(7));								//Color button
 		add(buttonOColor);
 		buttonOColor.setPreferredSize(PREF);
 		buttonOColor.addActionListener(this);
-		buttonOColor.setToolTipText("Choose a color"); 
+		buttonOColor.setToolTipText("Choose an outline color"); 
 		buttonOColor.setEnabled(true);
-		buttonOColor.setBackground(oColor);
-		buttonOColor.setBorderPainted(false);
+		//buttonOColor.setBackground(oColor);
+		//buttonOColor.setBorderPainted(false);
 
-		buttonFColor = new JButton("Fill");								//Color button
+		buttonFColor = new JButton("Fill", new ButtonIcon(8));								//Color button
 		add(buttonFColor);
 		buttonFColor.setPreferredSize(PREF);
 		buttonFColor.addActionListener(this);
-		buttonFColor.setToolTipText("Choose a color"); 
+		buttonFColor.setToolTipText("Choose a fill color"); 
 		buttonFColor.setEnabled(true);
-		buttonFColor.setBackground(fColor);
-		buttonFColor.setBorderPainted(false);
+		//buttonFColor.setBackground(fColor);
+		//buttonFColor.setBorderPainted(false);
 		
 		buttonRST = new JButton("Reset");								//Color button
 		add(buttonRST);
@@ -85,15 +85,16 @@ public class ColorPanel extends JPanel implements ActionListener  {
 			fColor = FDEF;  // Sets back to final default colors
 			bColor = BDEF;
 			oColor = ODEF;
-			buttonFColor.setBackground(fColor);
-			buttonOColor.setBackground(oColor);
-			buttonBColor.setBackground(bColor);
+			repaint();
+			//buttonFColor.setBackground(fColor);
+			//buttonOColor.setBackground(oColor);
+			//buttonBColor.setBackground(bColor);
 		} else if(bt == buttonFColor){
 			System.out.println("Fill Color");
 			fColor = JColorChooser.showDialog(null, "Pick a Color", fColor);
 			if(fColor != null)
 			{
-				buttonFColor.setBackground(fColor);
+				//buttonFColor.setBackground(fColor);
 
 			} else fColor = fColorTemp;
 		}
@@ -102,7 +103,7 @@ public class ColorPanel extends JPanel implements ActionListener  {
 			oColor = JColorChooser.showDialog(null, "Pick a Color", oColor);
 			if(fColor != null)
 			{
-				buttonOColor.setBackground(oColor);
+				//buttonOColor.setBackground(oColor);
 
 			} else oColor = oColorTemp;
 		}
@@ -111,16 +112,16 @@ public class ColorPanel extends JPanel implements ActionListener  {
 			bColor = JColorChooser.showDialog(null, "Pick a Color", bColor);
 			if(fColor != null)
 			{
-				buttonBColor.setBackground(bColor);
+				//buttonBColor.setBackground(bColor);
 			} else bColor = bColorTemp;
 		}
 	}
 	public Color getColor(int c){
-		switch(c){
+		switch(c){	//why don't these need break statements? It throws an error when you write break :O
 		case 0: return fColor; // Fill Color
 		case 1: return oColor; // Outline Color
 		case 2: return bColor; // Background Color
-		default:return Color.BLACK;
+		default: return Color.BLACK;
 		}
 	}
 }

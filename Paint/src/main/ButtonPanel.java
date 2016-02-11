@@ -66,8 +66,6 @@ public class ButtonPanel extends JPanel implements ActionListener {
 		buttonLineD.addActionListener(this);  
 		buttonLineD.setToolTipText("Draw a straight line");
 		
-
-		
 		buttonUndo = new JButton("Undo");									//undo button - coming soon!
 		add(buttonUndo);
 		buttonUndo.setPreferredSize(PREF2);

@@ -19,8 +19,8 @@ public class Frame extends JFrame
 	private final Dimension MINSIZE = new Dimension(800,600);
 	private final TitledBorder CTITLE = new TitledBorder("Colors");
 	private final TitledBorder BTITLE = new TitledBorder("Shapes");
-	private final Dimension BPSIZE = new Dimension(110, 200);
-	private final Dimension CPSIZE = new Dimension(150, 200);
+	private final Dimension BPSIZE = new Dimension(110, 240);
+	private final Dimension CPSIZE = new Dimension(110, 150);
 	public Frame()
 	{
 		super("Canvas");
@@ -37,8 +37,8 @@ public class Frame extends JFrame
 		westContainer.add(ButtonPanel.getInstance(), BorderLayout.NORTH);
 		westContainer.add(ColorPanel.getInstance(), BorderLayout.SOUTH);
 		
-		ButtonPanel.getInstance().setPreferredSize(new Dimension(110, 180)); 	// Sets total size of the container 
-		ColorPanel.getInstance().setPreferredSize(new Dimension(110, 150)); 
+		ButtonPanel.getInstance().setPreferredSize(BPSIZE); 	// Sets total size of the container 
+		ColorPanel.getInstance().setPreferredSize(CPSIZE); 
 		c.add(westContainer, BorderLayout.WEST); 					// Puts ButtonPanel West
 		c.add(MousePanel.getInstance(), BorderLayout.CENTER); 					// Centers canvas
 		setVisible(true); 

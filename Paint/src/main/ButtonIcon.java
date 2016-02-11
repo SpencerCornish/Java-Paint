@@ -23,13 +23,15 @@ public class ButtonIcon implements Icon{
 
 	@Override
 	public void paintIcon(Component c, Graphics g, int x, int y) {
-		g.setColor(Color.BLACK);
 		switch(shape) {
-		case 1: g.fillRect(x, y, getIconWidth(), getIconHeight()); break;
-		case 2: g.drawRect(x, y, getIconWidth(), getIconHeight()); break;
-		case 3: g.fillOval(x, y, getIconWidth(), getIconHeight()); break;
-		case 4: g.drawOval(x, y, getIconWidth(), getIconHeight()); break;
-		case 5: g.drawLine(8, 18, 40, 8); break;
+		case 1: g.setColor(Color.BLACK); g.fillRect(x, y, getIconWidth(), getIconHeight()); break;
+		case 2: g.setColor(Color.BLACK); g.drawRect(x, y, getIconWidth(), getIconHeight()); break;
+		case 3: g.setColor(Color.BLACK); g.fillOval(x, y, getIconWidth(), getIconHeight()); break;
+		case 4: g.setColor(Color.BLACK); g.drawOval(x, y, getIconWidth(), getIconHeight()); break;
+		case 5: g.setColor(Color.BLACK); g.drawLine(8, 18, 40, 8); break;
+		case 6: g.setColor(ColorPanel.getInstance().getColor(2)); g.fillRect(x, y, 10, 15); break;
+		case 7: g.setColor(ColorPanel.getInstance().getColor(1)); g.drawRect(x, y, 10, 15); break;
+		case 8: g.setColor(ColorPanel.getInstance().getColor(0)); g.fillRect(x, y, 10, 15); break;
 		}
 	}
 }
