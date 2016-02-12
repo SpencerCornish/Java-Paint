@@ -17,6 +17,8 @@ public class Frame extends JFrame
 	private static final long serialVersionUID = 986906333940524590L; //This is apparently important.  It got rid of a warning, so...
 	public static Frame frame;
 	private JMenuBar menuBar = new JMenuBar();
+	private JMenu menu,submenu;
+	private JMenuItem menuItem;
 	private final Dimension MINSIZE = new Dimension(800,600);
 	private final TitledBorder CTITLE = new TitledBorder("Colors");
 	private final TitledBorder BTITLE = new TitledBorder("Shapes");
@@ -48,14 +50,27 @@ public class Frame extends JFrame
 	public void makeMenu()
 	{
 		
-		JMenu fileMenu = new JMenu("File");
-		JMenu editMenu = new JMenu("Edit");
-		JMenu helpMenu = new JMenu("Help");
+		menu = new JMenu("File");
+		menuItem = new JMenuItem("New");
+		menu.add(menuItem);
+		menuItem = new JMenuItem("Open...");
+		menu.add(menuItem);
+		menu.addSeparator();
+		menuItem = new JMenuItem("Exit");
+		menu.add(menuItem);
+		menuBar.add(menu);
 		
-		menuBar.add(fileMenu);
-		menuBar.add(editMenu);
-		menuBar.add(helpMenu);
+		menu = new JMenu("Edit");
+		menuItem = new JMenuItem("Undo");
+		menu.add(menuItem);
+		menuItem = new JMenuItem("Redo");
+		menu.add(menuItem);
+		menuBar.add(menu);
 		
+		menu = new JMenu("Help");
+		menuItem = new JMenuItem("About...");
+		menu.add(menuItem);
+		menuBar.add(menu);
 		this.setJMenuBar(menuBar);
 		
 	}
