@@ -117,7 +117,15 @@ public class Frame extends JFrame implements ActionListener
 	}
 	public void aboutUs()
 	{
-		JFrame about = new JFrame();
+		JDialog about = new JDialog(null, "About", Dialog.ModalityType.APPLICATION_MODAL);
+		JFrame aFrame = new JFrame();
+		Container c = getContentPane();
 		
+		
+		
+		about.setMinimumSize(new Dimension(600,300));
+		about.setResizable(false);
+		about.setLocationRelativeTo(null);
+		about.setVisible(true);
 	}
 }
