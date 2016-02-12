@@ -21,7 +21,7 @@ public class Frame extends JFrame implements ActionListener
 	private static final long serialVersionUID = 986906333940524590L; //This is apparently important.  It got rid of a warning, so...
 	public static Frame frame;
 	private JMenuBar menuBar = new JMenuBar();
-	private JMenu menu,submenu;
+	private JMenu menu, submenu;
 	private JMenuItem menuItem;
 	private final Dimension MINSIZE = new Dimension(800,600);
 	private final TitledBorder CTITLE = new TitledBorder("Colors");

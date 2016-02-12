@@ -41,28 +41,24 @@ public class ColorPanel extends JPanel implements ActionListener  {
 		buttonBColor.setPreferredSize(PREF);
 		buttonBColor.addActionListener(this);
 		buttonBColor.setToolTipText("Choose a background color"); 
-		buttonBColor.setEnabled(true);
 
 		buttonOColor = new JButton("OtLn", new ButtonIcon(7));								//Color button
 		add(buttonOColor);
 		buttonOColor.setPreferredSize(PREF);
 		buttonOColor.addActionListener(this);
 		buttonOColor.setToolTipText("Choose an outline color"); 
-		buttonOColor.setEnabled(true);
 
 		buttonFColor = new JButton("Fill", new ButtonIcon(8));								//Color button
 		add(buttonFColor);
 		buttonFColor.setPreferredSize(PREF);
 		buttonFColor.addActionListener(this);
 		buttonFColor.setToolTipText("Choose a fill color"); 
-		buttonFColor.setEnabled(true);
 		
 		buttonRST = new JButton("Reset");								//Color button
 		add(buttonRST);
 		buttonRST.setPreferredSize(PREF2);
 		buttonRST.addActionListener(this);
 		buttonRST.setToolTipText("Reset all colors to their defaults"); 
-		buttonRST.setEnabled(true);
 		
 	}
 	public static ColorPanel getInstance()	{					//get instance of color panel
@@ -105,6 +101,5 @@ public class ColorPanel extends JPanel implements ActionListener  {
 		fColor = FDEF;  // Sets back to final default colors
 		bColor = BDEF;
 		oColor = ODEF;
-		repaint();
 	}
 }
