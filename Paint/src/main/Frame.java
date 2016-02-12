@@ -8,10 +8,14 @@ package main;
  * 
  */
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
-public class Frame extends JFrame 
+public class Frame extends JFrame implements ActionListener
 {
 
 	private static final long serialVersionUID = 986906333940524590L; //This is apparently important.  It got rid of a warning, so...
@@ -52,26 +56,56 @@ public class Frame extends JFrame
 		
 		menu = new JMenu("File");
 		menuItem = new JMenuItem("New");
+		menuItem.addActionListener(this);
 		menu.add(menuItem);
+		
 		menuItem = new JMenuItem("Open...");
+		menuItem.addActionListener(this);
 		menu.add(menuItem);
+		
 		menu.addSeparator();
+		
 		menuItem = new JMenuItem("Exit");
+		menuItem.addActionListener(this);
 		menu.add(menuItem);
+		
 		menuBar.add(menu);
 		
 		menu = new JMenu("Edit");
 		menuItem = new JMenuItem("Undo");
+		menuItem.addActionListener(this);
+
 		menu.add(menuItem);
+		
 		menuItem = new JMenuItem("Redo");
+		menuItem.setEnabled(false);
+		menuItem.addActionListener(this);
+		
 		menu.add(menuItem);
+		
 		menuBar.add(menu);
 		
 		menu = new JMenu("Help");
 		menuItem = new JMenuItem("About...");
+		menuItem.addActionListener(this);
 		menu.add(menuItem);
+		
 		menuBar.add(menu);
 		this.setJMenuBar(menuBar);
+		
+	}
+	public void actionPerformed(ActionEvent arg0) {
+		String btn = ((JMenuItem) arg0.getSource()).getText();
+		System.out.println(btn);
+		if(btn == "New"){
+			MousePanel.getInstance().clearAll();
+			ColorPanel.getInstance().rstColors();
+		}
+		else if (btn == "Open...") System.out.println("Work In Progress!");
+		else if (btn == "Exit") System.exit(0);  // Exits the program with Code 0
+		else if (btn == "Undo") MousePanel.getInstance().undo();
+		else if (btn == "Redo");
+		else if (btn == "About...") aboutUs();
 		
 	}
 	public static Frame getInstance()	//gets instance of frame and makes one if none exist
@@ -80,5 +114,10 @@ public class Frame extends JFrame
 			frame = new Frame();
 
 		return frame;
+	}
+	public void aboutUs()
+	{
+		JFrame about = new JFrame();
+		
 	}
 }

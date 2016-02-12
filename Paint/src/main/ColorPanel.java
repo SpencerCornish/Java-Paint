@@ -76,10 +76,7 @@ public class ColorPanel extends JPanel implements ActionListener  {
 		Color bColorTemp = bColor;
 		Object bt = arg0.getSource();
 		if(bt == buttonRST){
-			fColor = FDEF;  // Sets back to final default colors
-			bColor = BDEF;
-			oColor = ODEF;
-			repaint();
+			rstColors();
 		} else if(bt == buttonFColor){
 			System.out.println("Fill Color");
 			fColor = JColorChooser.showDialog(null, "Pick a Fill Color", fColor);
@@ -103,5 +100,11 @@ public class ColorPanel extends JPanel implements ActionListener  {
 		case 2: return bColor; // Background Color
 		default: return Color.BLACK;
 		}
+	}
+	public void rstColors() {
+		fColor = FDEF;  // Sets back to final default colors
+		bColor = BDEF;
+		oColor = ODEF;
+		repaint();
 	}
 }
