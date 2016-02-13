@@ -101,5 +101,6 @@ public class ColorPanel extends JPanel implements ActionListener  {
 		fColor = FDEF;  // Sets back to final default colors
 		bColor = BDEF;
 		oColor = ODEF;
+		repaint();
 	}
 }
