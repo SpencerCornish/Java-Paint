@@ -136,11 +136,35 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 				height = sPoint.y-ePoint.y; }}
 		switch(button){  
 		case 0: break;
-		case 1: buffer2.setColor(ColorPanel.getInstance().getColor(0)); buffer2.fillRect(x1, y1, width, height);  break;		
-		case 2: buffer2.setColor(ColorPanel.getInstance().getColor(1)); buffer2.drawRect(x1, y1, width, height);  break; 
-		case 3: buffer2.setColor(ColorPanel.getInstance().getColor(0)); buffer2.fillOval(x1, y1, width, height);  break; 	
-		case 4: buffer2.setColor(ColorPanel.getInstance().getColor(1)); buffer2.drawOval(x1, y1, width, height);  break;	
-		case 5: buffer2.setColor(ColorPanel.getInstance().getColor(1)); buffer2.drawLine(sPoint.x, sPoint.y, ePoint.x, ePoint.y); break;
+		case 1: {
+			buffer2.setColor(ColorPanel.getInstance().getColor(0)); 
+			buffer2.fillRect(x1, y1, width, height);
+			buffer2.setColor(ColorPanel.getInstance().getColor(1));
+			buffer2.drawRect(x1, y1, width, height);
+			break;		
+		}
+		case 2: {
+			buffer2.setColor(ColorPanel.getInstance().getColor(1)); 
+			buffer2.drawRect(x1, y1, width, height);  
+			break; 
+		}
+		case 3: {
+			buffer2.setColor(ColorPanel.getInstance().getColor(0)); 
+			buffer2.fillOval(x1, y1, width, height);
+			buffer2.setColor(ColorPanel.getInstance().getColor(1));
+			buffer2.drawOval(x1, y1, width, height);
+			break; 	
+		}
+		case 4: {
+			buffer2.setColor(ColorPanel.getInstance().getColor(1)); 
+			buffer2.drawOval(x1, y1, width, height);  
+			break;	
+		}
+		case 5: {
+			buffer2.setColor(ColorPanel.getInstance().getColor(1)); 
+			buffer2.drawLine(sPoint.x, sPoint.y, ePoint.x, ePoint.y); 
+			break;
+		}
 		default: break; }
 		buffer2.dispose();
 		System.gc(); 	//Solves the issue of having a ton of Buffered Images stuck in the memory for the live preview.  I wish there was a better way
@@ -158,11 +182,35 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		fixDirections();
 		switch(button){   //Switch on which button was pressed
 		case 0: break;
-		case 1: buffer.setColor(ColorPanel.getInstance().getColor(0)); buffer.fillRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break;		// Draw filled rectangle
-		case 2: buffer.setColor(ColorPanel.getInstance().getColor(1)); buffer.drawRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break; 		// Draw empty rectangle
-		case 3: buffer.setColor(ColorPanel.getInstance().getColor(0)); buffer.fillOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break; 		// Draw filled oval
-		case 4: buffer.setColor(ColorPanel.getInstance().getColor(1)); buffer.drawOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break;		// Draw empty oval
-		case 5: buffer.setColor(ColorPanel.getInstance().getColor(1)); buffer.drawLine(sPoint.x, sPoint.y, ePoint.x, ePoint.y); break; 							// Draw Line
+		case 1: {
+			buffer.setColor(ColorPanel.getInstance().getColor(0)); 
+			buffer.fillRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); 
+			buffer.setColor(ColorPanel.getInstance().getColor(1)); 
+			buffer.drawRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); 
+			break;		// Draw filled rectangle
+		}
+		case 2: {
+			buffer.setColor(ColorPanel.getInstance().getColor(1)); 
+			buffer.drawRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  
+			break; 		// Draw empty rectangle
+		}
+		case 3: {
+			buffer.setColor(ColorPanel.getInstance().getColor(0)); 
+			buffer.fillOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  
+			buffer.setColor(ColorPanel.getInstance().getColor(1));
+			buffer.drawOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); 
+			break; 		// Draw filled oval
+		}
+		case 4: {
+			buffer.setColor(ColorPanel.getInstance().getColor(1)); 
+			buffer.drawOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  
+			break;		// Draw empty oval
+		}
+		case 5: {
+			buffer.setColor(ColorPanel.getInstance().getColor(1)); 
+			buffer.drawLine(sPoint.x, sPoint.y, ePoint.x, ePoint.y); 
+			break; 							// Draw Line
+		}
 		default: break; } 
 		}
 
