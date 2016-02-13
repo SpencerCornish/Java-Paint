@@ -8,9 +8,7 @@ package main;
  * 
  */
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -21,12 +19,12 @@ public class Frame extends JFrame implements ActionListener
 	private static final long serialVersionUID = 986906333940524590L; //This is apparently important.  It got rid of a warning, so...
 	public static Frame frame;
 	private JMenuBar menuBar = new JMenuBar();
-	private JMenu menu, submenu;
+	private JMenu menu;
 	private JMenuItem menuItem;
 	private final Dimension MINSIZE = new Dimension(800,600);
 	private final TitledBorder CTITLE = new TitledBorder("Colors");
 	private final TitledBorder BTITLE = new TitledBorder("Shapes");
-	private final Dimension BPSIZE = new Dimension(110, 240);
+	private final Dimension BPSIZE = new Dimension(110, 220);
 	private final Dimension CPSIZE = new Dimension(110, 150);
 	public Frame()
 	{
@@ -35,16 +33,16 @@ public class Frame extends JFrame implements ActionListener
 		Container c = getContentPane(); 										// Returns frame
 		JPanel westContainer = new JPanel();
 		makeMenu();
-				
+
 		setMinimumSize(MINSIZE);  								// Minimum window size allowed, subject to change
 		setSize(MINSIZE);
 		ColorPanel.getInstance().setBorder(CTITLE);		
 		ButtonPanel.getInstance().setBorder(BTITLE);
-		
+
 		westContainer.setLayout(new BorderLayout());
 		westContainer.add(ButtonPanel.getInstance(), BorderLayout.NORTH);
 		westContainer.add(ColorPanel.getInstance(), BorderLayout.SOUTH);
-		
+
 		ButtonPanel.getInstance().setPreferredSize(BPSIZE); 	// Sets total size of the container 
 		ColorPanel.getInstance().setPreferredSize(CPSIZE); 
 		c.add(westContainer, BorderLayout.WEST); 					// Puts ButtonPanel West
@@ -53,48 +51,48 @@ public class Frame extends JFrame implements ActionListener
 	}
 	public void makeMenu()
 	{
-		
+
 		menu = new JMenu("File");
 		menuItem = new JMenuItem("New");
 		menuItem.addActionListener(this);
 		menu.add(menuItem);
-		
+
 		menuItem = new JMenuItem("Save");
 		menuItem.addActionListener(this);
 		menuItem.setEnabled(false);
 		menu.add(menuItem);
-		
+
 		menu.addSeparator();
-		
+
 		menuItem = new JMenuItem("Exit");
 		menuItem.addActionListener(this);
 		menu.add(menuItem);
-		
+
 		menuBar.add(menu);
-		
+
 		menu = new JMenu("View");
 		menuItem = new JMenuItem("Undo");
 		menuItem.setEnabled(false);
 		menuItem.addActionListener(this);
 
 		menu.add(menuItem);
-		
+
 		menuItem = new JMenuItem("Redo");
 		menuItem.setEnabled(false);
 		menuItem.addActionListener(this);
-		
+
 		menu.add(menuItem);
-		
+
 		menuBar.add(menu);
-		
+
 		menu = new JMenu("Help");
 		menuItem = new JMenuItem("About...");
 		menuItem.addActionListener(this);
 		menu.add(menuItem);
-		
+
 		menuBar.add(menu);
 		this.setJMenuBar(menuBar);
-		
+
 	}
 	public void actionPerformed(ActionEvent arg0) {
 		String btn = ((JMenuItem) arg0.getSource()).getText();
@@ -103,12 +101,13 @@ public class Frame extends JFrame implements ActionListener
 			MousePanel.getInstance().clearAll();
 			ColorPanel.getInstance().rstColors();
 		}
-		else if (btn == "Open...") System.out.println("Work In Progress!");
+		else if (btn == "Save") System.out.println("Work In Progress!");
 		else if (btn == "Exit") System.exit(0);  // Exits the program with Code 0
 		else if (btn == "Undo") MousePanel.getInstance().undo();
 		else if (btn == "Redo");
-		else if (btn == "About...") new AboutUs();;
-		
+		else if (btn == "About...") new AboutUs();
+		else;
+
 	}
 	public static Frame getInstance()	//gets instance of frame and makes one if none exist
 	{
@@ -116,9 +115,5 @@ public class Frame extends JFrame implements ActionListener
 			frame = new Frame();
 
 		return frame;
-	}
-	public void aboutUs()
-	{
-
 	}
 }
