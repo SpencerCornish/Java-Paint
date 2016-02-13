@@ -86,8 +86,6 @@ public class ButtonPanel extends JPanel implements ActionListener {
 		else if(ae.getSource() == buttonOvalF) MousePanel.getInstance().setButton(3);
 		else if(ae.getSource() == buttonOvalE) MousePanel.getInstance().setButton(4);
 		else if(ae.getSource() == buttonLineD) MousePanel.getInstance().setButton(5);
-		else if(ae.getSource() == null) ;
-		else;
 	}
 }
 

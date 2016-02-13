@@ -158,7 +158,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		case 2: buffer.setColor(ColorPanel.getInstance().getColor(1)); buffer.drawRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break; 		// Draw empty rectangle
 		case 3: buffer.setColor(ColorPanel.getInstance().getColor(0)); buffer.fillOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break; 		// Draw filled oval
 		case 4: buffer.setColor(ColorPanel.getInstance().getColor(1)); buffer.drawOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break;		// Draw empty oval
-		case 5: buffer.setColor(ColorPanel.getInstance().getColor(1)); buffer.drawLine(sPoint.x, sPoint.y, ePoint.x, ePoint.y); break; 						// Draw Line
+		case 5: buffer.setColor(ColorPanel.getInstance().getColor(1)); buffer.drawLine(sPoint.x, sPoint.y, ePoint.x, ePoint.y); break; 							// Draw Line
 		default: break; } }
 
 	public void mouseMoved(MouseEvent e) {} 
