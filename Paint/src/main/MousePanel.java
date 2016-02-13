@@ -174,43 +174,18 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		System.out.println("FALSE. YOU MAY NOT UNDO THINGS IN LIFE. DEAL WITH YOUR MISTAKE!"); 
 	}
 	public void mouseReleased(MouseEvent e){		//Final coords for shape
-		paintStatusFlag = false;
-		Graphics buffer = bufferImg.createGraphics();	
+		paintStatusFlag = false;	
 		e.consume();  						
 		ePoint.x = e.getX();  
 		ePoint.y = e.getY();
 		fixDirections();
 		switch(button){   //Switch on which button was pressed
 		case 0: break;
-		case 1: {
-			buffer.setColor(ColorPanel.getInstance().getColor(0)); 
-			buffer.fillRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); 
-			buffer.setColor(ColorPanel.getInstance().getColor(1)); 
-			buffer.drawRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); 
-			break;		// Draw filled rectangle
-		}
-		case 2: {
-			buffer.setColor(ColorPanel.getInstance().getColor(1)); 
-			buffer.drawRect(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  
-			break; 		// Draw empty rectangle
-		}
-		case 3: {
-			buffer.setColor(ColorPanel.getInstance().getColor(0)); 
-			buffer.fillOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  
-			buffer.setColor(ColorPanel.getInstance().getColor(1));
-			buffer.drawOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); 
-			break; 		// Draw filled oval
-		}
-		case 4: {
-			buffer.setColor(ColorPanel.getInstance().getColor(1)); 
-			buffer.drawOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  
-			break;		// Draw empty oval
-		}
-		case 5: {
-			buffer.setColor(ColorPanel.getInstance().getColor(1)); 
-			buffer.drawLine(sPoint.x, sPoint.y, ePoint.x, ePoint.y); 
-			break; 							// Draw Line
-		}
+		case 1: rect(1, sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); break;		// Draw filled rectangle
+		case 2: rect(0, sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); break; 		// Draw empty rectangle
+		case 3: oval(1, sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); break;		// Draw filled oval
+		case 4: oval(0, sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); break;		// Draw empty oval
+		case 5: line(sPoint.x, sPoint.y, ePoint.x, ePoint.y); break;							// Draw Line
 		default: break; } 
 		}
 
@@ -222,10 +197,46 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 			repaint();
 	}
 	
+	public void rect(int f, int x, int y, int width, int height) {
+		Graphics buffer = bufferImg.createGraphics();
+		if (f == 1) {		//if f (for fill) is true
+			buffer.setColor(ColorPanel.getInstance().getColor(0)); 
+			buffer.fillRect(x, y, width, height); 
+			buffer.setColor(ColorPanel.getInstance().getColor(1)); 
+			buffer.drawRect(x, y, width, height);
+		}
+		else {				//if fill is false, then empty rect is drawn
+			buffer.setColor(ColorPanel.getInstance().getColor(1)); 
+			buffer.drawRect(x, y, width, height);
+		}
+	}
+	
+	public void oval(int f, int x, int y, int width, int height) {
+		Graphics buffer = bufferImg.createGraphics();
+		if (f == 1) {
+			buffer.setColor(ColorPanel.getInstance().getColor(0)); 
+			buffer.fillOval(x, y, width, height);  
+			buffer.setColor(ColorPanel.getInstance().getColor(1));
+			buffer.drawOval(x, y, width, height);
+		}
+		else {
+			buffer.setColor(ColorPanel.getInstance().getColor(1)); 
+			buffer.drawOval(x, y, width, height);
+		}
+	}
+	
+	public void line(int x1, int y1, int x2, int y2) {
+		Graphics buffer = bufferImg.createGraphics();
+		buffer.setColor(ColorPanel.getInstance().getColor(1)); 
+		buffer.drawLine(x1, y1, x2, y2);
+	}
+	
 	public void mouseMoved(MouseEvent e) {} 
 
 	public void mouseExited(MouseEvent e){}
 
 	public void mouseEntered(MouseEvent e){}
 
-	public void mouseClicked(MouseEvent e){} }
+	public void mouseClicked(MouseEvent e){} 
+	
+}
