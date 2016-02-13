@@ -44,9 +44,9 @@ public class Frame extends JFrame implements ActionListener
 		westContainer.add(ButtonPanel.getInstance(), BorderLayout.NORTH);
 		westContainer.add(ColorPanel.getInstance(), BorderLayout.SOUTH);
 
-		ButtonPanel.getInstance().setPreferredSize(BPSIZE); 	// Sets total size of the container 
+		ButtonPanel.getInstance().setPreferredSize(BPSIZE); 					// Sets total size of the container 
 		ColorPanel.getInstance().setPreferredSize(CPSIZE); 
-		c.add(westContainer, BorderLayout.WEST); 					// Puts ButtonPanel West
+		c.add(westContainer, BorderLayout.WEST); 								// Puts ButtonPanel West
 		c.add(MousePanel.getInstance(), BorderLayout.CENTER); 					// Centers canvas
 		setVisible(true); 
 	}

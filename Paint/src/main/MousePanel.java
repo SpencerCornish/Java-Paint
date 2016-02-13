@@ -13,17 +13,14 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.RenderingHints;
-
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -43,7 +40,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		bufferImg = new BufferedImage(2000, 2000, BufferedImage.TYPE_INT_RGB); 
 		Graphics buffer = bufferImg.getGraphics();
 		buffer.setColor(Color.WHITE);
-		buffer.fillRect(0, 0, 2000, 2000);
+		buffer.fillRect(0, 0, bufferImg.getWidth(), bufferImg.getHeight());
 
 		addMouseListener(this); 					//Used to get coordinates of shape
 		addMouseMotionListener(this); 				//Used for mouseDragged()
@@ -57,7 +54,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 	public void paintComponent(Graphics g) {
 		if (bufferImg == null) 
 		{					//fills the buffer if it hasn't been filled already
-			bufferImg = (BufferedImage) createImage(2000, 2000);
+			bufferImg = (BufferedImage) createImage(bufferImg.getWidth(), bufferImg.getHeight());
 			g = (Graphics2D) bufferImg.getGraphics();
 			clearAll(); 
 		}
@@ -78,7 +75,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 	public void clearAll() { 							//clears mousepanel by painting over the background image
 		Graphics buffer = bufferImg.createGraphics();
 		buffer.setColor(Color.WHITE);
-		buffer.fillRect(0, 0, 2000, 2000);
+		buffer.fillRect(0, 0, bufferImg.getWidth(), bufferImg.getHeight());
 		repaint();
 	}
 	public void fixDirections()	{						//makes sure final coordinates are good to paint with
