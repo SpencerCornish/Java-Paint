@@ -34,7 +34,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 	private int button = -1;						//Determines which button is pressed based on a number
 	private Point sPoint = new Point();  			//start Point
 	private Point ePoint = new Point();				//end Point
-		
+
 	public MousePanel() {
 		bufferImg = new BufferedImage(2000,2000, BufferedImage.TYPE_INT_RGB); 
 		Graphics buffer = bufferImg.getGraphics();
@@ -76,7 +76,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		buffer.setColor(Color.WHITE);
 		buffer.fillRect(0, 0, bufferImg.getHeight(), bufferImg.getWidth());
 		repaint();
-		}
+	}
 	public void fixDirections()	{						//makes sure final coordinates are good to paint with
 		repaint();
 		if(button != 5){
@@ -103,7 +103,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		sPoint.x = e.getX();  						// Sets start points
 		sPoint.y = e.getY();
 		paintStatusFlag = true;
-		
+
 	}					// Starts painting the live preview
 
 	public void mouseDragged(MouseEvent e) { 		//makes the shape a live-drag
@@ -133,38 +133,15 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 				x1 = ePoint.x;
 				y1 = ePoint.y;
 				width = sPoint.x-ePoint.x;
-				height = sPoint.y-ePoint.y; }}
+				height = sPoint.y-ePoint.y; }
+		}
 		switch(button){  
 		case 0: break;
-		case 1: {
-			buffer2.setColor(ColorPanel.getInstance().getColor(0)); 
-			buffer2.fillRect(x1, y1, width, height);
-			buffer2.setColor(ColorPanel.getInstance().getColor(1));
-			buffer2.drawRect(x1, y1, width, height);
-			break;		
-		}
-		case 2: {
-			buffer2.setColor(ColorPanel.getInstance().getColor(1)); 
-			buffer2.drawRect(x1, y1, width, height);  
-			break; 
-		}
-		case 3: {
-			buffer2.setColor(ColorPanel.getInstance().getColor(0)); 
-			buffer2.fillOval(x1, y1, width, height);
-			buffer2.setColor(ColorPanel.getInstance().getColor(1));
-			buffer2.drawOval(x1, y1, width, height);
-			break; 	
-		}
-		case 4: {
-			buffer2.setColor(ColorPanel.getInstance().getColor(1)); 
-			buffer2.drawOval(x1, y1, width, height);  
-			break;	
-		}
-		case 5: {
-			buffer2.setColor(ColorPanel.getInstance().getColor(1)); 
-			buffer2.drawLine(sPoint.x, sPoint.y, ePoint.x, ePoint.y); 
-			break;
-		}
+		case 1: rect(1, 1, x1, y1, width, height); break;		
+		case 2: rect(1, 0, x1, y1, width, height); break;
+		case 3: oval(1, 1, x1, y1, width, height); break;
+		case 4: oval(1, 0, x1, y1, width, height); break;
+		case 5: line(1, sPoint.x, sPoint.y, ePoint.x, ePoint.y); break;
 		default: break; }
 		buffer2.dispose();
 		System.gc(); 	//Solves the issue of having a ton of Buffered Images stuck in the memory for the live preview.  I wish there was a better way
@@ -181,56 +158,93 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		fixDirections();
 		switch(button){   //Switch on which button was pressed
 		case 0: break;
-		case 1: rect(1, sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); break;		// Draw filled rectangle
-		case 2: rect(0, sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); break; 		// Draw empty rectangle
-		case 3: oval(1, sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); break;		// Draw filled oval
-		case 4: oval(0, sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); break;		// Draw empty oval
-		case 5: line(sPoint.x, sPoint.y, ePoint.x, ePoint.y); break;							// Draw Line
+		case 1: rect(0, 1, sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); break;		// Draw filled rectangle
+		case 2: rect(0, 0, sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); break; 		// Draw empty rectangle
+		case 3: oval(0, 1, sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); break;		// Draw filled oval
+		case 4: oval(0, 0, sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); break;		// Draw empty oval
+		case 5: line(0, sPoint.x, sPoint.y, ePoint.x, ePoint.y); break;								// Draw Line
 		default: break; } 
-		}
+	}
 
 	public void save() throws IOException {
-			ImageIO.write(bufferImg, "PNG", new File("Picture.png"));
+		ImageIO.write(bufferImg, "PNG", new File("Picture.png"));
 	}
 	public void load() throws IOException {
-			bufferImg = ImageIO.read(new File("Picture.png"));
-			repaint();
+		bufferImg = ImageIO.read(new File("Picture.png"));
+		repaint();
 	}
-	
-	public void rect(int f, int x, int y, int width, int height) {
+
+	public void rect(int lv, int f, int x, int y, int width, int height) {
 		Graphics buffer = bufferImg.createGraphics();
-		if (f == 1) {		//if f (for fill) is true
-			buffer.setColor(ColorPanel.getInstance().getColor(0)); 
-			buffer.fillRect(x, y, width, height); 
-			buffer.setColor(ColorPanel.getInstance().getColor(1)); 
-			buffer.drawRect(x, y, width, height);
+		Graphics buffer2 = bufferImgLive.createGraphics();
+		if (lv == 0) {			//if lv (for live) is false - this part for drawing in mouseReleased()
+			if (f == 1) {		//if f (for fill) is true
+				buffer.setColor(ColorPanel.getInstance().getColor(0)); 
+				buffer.fillRect(x, y, width, height); 
+				buffer.setColor(ColorPanel.getInstance().getColor(1)); 
+				buffer.drawRect(x, y, width, height);
+			}
+			else {				//if fill is false, then empty rect is drawn
+				buffer.setColor(ColorPanel.getInstance().getColor(1)); 
+				buffer.drawRect(x, y, width, height);
+			} 
 		}
-		else {				//if fill is false, then empty rect is drawn
-			buffer.setColor(ColorPanel.getInstance().getColor(1)); 
-			buffer.drawRect(x, y, width, height);
+		else {					//if live is true - for drawing in mouseDragged()
+			if (f == 1) {	
+				buffer2.setColor(ColorPanel.getInstance().getColor(0)); 
+				buffer2.fillRect(x, y, width, height); 
+				buffer2.setColor(ColorPanel.getInstance().getColor(1)); 
+				buffer2.drawRect(x, y, width, height);
+			}
+			else {				
+				buffer2.setColor(ColorPanel.getInstance().getColor(1)); 
+				buffer2.drawRect(x, y, width, height);
+			} 
 		}
 	}
-	
-	public void oval(int f, int x, int y, int width, int height) {
+
+	public void oval(int lv, int f, int x, int y, int width, int height) {
 		Graphics buffer = bufferImg.createGraphics();
-		if (f == 1) {
-			buffer.setColor(ColorPanel.getInstance().getColor(0)); 
-			buffer.fillOval(x, y, width, height);  
-			buffer.setColor(ColorPanel.getInstance().getColor(1));
-			buffer.drawOval(x, y, width, height);
+		Graphics buffer2 = bufferImgLive.createGraphics();
+		if (lv == 0) {
+			if (f == 1) {
+				buffer.setColor(ColorPanel.getInstance().getColor(0)); 
+				buffer.fillOval(x, y, width, height);  
+				buffer.setColor(ColorPanel.getInstance().getColor(1));
+				buffer.drawOval(x, y, width, height);
+			}
+			else {
+				buffer.setColor(ColorPanel.getInstance().getColor(1)); 
+				buffer.drawOval(x, y, width, height);
+			}
 		}
 		else {
-			buffer.setColor(ColorPanel.getInstance().getColor(1)); 
-			buffer.drawOval(x, y, width, height);
+			if (f == 1) {
+				buffer2.setColor(ColorPanel.getInstance().getColor(0)); 
+				buffer2.fillOval(x, y, width, height);  
+				buffer2.setColor(ColorPanel.getInstance().getColor(1));
+				buffer2.drawOval(x, y, width, height);
+			}
+			else {
+				buffer2.setColor(ColorPanel.getInstance().getColor(1)); 
+				buffer2.drawOval(x, y, width, height);
+			}
 		}
 	}
-	
-	public void line(int x1, int y1, int x2, int y2) {
+
+	public void line(int lv, int x1, int y1, int x2, int y2) {
 		Graphics buffer = bufferImg.createGraphics();
-		buffer.setColor(ColorPanel.getInstance().getColor(1)); 
-		buffer.drawLine(x1, y1, x2, y2);
+		Graphics buffer2 = bufferImgLive.createGraphics();
+		if (lv == 0) {
+			buffer.setColor(ColorPanel.getInstance().getColor(1)); 
+			buffer.drawLine(x1, y1, x2, y2);
+		}
+		else {
+			buffer2.setColor(ColorPanel.getInstance().getColor(1)); 
+			buffer2.drawLine(x1, y1, x2, y2);
+		}
 	}
-	
+
 	public void mouseMoved(MouseEvent e) {} 
 
 	public void mouseExited(MouseEvent e){}
@@ -238,5 +252,5 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 	public void mouseEntered(MouseEvent e){}
 
 	public void mouseClicked(MouseEvent e){} 
-	
+
 }
