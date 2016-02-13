@@ -9,6 +9,7 @@ package main;
  */
 
 import java.awt.*;
+
 import javax.swing.*;
 import java.awt.event.*;
 
@@ -29,6 +30,7 @@ public class ButtonPanel extends JPanel implements ActionListener {
 	private JButton buttonOvalF; 			// Draw a Filled Oval
 	private JButton buttonOvalE; 			// Draw an Empty Oval 
 	private JButton buttonLineD; 			// Draw a line
+	
 	public ButtonPanel() {
 		buttonRectangleF = new JButton(new ButtonIcon(1));					//button 1
 		add(buttonRectangleF);

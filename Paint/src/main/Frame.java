@@ -9,6 +9,7 @@ package main;
  */
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -56,10 +57,13 @@ public class Frame extends JFrame implements ActionListener
 		menuItem = new JMenuItem("New");
 		menuItem.addActionListener(this);
 		menu.add(menuItem);
+		
+		menuItem = new JMenuItem("Open");
+		menuItem.addActionListener(this);
+		menu.add(menuItem);
 
 		menuItem = new JMenuItem("Save");
 		menuItem.addActionListener(this);
-		menuItem.setEnabled(false);
 		menu.add(menuItem);
 
 		menu.addSeparator();
@@ -101,8 +105,23 @@ public class Frame extends JFrame implements ActionListener
 			MousePanel.getInstance().clearAll();
 			ColorPanel.getInstance().rstColors();
 		}
-		else if (btn == "Save") System.out.println("Work In Progress!");
-		else if (btn == "Exit") System.exit(0);  // Exits the program with Code 0
+		else if (btn == "Open") {
+			try { 
+				MousePanel.getInstance().load();
+			}
+			catch (IOException e) {
+				//That file does not exist
+			}
+		}
+		else if (btn == "Save") {
+			try {
+				MousePanel.getInstance().save();
+			}
+			catch (IOException e){
+				//Cannot save
+			}
+		}
+		else if (btn == "Exit") System.exit(0);  								// Exits the program with Code 0
 		else if (btn == "Undo") MousePanel.getInstance().undo();
 		else if (btn == "Redo");
 		else if (btn == "About...") new AboutUs();

@@ -13,11 +13,15 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.RenderingHints;
+
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
+import java.io.File;
+import java.io.IOException;
 
 
 public class MousePanel extends JPanel implements MouseListener, MouseMotionListener {
@@ -30,7 +34,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 	private int button = -1;						//Determines which button is pressed based on a number
 	private Point sPoint = new Point();  			//start Point
 	private Point ePoint = new Point();				//end Point
-
+		
 	public MousePanel() {
 		bufferImg = new BufferedImage(2000,2000, BufferedImage.TYPE_INT_RGB); 
 		Graphics buffer = bufferImg.getGraphics();
@@ -159,8 +163,17 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		case 3: buffer.setColor(ColorPanel.getInstance().getColor(0)); buffer.fillOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break; 		// Draw filled oval
 		case 4: buffer.setColor(ColorPanel.getInstance().getColor(1)); buffer.drawOval(sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y);  break;		// Draw empty oval
 		case 5: buffer.setColor(ColorPanel.getInstance().getColor(1)); buffer.drawLine(sPoint.x, sPoint.y, ePoint.x, ePoint.y); break; 							// Draw Line
-		default: break; } }
+		default: break; } 
+		}
 
+	public void save() throws IOException {
+			ImageIO.write(bufferImg, "PNG", new File("Picture.png"));
+	}
+	public void load() throws IOException {
+			bufferImg = ImageIO.read(new File("Picture.png"));
+			repaint();
+	}
+	
 	public void mouseMoved(MouseEvent e) {} 
 
 	public void mouseExited(MouseEvent e){}
