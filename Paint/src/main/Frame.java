@@ -59,8 +59,9 @@ public class Frame extends JFrame implements ActionListener
 		menuItem.addActionListener(this);
 		menu.add(menuItem);
 		
-		menuItem = new JMenuItem("Open...");
+		menuItem = new JMenuItem("Save");
 		menuItem.addActionListener(this);
+		menuItem.setEnabled(false);
 		menu.add(menuItem);
 		
 		menu.addSeparator();
@@ -71,8 +72,9 @@ public class Frame extends JFrame implements ActionListener
 		
 		menuBar.add(menu);
 		
-		menu = new JMenu("Edit");
+		menu = new JMenu("View");
 		menuItem = new JMenuItem("Undo");
+		menuItem.setEnabled(false);
 		menuItem.addActionListener(this);
 
 		menu.add(menuItem);
@@ -105,7 +107,7 @@ public class Frame extends JFrame implements ActionListener
 		else if (btn == "Exit") System.exit(0);  // Exits the program with Code 0
 		else if (btn == "Undo") MousePanel.getInstance().undo();
 		else if (btn == "Redo");
-		else if (btn == "About...") aboutUs();
+		else if (btn == "About...") new AboutUs();;
 		
 	}
 	public static Frame getInstance()	//gets instance of frame and makes one if none exist
@@ -117,15 +119,6 @@ public class Frame extends JFrame implements ActionListener
 	}
 	public void aboutUs()
 	{
-		JDialog about = new JDialog(null, "About", Dialog.ModalityType.APPLICATION_MODAL);
-		JFrame aFrame = new JFrame();
-		Container c = getContentPane();
-		
-		
-		
-		about.setMinimumSize(new Dimension(600,300));
-		about.setResizable(false);
-		about.setLocationRelativeTo(null);
-		about.setVisible(true);
+
 	}
 }
