@@ -101,11 +101,11 @@ public class Frame extends JFrame implements ActionListener
 	public void actionPerformed(ActionEvent arg0) {
 		String btn = ((JMenuItem) arg0.getSource()).getText();
 		System.out.println(btn);
-		if(btn == "New"){
+		if(btn.equals("New")){
 			MousePanel.getInstance().clearAll();
 			ColorPanel.getInstance().rstColors();
 		}
-		else if (btn == "Open") {
+		else if (btn.equals("Open")) {
 			try { 
 				MousePanel.getInstance().load();
 			}
@@ -113,7 +113,7 @@ public class Frame extends JFrame implements ActionListener
 				//That file does not exist
 			}
 		}
-		else if (btn == "Save") {
+		else if (btn.equals("Save")) {
 			try {
 				MousePanel.getInstance().save();
 			}
@@ -121,10 +121,10 @@ public class Frame extends JFrame implements ActionListener
 				//Cannot save
 			}
 		}
-		else if (btn == "Exit") System.exit(0);  								// Exits the program with Code 0
-		else if (btn == "Undo") MousePanel.getInstance().undo();
-		else if (btn == "Redo");
-		else if (btn == "About...") new AboutUs();
+		else if (btn.equals("Exit")) System.exit(0);  								// Exits the program with Code 0
+		else if (btn.equals("Undo")) MousePanel.getInstance().undo();
+		else if (btn.equals("Redo"));
+		else if (btn.equals("About...")) new AboutUs();
 		else;
 
 	}

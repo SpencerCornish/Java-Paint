@@ -15,7 +15,10 @@ import java.awt.Point;
 import java.awt.RenderingHints;
 
 import javax.imageio.ImageIO;
+import javax.swing.JFileChooser;
 import javax.swing.JPanel;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
@@ -167,10 +170,29 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 	}
 
 	public void save() throws IOException {
-		ImageIO.write(bufferImg, "PNG", new File("Picture.png"));
+		JFileChooser chooser = new JFileChooser();
+	    FileNameExtensionFilter filter = new FileNameExtensionFilter(
+	        "JPG & PNG Images", "jpg", "png");
+	    chooser.setFileFilter(filter);
+	    int returnVal = chooser.showSaveDialog(getParent());
+	    if(returnVal == JFileChooser.APPROVE_OPTION) {
+	    	ImageIO.write(bufferImg, "PNG", new File(chooser.getSelectedFile().getName()));	//new File("Picture.png")
+	    	System.out.println("You chose to save this file: " +
+	            chooser.getSelectedFile().getName());
+	    }
 	}
+	
 	public void load() throws IOException {
-		bufferImg = ImageIO.read(new File("Picture.png"));
+		JFileChooser chooser = new JFileChooser();
+	    FileNameExtensionFilter filter = new FileNameExtensionFilter(
+	        "JPG & PNG Images", "jpg", "png");
+	    chooser.setFileFilter(filter);
+	    int returnVal = chooser.showOpenDialog(getParent());
+	    if(returnVal == JFileChooser.APPROVE_OPTION) {
+	    	bufferImg = ImageIO.read(chooser.getSelectedFile());
+	    	System.out.println("You chose to open this file: " +
+	            chooser.getSelectedFile().getName());
+	    }
 		repaint();
 	}
 
