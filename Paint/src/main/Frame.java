@@ -27,6 +27,7 @@ public class Frame extends JFrame implements ActionListener
 	private final TitledBorder BTITLE = new TitledBorder("Shapes");
 	private final Dimension BPSIZE = new Dimension(110, 220);
 	private final Dimension CPSIZE = new Dimension(110, 150);
+	private boolean saved = false;
 	public Frame()
 	{
 		super("Canvas");
@@ -63,6 +64,11 @@ public class Frame extends JFrame implements ActionListener
 		menu.add(menuItem);
 
 		menuItem = new JMenuItem("Save");
+		menuItem.addActionListener(this);
+		if (saved == false) menuItem.setEnabled(false);
+		menu.add(menuItem);
+		
+		menuItem = new JMenuItem("Save As...");
 		menuItem.addActionListener(this);
 		menu.add(menuItem);
 
@@ -113,12 +119,23 @@ public class Frame extends JFrame implements ActionListener
 				//That file does not exist
 			}
 		}
-		else if (btn.equals("Save")) {
+		else if (btn.equals("Save As...")) {
 			try {
-				MousePanel.getInstance().save();
+				MousePanel.getInstance().saveAs(true);	//indicates "save as" is true
+				saved = true;
+				menuBar.removeAll();
+				makeMenu();
 			}
 			catch (IOException e){
-				//Cannot save
+				//display "cannot save" or error message
+			}
+		}
+		else if (btn.equals("Save")) {
+			try {
+				MousePanel.getInstance().saveAs(false);	//indicates "save as" is false
+			}
+			catch (IOException e) {
+				//display "cannot save" or error message
 			}
 		}
 		else if (btn.equals("Exit")) System.exit(0);  								// Exits the program with Code 0

@@ -35,6 +35,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 	private int button = -1;						//Determines which button is pressed based on a number
 	private Point sPoint = new Point();  			//start Point
 	private Point ePoint = new Point();				//end Point
+	private FileOutputStream os = null;
 
 	public MousePanel() {
 		bufferImg = new BufferedImage(2000, 2000, BufferedImage.TYPE_INT_RGB); 
@@ -167,28 +168,33 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		default: break; } 
 	}
 
-	public void save() throws IOException {
-		JFileChooser chooser = new JFileChooser();
-	    FileNameExtensionFilter filter = new FileNameExtensionFilter(
-	        "JPG & PNG Images", "jpg", "png");
-	    chooser.setFileFilter(filter);
-	    int returnVal = chooser.showSaveDialog(getParent());
-	    if(returnVal == JFileChooser.APPROVE_OPTION) {
-	    	FileOutputStream os = new FileOutputStream(chooser.getSelectedFile().getPath() + ".png");
-	    	ImageIO.write(bufferImg, "png", os);
-	    	os.close();
-	    }
+	public void saveAs(boolean as) throws IOException {
+		if (as == true) {				//if user is using save as, let them pick where to save
+			JFileChooser chooser = new JFileChooser();
+			FileNameExtensionFilter filter = new FileNameExtensionFilter(
+					"JPG & PNG Images", "jpg", "png");
+			chooser.setFileFilter(filter);
+			int returnVal = chooser.showSaveDialog(getParent());
+			if(returnVal == JFileChooser.APPROVE_OPTION) {
+				os = new FileOutputStream(chooser.getSelectedFile().getPath() + ".png");
+				ImageIO.write(bufferImg, "png", os);
+			}
+		}
+		else {					//if user chooses save, save to same directory 
+			ImageIO.write(bufferImg, "png", os);
+		}
+		os.close();
 	}
-	
+
 	public void load() throws IOException {
 		JFileChooser chooser = new JFileChooser();
-	    FileNameExtensionFilter filter = new FileNameExtensionFilter(
-	        "JPG & PNG Images", "jpg", "png");
-	    chooser.setFileFilter(filter);
-	    int returnVal = chooser.showOpenDialog(getParent());
-	    if(returnVal == JFileChooser.APPROVE_OPTION) {
-	    	bufferImg = ImageIO.read(chooser.getSelectedFile());
-	    }
+		FileNameExtensionFilter filter = new FileNameExtensionFilter(
+				"JPG & PNG Images", "jpg", "png");
+		chooser.setFileFilter(filter);
+		int returnVal = chooser.showOpenDialog(getParent());
+		if(returnVal == JFileChooser.APPROVE_OPTION) {
+			bufferImg = ImageIO.read(chooser.getSelectedFile());
+		}
 		repaint();
 	}
 
