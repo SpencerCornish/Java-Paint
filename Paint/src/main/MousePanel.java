@@ -178,12 +178,12 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 			if(returnVal == JFileChooser.APPROVE_OPTION) {
 				os = new FileOutputStream(chooser.getSelectedFile().getPath() + ".png");
 				ImageIO.write(bufferImg, "png", os);
+				System.out.println(os);
 			}
 		}
-		else {					//if user chooses save, save to same directory 
+		else if (as == false) {					//if user chooses save, save to same directory
 			ImageIO.write(bufferImg, "png", os);
 		}
-		os.close();
 	}
 
 	public void load() throws IOException {

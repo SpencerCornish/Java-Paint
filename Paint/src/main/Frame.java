@@ -110,10 +110,16 @@ public class Frame extends JFrame implements ActionListener
 		if(btn.equals("New")){
 			MousePanel.getInstance().clearAll();
 			ColorPanel.getInstance().rstColors();
+			saved = false;
+			menuBar.removeAll();
+			makeMenu();
 		}
 		else if (btn.equals("Open")) {
 			try { 
 				MousePanel.getInstance().load();
+				saved = true;
+				menuBar.removeAll();
+				makeMenu();
 			}
 			catch (IOException e) {
 				//That file does not exist
