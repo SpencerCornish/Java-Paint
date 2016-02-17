@@ -58,7 +58,7 @@ public class Frame extends JFrame implements ActionListener
 		menuItem = new JMenuItem("New");
 		menuItem.addActionListener(this);
 		menu.add(menuItem);
-		
+
 		menuItem = new JMenuItem("Open");
 		menuItem.addActionListener(this);
 		menu.add(menuItem);
@@ -67,7 +67,7 @@ public class Frame extends JFrame implements ActionListener
 		menuItem.addActionListener(this);
 		if (saved == false) menuItem.setEnabled(false);
 		menu.add(menuItem);
-		
+
 		menuItem = new JMenuItem("Save As...");
 		menuItem.addActionListener(this);
 		menu.add(menuItem);
@@ -116,10 +116,11 @@ public class Frame extends JFrame implements ActionListener
 		}
 		else if (btn.equals("Open")) {
 			try { 
-				MousePanel.getInstance().load();
-				saved = true;
-				menuBar.removeAll();
-				makeMenu();
+				if (MousePanel.getInstance().load() == true); {
+					saved = true;
+					menuBar.removeAll();
+					makeMenu();
+				}
 			}
 			catch (IOException e) {
 				//That file does not exist

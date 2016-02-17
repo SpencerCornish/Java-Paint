@@ -35,7 +35,8 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 	private int button = -1;						//Determines which button is pressed based on a number
 	private Point sPoint = new Point();  			//start Point
 	private Point ePoint = new Point();				//end Point
-	private FileOutputStream os = null;
+	private String path;
+	private FileOutputStream os;
 
 	public MousePanel() {
 		bufferImg = new BufferedImage(2000, 2000, BufferedImage.TYPE_INT_RGB); 
@@ -178,15 +179,17 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 			if(returnVal == JFileChooser.APPROVE_OPTION) {
 				os = new FileOutputStream(chooser.getSelectedFile().getPath() + ".png");
 				ImageIO.write(bufferImg, "png", os);
-				System.out.println(os);
+				path = chooser.getSelectedFile().getPath();
 			}
 		}
 		else if (as == false) {					//if user chooses save, save to same directory
+			os = new FileOutputStream(path + ".png");
 			ImageIO.write(bufferImg, "png", os);
 		}
+		os.close();
 	}
 
-	public void load() throws IOException {
+	public boolean load() throws IOException {
 		JFileChooser chooser = new JFileChooser();
 		FileNameExtensionFilter filter = new FileNameExtensionFilter(
 				"JPG & PNG Images", "jpg", "png");
@@ -194,8 +197,10 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		int returnVal = chooser.showOpenDialog(getParent());
 		if(returnVal == JFileChooser.APPROVE_OPTION) {
 			bufferImg = ImageIO.read(chooser.getSelectedFile());
+			repaint();
+			return true;
 		}
-		repaint();
+		return false;
 	}
 
 	public void rect(int lv, int f, int x, int y, int width, int height) {
