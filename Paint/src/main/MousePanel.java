@@ -169,7 +169,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		default: break; } 
 	}
 
-	public void saveAs(boolean as) throws IOException {
+	public boolean saveAs(boolean as) throws IOException {
 		if (as == true) {				//if user is using save as, let them pick where to save
 			JFileChooser chooser = new JFileChooser();
 			FileNameExtensionFilter filter = new FileNameExtensionFilter(
@@ -180,13 +180,15 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 				os = new FileOutputStream(chooser.getSelectedFile().getPath() + ".png");
 				ImageIO.write(bufferImg, "png", os);
 				path = chooser.getSelectedFile().getPath();
+				return true;
 			}
 		}
 		else if (as == false) {					//if user chooses save, save to same directory
 			os = new FileOutputStream(path + ".png");
 			ImageIO.write(bufferImg, "png", os);
+			return true;
 		}
-		os.close();
+		return false;
 	}
 
 	public boolean load() throws IOException {

@@ -128,10 +128,11 @@ public class Frame extends JFrame implements ActionListener
 		}
 		else if (btn.equals("Save As...")) {
 			try {
-				MousePanel.getInstance().saveAs(true);	//indicates "save as" is true
-				saved = true;
-				menuBar.removeAll();
-				makeMenu();
+				if(MousePanel.getInstance().saveAs(true) == true) {
+					saved = true;
+					menuBar.removeAll();
+					makeMenu();
+				}
 			}
 			catch (IOException e){
 				//display "cannot save" or error message
