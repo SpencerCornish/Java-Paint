@@ -35,8 +35,8 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 	private int button = -1;						//Determines which button is pressed based on a number
 	private Point sPoint = new Point();  			//start Point
 	private Point ePoint = new Point();				//end Point
-	private String path;
-	private FileOutputStream os;
+	private String path;							//used for output 
+	private FileOutputStream os;					//also used for output
 
 	public MousePanel() {
 		bufferImg = new BufferedImage(2000, 2000, BufferedImage.TYPE_INT_RGB); 

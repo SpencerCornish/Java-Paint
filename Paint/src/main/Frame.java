@@ -116,7 +116,7 @@ public class Frame extends JFrame implements ActionListener
 		}
 		else if (btn.equals("Open")) {
 			try { 
-				if (MousePanel.getInstance().load() == true); {
+				if (MousePanel.getInstance().load() == true) {
 					saved = true;
 					menuBar.removeAll();
 					makeMenu();
