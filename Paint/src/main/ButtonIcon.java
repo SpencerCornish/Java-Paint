@@ -5,17 +5,18 @@ import javax.swing.Icon;
 
 public class ButtonIcon implements Icon{
 	private int shape = 0;
-	
+	private final int HEIGHT = 12;
+	private final int WIDTH = 17;
+
 	public ButtonIcon(int shape) {
 		this.shape = shape;
 	}
 
 	public int getIconHeight() {
-		return 12;
+		return HEIGHT;
 	}
-
 	public int getIconWidth() {
-		return 17;
+		return WIDTH;
 	}
 
 	@Override

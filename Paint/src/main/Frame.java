@@ -10,7 +10,6 @@ package main;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
-
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
@@ -18,16 +17,23 @@ public class Frame extends JFrame implements ActionListener
 {
 
 	private static final long serialVersionUID = 986906333940524590L; //This is apparently important.  It got rid of a warning, so...
+
 	public static Frame frame;
+
 	private JMenuBar menuBar = new JMenuBar();
 	private JMenu menu;
 	private JMenuItem menuItem;
-	private final Dimension MINSIZE = new Dimension(800,600);
+
 	private final TitledBorder CTITLE = new TitledBorder("Colors");
 	private final TitledBorder BTITLE = new TitledBorder("Shapes");
+
+	private final Dimension MINSIZE = new Dimension(800,600);
+
 	private final Dimension BPSIZE = new Dimension(110, 220);
 	private final Dimension CPSIZE = new Dimension(110, 150);
+
 	private boolean saved = false;
+
 	public Frame()
 	{
 		super("Canvas");
@@ -51,10 +57,11 @@ public class Frame extends JFrame implements ActionListener
 		c.add(MousePanel.getInstance(), BorderLayout.CENTER); 					// Centers canvas
 		setVisible(true); 
 	}
-	public void makeMenu()
+	public void makeMenu()  // Makes the drop down menu
 	{
 
-		menu = new JMenu("File");
+		menu = new JMenu("File");  // File Menu starts here
+
 		menuItem = new JMenuItem("New");
 		menuItem.addActionListener(this);
 		menu.add(menuItem);
@@ -80,7 +87,7 @@ public class Frame extends JFrame implements ActionListener
 
 		menuBar.add(menu);
 
-		menu = new JMenu("View");
+		menu = new JMenu("View");	// View Menu starts here
 		menuItem = new JMenuItem("Undo");
 		menuItem.setEnabled(false);
 		menuItem.addActionListener(this);
@@ -95,17 +102,17 @@ public class Frame extends JFrame implements ActionListener
 
 		menuBar.add(menu);
 
-		menu = new JMenu("Help");
+		menu = new JMenu("Help");	// Help Menu starts here
 		menuItem = new JMenuItem("About...");
 		menuItem.addActionListener(this);
 		menu.add(menuItem);
 
 		menuBar.add(menu);
-		this.setJMenuBar(menuBar);
+		this.setJMenuBar(menuBar); 	// Sets as the JMenuBar for the frame
 
 	}
 	public void actionPerformed(ActionEvent arg0) {
-		String btn = ((JMenuItem) arg0.getSource()).getText();
+		String btn = ((JMenuItem) arg0.getSource()).getText();	// Drop down menu stuff
 		System.out.println(btn);
 		if(btn.equals("New")){
 			MousePanel.getInstance().clearAll();

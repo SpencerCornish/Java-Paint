@@ -1,37 +1,31 @@
 package main;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JColorChooser;
-import javax.swing.JPanel;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 
 public class ColorPanel extends JPanel implements ActionListener  {
 
 	private static final long serialVersionUID = -5212711338639497262L;
 	public static ColorPanel colorP;
-	
+
 	private final Color BDEF = Color.WHITE;		// Default Colors to be set here
 	private final Color FDEF = Color.BLACK;
 	private final Color ODEF = Color.BLACK;
+
 	private final Dimension PREF = new Dimension(90,26); 						// The preferred button dimensions
 	private final Dimension PREF2 = new Dimension(80,20); 						// The preferred reset button dimension
 
 	private JButton buttonBColor; // Background Color
-	private Color bColor = Color.WHITE;
-	
 	private JButton buttonOColor; // Outline Color
-	private Color oColor = Color.BLACK;
-	
 	private JButton buttonFColor; // Fill Color
-	private Color fColor = Color.BLACK;
-	
 	private JButton buttonRST;
-	
+
+	private Color fColor = Color.BLACK;  // Default starting colors
+	private Color oColor = Color.BLACK;
+	private Color bColor = Color.WHITE;
+
+
 	public ColorPanel()
 
 	{
@@ -53,15 +47,15 @@ public class ColorPanel extends JPanel implements ActionListener  {
 		buttonFColor.setPreferredSize(PREF);
 		buttonFColor.addActionListener(this);
 		buttonFColor.setToolTipText("Choose a fill color"); 
-		
+
 		buttonRST = new JButton("Reset");								//Color button
 		add(buttonRST);
 		buttonRST.setPreferredSize(PREF2);
 		buttonRST.addActionListener(this);
 		buttonRST.setToolTipText("Reset all colors to their defaults"); 
-		
+
 	}
-	public static ColorPanel getInstance()	{					//get instance of color panel
+	public static ColorPanel getInstance()	{					// Get instance of color panel
 		if(colorP == null)
 			colorP =  new ColorPanel();
 		return colorP; }
@@ -74,17 +68,14 @@ public class ColorPanel extends JPanel implements ActionListener  {
 		if(bt == buttonRST){
 			rstColors();
 		} else if(bt == buttonFColor){
-			System.out.println("Fill Color");
 			fColor = JColorChooser.showDialog(null, "Pick a Fill Color", fColor);
-			if(fColor == null) fColor = fColorTemp;
+			if(fColor == null) fColor = fColorTemp; // If the user clicks cancel in the color panel
 		}
 		else if(bt == buttonOColor){
-			System.out.println("Outline Color");
 			oColor = JColorChooser.showDialog(null, "Pick an Outline Color", oColor);
 			if(oColor == null) oColor = oColorTemp;
 		}
 		else if(bt == buttonBColor){
-			System.out.println("Background Color");
 			bColor = JColorChooser.showDialog(null, "Pick a Background Color", bColor);
 			if(bColor == null) bColor = bColorTemp;
 		}

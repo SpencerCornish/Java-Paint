@@ -9,7 +9,6 @@ package main;
  */
 
 import java.awt.*;
-
 import javax.swing.*;
 import java.awt.event.*;
 
@@ -18,8 +17,8 @@ public class ButtonPanel extends JPanel implements ActionListener {
 
 	private static final long serialVersionUID = -923758246107102096L;
 
-	Cursor cHair = Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR); 		// Crosshair cursor
-	Cursor cDef = Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR); 			// Default cursor
+	private final Cursor CRSHAIR = Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR); 		// Crosshair cursor
+	private final Cursor CDEF = Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR); 			// Default cursor
 	private final Dimension PREF = new Dimension(40,26); 						// The preferred button dimensions
 	private final Dimension PREF2 = new Dimension(85, 26);
 
@@ -30,7 +29,7 @@ public class ButtonPanel extends JPanel implements ActionListener {
 	private JButton buttonOvalF; 			// Draw a Filled Oval
 	private JButton buttonOvalE; 			// Draw an Empty Oval 
 	private JButton buttonLineD; 			// Draw a line
-	
+
 	public ButtonPanel() {
 		buttonRectangleF = new JButton(new ButtonIcon(1));					//button 1
 		add(buttonRectangleF);
@@ -61,13 +60,13 @@ public class ButtonPanel extends JPanel implements ActionListener {
 		buttonLineD.setPreferredSize(PREF);
 		buttonLineD.addActionListener(this);  
 		buttonLineD.setToolTipText("Draw a straight line");
-		
+
 		buttonLineD = new JButton(new ButtonIcon(6));						//button 5
 		add(buttonLineD); 
 		buttonLineD.setPreferredSize(PREF);
 		buttonLineD.addActionListener(this);  
 		buttonLineD.setToolTipText("Draw a straight line");
-		
+
 		buttonClear = new JButton("Options");									//button 0
 		add(buttonClear);
 		buttonClear.setPreferredSize(PREF2);
@@ -89,12 +88,13 @@ public class ButtonPanel extends JPanel implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent ae) {
-		MousePanel.getInstance().setCursor(cHair); 		//Sets the mouse Cursor to a Cross hair for editing
+		MousePanel.getInstance().setCursor(CRSHAIR); 		//Sets the mouse Cursor to a Cross hair for editing
 
 		if(ae.getSource() == buttonClear) {				//clears if user clicks clear button
 			MousePanel.getInstance().setButton(0);
-			MousePanel.getInstance().setCursor(cDef);
-			MousePanel.getInstance().clearAll(); }
+			MousePanel.getInstance().setCursor(CDEF);
+			MousePanel.getInstance().clearAll(); 
+		}
 		else if(ae.getSource() == buttonRectangleF) MousePanel.getInstance().setButton(1);
 		else if(ae.getSource() == buttonRectangleE) MousePanel.getInstance().setButton(2);		//feeds button 2 (because it's a rectangle) to button variable in MousePanel class
 		else if(ae.getSource() == buttonOvalF) MousePanel.getInstance().setButton(3);
