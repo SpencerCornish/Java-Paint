@@ -34,14 +34,10 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 	private FileOutputStream os;					//also used for output
 
 	public MousePanel() {
-		bufferImg = new BufferedImage(2000, 2000, BufferedImage.TYPE_INT_RGB); 
-		Graphics buffer = bufferImg.getGraphics();
-		buffer.setColor(Color.WHITE);
-		buffer.fillRect(0, 0, bufferImg.getWidth(), bufferImg.getHeight());
 
 		addMouseListener(this); 					//Used to get coordinates of shape
 		addMouseMotionListener(this); 				//Used for mouseDragged()
-		repaint(); } 								//Repaints panel to initialize
+		} 								
 
 	public static MousePanel getInstance() { 		// Returns Instance of MousePanel
 		if(mouseP == null) 						
@@ -51,9 +47,33 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 	public void paintComponent(Graphics g) {
 		if (bufferImg == null) 
 		{					//fills the buffer if it hasn't been filled already
-			bufferImg = (BufferedImage) createImage(bufferImg.getWidth(), bufferImg.getHeight());
-			g = (Graphics2D) bufferImg.getGraphics();
+			bufferImg = new BufferedImage(this.getWidth(), this.getHeight(), BufferedImage.TYPE_INT_ARGB);
+			g = bufferImg.createGraphics();
 			clearAll(); 
+		}
+		else if (this.getWidth() > bufferImg.getWidth() || this.getHeight() > bufferImg.getHeight())
+		{
+			System.out.println("Window size changed");
+			System.out.format("bufferImg: W:%d H:%d%n", bufferImg.getWidth(),bufferImg.getHeight());
+			System.out.format("Window:    W:%d H:%d%n", this.getWidth(), this.getHeight());
+			BufferedImage buffer = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
+            Graphics2D g2dnew = buffer.createGraphics();
+            g2dnew.drawImage(bufferImg, null, 0, 0);
+            g2dnew.setColor(ColorPanel.getInstance().getColor(2));
+            g2dnew.fillRect(bufferImg.getWidth(), 0, getWidth(), getHeight());
+            g2dnew.fillRect(0, bufferImg.getHeight(), getWidth(), getHeight());
+            g = g2dnew;
+            bufferImg = buffer;
+            bufferImgLive = buffer;
+			//repaint();
+			
+			//BufferedImage bufTemp = null;
+			//bufferImgLive = bufferImg;
+	       // Graphics2D g2d = bufferImg.createGraphics();
+	        //bufferImg = (BufferedImage) createImage(this.getWidth(), this.getHeight());
+	        //g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0));
+	        //g2d.drawImage(bufTemp, 0, 0, null);
+	       // g2d.dispose();
 		}
 
 		RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);	//Turns on Antialiasing
@@ -96,6 +116,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		return new BufferedImage(cm, raster, isAlphaPremultiplied, null);
 
 	}
+	
 	public void mousePressed(MouseEvent e){			// Initial coords for shape
 		e.consume();
 		sPoint.x = e.getX();  						// Sets start points
