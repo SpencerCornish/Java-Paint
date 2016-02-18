@@ -20,8 +20,8 @@ public class ButtonPanel extends JPanel implements ActionListener {
 
 	Cursor cHair = Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR); 		// Crosshair cursor
 	Cursor cDef = Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR); 			// Default cursor
-	private final Dimension PREF = new Dimension(50,26); 						// The preferred button dimensions
-	private final Dimension PREF2 = new Dimension(101, 26);
+	private final Dimension PREF = new Dimension(40,26); 						// The preferred button dimensions
+	private final Dimension PREF2 = new Dimension(85, 26);
 
 	public static ButtonPanel btnP; 		// Instance of Button Panel
 	private JButton buttonClear; 			// Clear the screen
@@ -61,6 +61,18 @@ public class ButtonPanel extends JPanel implements ActionListener {
 		buttonLineD.setPreferredSize(PREF);
 		buttonLineD.addActionListener(this);  
 		buttonLineD.setToolTipText("Draw a straight line");
+		
+		buttonLineD = new JButton(new ButtonIcon(6));						//button 5
+		add(buttonLineD); 
+		buttonLineD.setPreferredSize(PREF);
+		buttonLineD.addActionListener(this);  
+		buttonLineD.setToolTipText("Draw a straight line");
+		
+		buttonClear = new JButton("Options");									//button 0
+		add(buttonClear);
+		buttonClear.setPreferredSize(PREF2);
+		buttonClear.addActionListener(this);
+		buttonClear.setToolTipText("Clear the canvas");
 
 		buttonClear = new JButton("Clear");									//button 0
 		add(buttonClear);
