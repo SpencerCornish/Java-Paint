@@ -53,9 +53,9 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		}
 		else if (this.getWidth() > bufferImg.getWidth() || this.getHeight() > bufferImg.getHeight())
 		{
-			System.out.println("Window size changed");
-			System.out.format("bufferImg: W:%d H:%d%n", bufferImg.getWidth(),bufferImg.getHeight());
-			System.out.format("Window:    W:%d H:%d%n", this.getWidth(), this.getHeight());
+			//System.out.println("Window size changed");
+			//System.out.format("bufferImg: W:%d H:%d%n", bufferImg.getWidth(),bufferImg.getHeight());
+			//System.out.format("Window:    W:%d H:%d%n", this.getWidth(), this.getHeight());
 			BufferedImage buffer = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
             Graphics2D g2dnew = buffer.createGraphics();
             g2dnew.drawImage(bufferImg, null, 0, 0);
@@ -65,6 +65,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
             g = g2dnew;
             bufferImg = buffer;
             bufferImgLive = buffer;
+            repaint();
 		}
 
 		RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);	//Turns on Antialiasing
