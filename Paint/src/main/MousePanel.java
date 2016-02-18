@@ -65,15 +65,6 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
             g = g2dnew;
             bufferImg = buffer;
             bufferImgLive = buffer;
-			//repaint();
-			
-			//BufferedImage bufTemp = null;
-			//bufferImgLive = bufferImg;
-	       // Graphics2D g2d = bufferImg.createGraphics();
-	        //bufferImg = (BufferedImage) createImage(this.getWidth(), this.getHeight());
-	        //g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0));
-	        //g2d.drawImage(bufTemp, 0, 0, null);
-	       // g2d.dispose();
 		}
 
 		RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);	//Turns on Antialiasing
