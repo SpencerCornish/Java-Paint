@@ -54,7 +54,15 @@ public class Frame extends JFrame implements ActionListener
 		ButtonPanel.getInstance().setPreferredSize(BPSIZE); 					// Sets total size of the container 
 		ColorPanel.getInstance().setPreferredSize(CPSIZE); 
 		c.add(westContainer, BorderLayout.WEST); 								// Puts ButtonPanel West
-		c.add(MousePanel.getInstance(), BorderLayout.CENTER); 					// Centers canvas
+		JScrollPane scrollPane = new JScrollPane(MousePanel.getInstance());
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setBounds(50, 30, 300, 50);
+        JPanel contentPane = new JPanel(null);
+        contentPane.setPreferredSize(new Dimension(500, 400));
+        contentPane.add(scrollPane);
+        frame.setContentPane(contentPane);
+		c.add(contentPane, BorderLayout.CENTER); 					// Centers canvas
 		setVisible(true); 
 	}
 	public void makeMenu()  // Makes the drop down menu

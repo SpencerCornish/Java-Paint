@@ -34,7 +34,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 	private FileOutputStream os;					//also used for output
 
 	public MousePanel() {
-
+		
 		addMouseListener(this); 					//Used to get coordinates of shape
 		addMouseMotionListener(this); 				//Used for mouseDragged()
 		} 								
