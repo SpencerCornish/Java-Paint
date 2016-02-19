@@ -34,10 +34,10 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 	private FileOutputStream os;					//also used for output
 
 	public MousePanel() {
-		
+
 		addMouseListener(this); 					//Used to get coordinates of shape
 		addMouseMotionListener(this); 				//Used for mouseDragged()
-		} 								
+	} 								
 
 	public static MousePanel getInstance() { 		// Returns Instance of MousePanel
 		if(mouseP == null) 						
@@ -57,15 +57,15 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 			//System.out.format("bufferImg: W:%d H:%d%n", bufferImg.getWidth(),bufferImg.getHeight());
 			//System.out.format("Window:    W:%d H:%d%n", this.getWidth(), this.getHeight());
 			BufferedImage buffer = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
-            Graphics2D g2dnew = buffer.createGraphics();
-            g2dnew.drawImage(bufferImg, null, 0, 0);
-            g2dnew.setColor(ColorPanel.getInstance().getColor(2));
-            g2dnew.fillRect(bufferImg.getWidth(), 0, getWidth(), getHeight());
-            g2dnew.fillRect(0, bufferImg.getHeight(), getWidth(), getHeight());
-            g = g2dnew;
-            bufferImg = buffer;
-            bufferImgLive = buffer;
-            repaint();
+			Graphics2D g2dnew = buffer.createGraphics();
+			g2dnew.drawImage(bufferImg, null, 0, 0);
+			g2dnew.setColor(ColorPanel.getInstance().getColor(2));
+			g2dnew.fillRect(bufferImg.getWidth(), 0, getWidth(), getHeight());
+			g2dnew.fillRect(0, bufferImg.getHeight(), getWidth(), getHeight());
+			g = g2dnew;
+			bufferImg = buffer;
+			bufferImgLive = buffer;
+			repaint();
 		}
 
 		RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);	//Turns on Antialiasing
@@ -108,7 +108,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		return new BufferedImage(cm, raster, isAlphaPremultiplied, null);
 
 	}
-	
+
 	public void mousePressed(MouseEvent e){			// Initial coords for shape
 		e.consume();
 		sPoint.x = e.getX();  						// Sets start points
