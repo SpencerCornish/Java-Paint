@@ -14,4 +14,11 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>erase.gif</name>
+			<type>1</type>
+			<location>C:/Users/Spencer Cornish/Desktop/3f26b35b-3560-4a29-b71b-4fecfa5d9b08.gif</location>
+		</link>
+	</linkedResources>
 </projectDescription>

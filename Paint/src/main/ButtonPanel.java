@@ -19,6 +19,7 @@ public class ButtonPanel extends JPanel implements ActionListener {
 
 	private final Cursor CRSHAIR = Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR); 		// Crosshair cursor
 	private final Cursor CDEF = Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR); 			// Default cursor
+	
 	private final Dimension PREF = new Dimension(40,26); 						// The preferred button dimensions
 	private final Dimension PREF2 = new Dimension(85, 26);
 
@@ -29,6 +30,11 @@ public class ButtonPanel extends JPanel implements ActionListener {
 	private JButton buttonOvalF; 			// Draw a Filled Oval
 	private JButton buttonOvalE; 			// Draw an Empty Oval 
 	private JButton buttonLineD; 			// Draw a line
+	private JButton buttonFree;				// Free-Draw a Line
+	private JButton buttonOpt;				// Options Panel
+	private JButton buttonErase;				// Options Panel
+
+	
 
 	public ButtonPanel() {
 		buttonRectangleF = new JButton(new ButtonIcon(1));					//button 1
@@ -61,23 +67,33 @@ public class ButtonPanel extends JPanel implements ActionListener {
 		buttonLineD.addActionListener(this);  
 		buttonLineD.setToolTipText("Draw a straight line");
 
-		buttonLineD = new JButton(new ButtonIcon(6));						//button 5
-		add(buttonLineD); 
-		buttonLineD.setPreferredSize(PREF);
-		buttonLineD.addActionListener(this);  
-		buttonLineD.setToolTipText("Draw a straight line");
-
-		buttonClear = new JButton("Options");									//button 0
-		add(buttonClear);
-		buttonClear.setPreferredSize(PREF2);
-		buttonClear.addActionListener(this);
-		buttonClear.setToolTipText("Clear the canvas");
+		buttonFree = new JButton(new ButtonIcon(6));											//button 6
+		add(buttonFree); 
+		buttonFree.setPreferredSize(PREF);
+		buttonFree.addActionListener(this);  
+		buttonFree.setEnabled(false);
+		buttonFree.setToolTipText("Free draw - Coming Soon!");
+		
+		
+		buttonOpt = new JButton("Options");									//button 8
+		add(buttonOpt);
+		buttonOpt.setPreferredSize(PREF2);
+		buttonOpt.addActionListener(this);
+		buttonOpt.setToolTipText("Change Line Thickness, etc.");
+		
 
 		buttonClear = new JButton("Clear");									//button 0
 		add(buttonClear);
 		buttonClear.setPreferredSize(PREF2);
 		buttonClear.addActionListener(this);
-		buttonClear.setToolTipText("Clear the canvas");
+		buttonClear.setToolTipText("Clear the canvas");		
+		
+		buttonErase = new JButton(new ButtonIcon(7));									//button 7
+		add(buttonErase);
+		buttonErase.setPreferredSize(PREF);
+		buttonErase.addActionListener(this);
+		buttonErase.setToolTipText("Erase Tool");
+
 	}
 
 	public static ButtonPanel getInstance()	//get instance of button panel
@@ -100,6 +116,14 @@ public class ButtonPanel extends JPanel implements ActionListener {
 		else if(ae.getSource() == buttonOvalF) MousePanel.getInstance().setButton(3);
 		else if(ae.getSource() == buttonOvalE) MousePanel.getInstance().setButton(4);
 		else if(ae.getSource() == buttonLineD) MousePanel.getInstance().setButton(5);
+		else if(ae.getSource() == buttonFree) MousePanel.getInstance().setButton(6);
+		else if(ae.getSource() == buttonOpt) {
+;
+		}
+		else if(ae.getSource() == buttonErase) {
+			MousePanel.getInstance().setButton(7);
+		}
+
 	}
 }
 
