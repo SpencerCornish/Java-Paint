@@ -40,7 +40,7 @@ public class ButtonIcon implements Icon{
 			break;
 		case 5: 
 			g.setColor(ColorPanel.getInstance().getColor(1)); 
-			g.drawLine(8, 18, 40, 8); 
+			g.drawLine(8, 20, 30, 8); 
 			break;
 		case 6: 
 			g.setColor(ColorPanel.getInstance().getColor(2)); 
