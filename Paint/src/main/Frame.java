@@ -11,6 +11,9 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 public class Frame extends JFrame implements ActionListener
@@ -41,11 +44,12 @@ public class Frame extends JFrame implements ActionListener
 		Container c = getContentPane(); 										// Returns frame
 		JPanel westContainer = new JPanel();
 		makeMenu();
-
+		
 		setMinimumSize(MINSIZE);  								// Minimum window size allowed, subject to change
 		setSize(MINSIZE);
 		ColorPanel.getInstance().setBorder(CTITLE);		
 		ButtonPanel.getInstance().setBorder(BTITLE);
+		westContainer.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
 
 		westContainer.setLayout(new BorderLayout());
 		westContainer.add(ButtonPanel.getInstance(), BorderLayout.NORTH);
@@ -55,6 +59,25 @@ public class Frame extends JFrame implements ActionListener
 		ColorPanel.getInstance().setPreferredSize(CPSIZE); 
 		c.add(westContainer, BorderLayout.WEST); 								// Puts ButtonPanel West
 		c.add(MousePanel.getInstance(), BorderLayout.CENTER); 					// Centers canvas
+		
+		JPanel statusBar = new JPanel();
+		JPanel statusBox = new JPanel();
+		JLabel statusLabel = new JLabel("status");
+		
+		statusBar.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
+		statusBar.setPreferredSize(new Dimension(MINSIZE.width-CPSIZE.width, 29));
+		statusBar.setLayout(new BorderLayout());
+		
+		statusBox.setBorder(BorderFactory.createLoweredBevelBorder());
+		statusBox.setLayout(new BorderLayout());
+		statusBox.setPreferredSize(new Dimension(90, 20));
+		statusLabel.setBorder(new EmptyBorder( 3, 3, 3, 3 ) );
+		statusBox.add(statusLabel, BorderLayout.CENTER);
+		
+		statusBar.add(statusBox, BorderLayout.EAST);
+		
+		c.add(statusBar, BorderLayout.SOUTH);
+		
 		pack();
 		setVisible(true); 
 	}
