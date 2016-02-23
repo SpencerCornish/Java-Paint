@@ -67,7 +67,7 @@ public class ButtonPanel extends JPanel implements ActionListener {
 		buttonLineD.addActionListener(this);  
 		buttonLineD.setToolTipText("Draw a straight line");
 
-		buttonFree = new JButton(new ButtonIcon(6));											//button 6
+		buttonFree = new JButton();											//button 6
 		add(buttonFree); 
 		buttonFree.setPreferredSize(PREF);
 		buttonFree.addActionListener(this);  
@@ -79,6 +79,7 @@ public class ButtonPanel extends JPanel implements ActionListener {
 		add(buttonOpt);
 		buttonOpt.setPreferredSize(PREF2);
 		buttonOpt.addActionListener(this);
+		buttonOpt.setEnabled(false);
 		buttonOpt.setToolTipText("Change Line Thickness, etc.");
 		
 
@@ -92,6 +93,7 @@ public class ButtonPanel extends JPanel implements ActionListener {
 		add(buttonErase);
 		buttonErase.setPreferredSize(PREF);
 		buttonErase.addActionListener(this);
+		buttonErase.setEnabled(false);
 		buttonErase.setToolTipText("Erase Tool");
 
 	}
