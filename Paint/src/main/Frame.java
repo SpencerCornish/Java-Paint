@@ -25,6 +25,9 @@ public class Frame extends JFrame implements ActionListener
 	private JMenuBar menuBar = new JMenuBar();
 	private JMenu menu;
 	private JMenuItem menuItem;
+	JPanel statusBar = new JPanel();
+	JPanel statusBox = new JPanel();
+	JLabel statusLabel = new JLabel();
 
 	private final TitledBorder CTITLE = new TitledBorder("Colors");
 	private final TitledBorder BTITLE = new TitledBorder("Shapes");
@@ -59,10 +62,14 @@ public class Frame extends JFrame implements ActionListener
 		c.add(westContainer, BorderLayout.WEST); 								// Puts ButtonPanel West
 		c.add(MousePanel.getInstance(), BorderLayout.CENTER); 					// Centers canvas
 		
-		JPanel statusBar = new JPanel();
-		JPanel statusBox = new JPanel();
-		JLabel statusLabel = new JLabel("status");
+		makeStatusBar();
+		c.add(statusBar, BorderLayout.SOUTH);
 		
+		pack();
+		setVisible(true);
+		setStatus("Ready!");
+	}
+	public void makeStatusBar(){
 		statusBar.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
 		statusBar.setPreferredSize(new Dimension(MINSIZE.width-CPSIZE.width, 29));
 		statusBar.setLayout(new BorderLayout());
@@ -74,11 +81,10 @@ public class Frame extends JFrame implements ActionListener
 		statusBox.add(statusLabel, BorderLayout.CENTER);
 		
 		statusBar.add(statusBox, BorderLayout.EAST);
-		
-		c.add(statusBar, BorderLayout.SOUTH);
-		
-		pack();
-		setVisible(true); 
+	}
+	public void setStatus(String sts)
+	{
+		statusLabel.setText(sts);
 	}
 	public void makeMenu()  // Makes the drop down menu
 	{
@@ -150,6 +156,7 @@ public class Frame extends JFrame implements ActionListener
 					saved = true;
 					menuBar.removeAll();
 					makeMenu();
+					setStatus("File Opened");
 				}
 			}
 			catch (IOException e) {
@@ -162,6 +169,7 @@ public class Frame extends JFrame implements ActionListener
 					saved = true;
 					menuBar.removeAll();
 					makeMenu();
+					setStatus("File Saved");
 				}
 			}
 			catch (IOException e){
@@ -171,6 +179,7 @@ public class Frame extends JFrame implements ActionListener
 		else if (btn.equals("Save")) {
 			try {
 				MousePanel.getInstance().saveAs(false);	//indicates "save as" is false
+				setStatus("File Saved");
 			}
 			catch (IOException e) {
 				//display "cannot save" or error message
