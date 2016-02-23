@@ -1,6 +1,9 @@
 package main;
 
 import java.awt.*;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.swing.Icon;
 
 public class ButtonIcon implements Icon{
@@ -55,8 +58,22 @@ public class ButtonIcon implements Icon{
 			g.fillRect(5, y, 10, 15); 
 			break;
 		case 9: 
-			g.setColor(Color.PINK); 
-			g.fillRoundRect(x, y, getIconWidth() - 3, getIconHeight() - 3, 3, 3);
+			try {
+				Image img = ImageIO.read(this.getClass().getResource("Eraser.gif"));
+				g.drawImage(img, 10,3, null);
+			} catch (IOException e) {
+				System.out.println("There was an issue importing the Eraser!! is the file in the main package??");
+				e.printStackTrace();
+			}
+			break;
+		case 10:
+			try {
+				Image img = ImageIO.read(this.getClass().getResource("Pencil.gif"));
+				g.drawImage(img, 13,3, null);
+			} catch (IOException e) {
+				System.out.println("There was an issue importing the Pencil!! is the file in the main package??");
+				e.printStackTrace();
+			}
 			break;
 		}
 

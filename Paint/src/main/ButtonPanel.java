@@ -67,7 +67,7 @@ public class ButtonPanel extends JPanel implements ActionListener {
 		buttonLineD.addActionListener(this);  
 		buttonLineD.setToolTipText("Draw a straight line");
 
-		buttonFree = new JButton();											//button 6
+		buttonFree = new JButton(new ButtonIcon(10));											//button 6
 		add(buttonFree); 
 		buttonFree.setPreferredSize(PREF);
 		buttonFree.addActionListener(this);  
