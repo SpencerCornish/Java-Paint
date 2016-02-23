@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -16,13 +17,15 @@ public class AboutUs implements ActionListener {
 	private JButton bOkay = new JButton("OK");
 	private Dimension prefS = new Dimension();  		// Preferred Button Dimension
 	private Dimension prefT = new Dimension();
-	public AboutUs()
+	private JLabel picLabel = new JLabel();
+	public AboutUs() throws IOException
 	{
 		about.setLayout(null);	// Decided to do manual alignment, since there were to be so few elements on a fixed size window
 		
-		
-		BufferedImage myPicture = ImageIO.read(new File("path-to-file"));
-		JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+		BufferedImage pic = ImageIO.read(this.getClass().getResource("Logo.png"));
+		Image dPic = pic.getScaledInstance(180, 150, Image.SCALE_SMOOTH);
+		picLabel = new JLabel(new ImageIcon(dPic));
+		picLabel.setBounds(10, 10, 180, 150);
 		about.add(picLabel);
 		
 		prefS = bOkay.getPreferredSize();
@@ -45,7 +48,7 @@ public class AboutUs implements ActionListener {
 		text.setBounds(200, 90, prefT.width, prefT.height);
 		about.add(text);
 
-		about.setMinimumSize(new Dimension(370,200));  	// Minimum Window Size
+		about.setMinimumSize(new Dimension(370, 200));  	// Minimum Window Size
 		about.setResizable(false);  					// Do not allow window resizing
 		about.setLocationRelativeTo(null); 				// Centers About window on screen
 		about.setVisible(true);

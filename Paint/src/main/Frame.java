@@ -188,7 +188,13 @@ public class Frame extends JFrame implements ActionListener
 		else if (btn.equals("Exit")) System.exit(0);  								// Exits the program with Code 0
 		else if (btn.equals("Undo")) MousePanel.getInstance().undo();
 		else if (btn.equals("Redo"));
-		else if (btn.equals("About...")) new AboutUs();
+		else if (btn.equals("About...")) {
+			try {
+				new AboutUs();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 		else;
 
 	}
