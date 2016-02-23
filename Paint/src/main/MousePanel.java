@@ -49,7 +49,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		{					//fills the buffer if it hasn't been filled already
 			bufferImg = new BufferedImage(this.getWidth(), this.getHeight(), BufferedImage.TYPE_INT_ARGB);
 			g = bufferImg.createGraphics();
-			clearAll(); 
+			clearAll(false); 
 		}
 		else if (this.getWidth() > bufferImg.getWidth() || this.getHeight() > bufferImg.getHeight())
 		{
@@ -81,9 +81,10 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 	public void setButton(int button) {  				// Sets our button tracking variable
 		this.button = button; }
 
-	public void clearAll() { 							//clears mousepanel by painting over the background image
+	public void clearAll(boolean bg) { 							//clears mousepanel by painting over the background image
 		Graphics buffer = bufferImg.createGraphics();
-		buffer.setColor(Color.WHITE);
+		if (bg) buffer.setColor(ColorPanel.getInstance().getColor(2)); 
+		else buffer.setColor(Color.WHITE);
 		buffer.fillRect(0, 0, bufferImg.getWidth(), bufferImg.getHeight());
 		repaint();
 	}

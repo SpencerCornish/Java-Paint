@@ -66,7 +66,7 @@ public class ColorPanel extends JPanel implements ActionListener  {
 		Color bColorTemp = bColor;
 		Object bt = arg0.getSource();
 		if(bt == buttonRST){
-			rstColors();
+			rstColors(false);
 		} else if(bt == buttonFColor){
 			fColor = JColorChooser.showDialog(null, "Pick a Fill Color", fColor);
 			if(fColor == null) fColor = fColorTemp; // If the user clicks cancel in the color panel
@@ -78,6 +78,7 @@ public class ColorPanel extends JPanel implements ActionListener  {
 		else if(bt == buttonBColor){
 			bColor = JColorChooser.showDialog(null, "Pick a Background Color", bColor);
 			if(bColor == null) bColor = bColorTemp;
+			MousePanel.getInstance().clearAll(true);
 		}
 	}
 	public Color getColor(int c){
@@ -88,10 +89,17 @@ public class ColorPanel extends JPanel implements ActionListener  {
 		default: return Color.BLACK;
 		}
 	}
-	public void rstColors() {
-		fColor = FDEF;  // Sets back to final default colors
-		bColor = BDEF;
-		oColor = ODEF;
-		repaint();
+	public void rstColors(boolean clear) {
+		if (clear) {
+			fColor = FDEF;  //Sets back to final default colors
+			bColor = BDEF;
+			oColor = ODEF;
+			repaint();
+		}
+		else {		//only sets colors besides background
+			fColor = FDEF; 
+			oColor = ODEF;
+			repaint();
+		}
 	}
 }

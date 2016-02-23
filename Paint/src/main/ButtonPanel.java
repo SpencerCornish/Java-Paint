@@ -88,7 +88,7 @@ public class ButtonPanel extends JPanel implements ActionListener {
 		buttonClear.addActionListener(this);
 		buttonClear.setToolTipText("Clear the canvas");		
 		
-		buttonErase = new JButton(new ButtonIcon(7));									//button 7
+		buttonErase = new JButton(new ButtonIcon(9));									//button 7
 		add(buttonErase);
 		buttonErase.setPreferredSize(PREF);
 		buttonErase.addActionListener(this);
@@ -109,7 +109,8 @@ public class ButtonPanel extends JPanel implements ActionListener {
 		if(ae.getSource() == buttonClear) {				//clears if user clicks clear button
 			MousePanel.getInstance().setButton(0);
 			MousePanel.getInstance().setCursor(CDEF);
-			MousePanel.getInstance().clearAll(); 
+			MousePanel.getInstance().clearAll(false);
+			ColorPanel.getInstance().rstColors(true);
 		}
 		else if(ae.getSource() == buttonRectangleF) MousePanel.getInstance().setButton(1);
 		else if(ae.getSource() == buttonRectangleE) MousePanel.getInstance().setButton(2);		//feeds button 2 (because it's a rectangle) to button variable in MousePanel class

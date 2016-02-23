@@ -54,7 +54,12 @@ public class ButtonIcon implements Icon{
 			g.setColor(ColorPanel.getInstance().getColor(0));
 			g.fillRect(5, y, 10, 15); 
 			break;
+		case 9: 
+			g.setColor(Color.PINK); 
+			g.fillRoundRect(x, y, getIconWidth() - 3, getIconHeight() - 3, 3, 3);
+			break;
 		}
+		
 		ButtonPanel.getInstance().repaint();		//updates colors of icons
 	}
 }

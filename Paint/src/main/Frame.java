@@ -139,8 +139,8 @@ public class Frame extends JFrame implements ActionListener
 		String btn = ((JMenuItem) arg0.getSource()).getText();	// Drop down menu stuff
 		System.out.println(btn);
 		if(btn.equals("New")){
-			MousePanel.getInstance().clearAll();
-			ColorPanel.getInstance().rstColors();
+			MousePanel.getInstance().clearAll(false);
+			ColorPanel.getInstance().rstColors(true);
 			saved = false;
 			menuBar.removeAll();
 			makeMenu();
