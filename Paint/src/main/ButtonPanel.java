@@ -18,7 +18,7 @@ public class ButtonPanel extends JPanel implements ActionListener {
 	private static final long serialVersionUID = -923758246107102096L;
 
 	private final Cursor CRSHAIR = Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR); 		// Crosshair cursor
-	private final Cursor CDEF = Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR); 			// Default cursor
+	private final Cursor CDEF = Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR); 				// Default cursor
 	
 	private final Dimension PREF = new Dimension(40,26); 						// The preferred button dimensions
 	private final Dimension PREF2 = new Dimension(85, 26);
@@ -32,7 +32,7 @@ public class ButtonPanel extends JPanel implements ActionListener {
 	private JButton buttonLineD; 			// Draw a line
 	private JButton buttonFree;				// Free-Draw a Line
 	private JButton buttonOpt;				// Options Panel
-	private JButton buttonErase;				// Options Panel
+	private JButton buttonErase;			// Options Panel
 
 	
 
@@ -89,7 +89,7 @@ public class ButtonPanel extends JPanel implements ActionListener {
 		buttonClear.addActionListener(this);
 		buttonClear.setToolTipText("Clear the canvas");		
 		
-		buttonErase = new JButton(new ButtonIcon(9));									//button 7
+		buttonErase = new JButton(new ButtonIcon(9));						//button 7
 		add(buttonErase);
 		buttonErase.setPreferredSize(PREF);
 		buttonErase.addActionListener(this);
@@ -108,7 +108,7 @@ public class ButtonPanel extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent ae) {
 		MousePanel.getInstance().setCursor(CRSHAIR); 		//Sets the mouse Cursor to a Cross hair for editing
 
-		if(ae.getSource() == buttonClear) {				//clears if user clicks clear button
+		if(ae.getSource() == buttonClear) {					//clears if user clicks clear button
 			MousePanel.getInstance().setButton(0);
 			MousePanel.getInstance().setCursor(CDEF);
 			MousePanel.getInstance().clearAll(false);
@@ -120,9 +120,7 @@ public class ButtonPanel extends JPanel implements ActionListener {
 		else if(ae.getSource() == buttonOvalE) MousePanel.getInstance().setButton(4);
 		else if(ae.getSource() == buttonLineD) MousePanel.getInstance().setButton(5);
 		else if(ae.getSource() == buttonFree) MousePanel.getInstance().setButton(6);
-		else if(ae.getSource() == buttonOpt) {
-;
-		}
+		else if(ae.getSource() == buttonOpt) {}	//coming soon!
 		else if(ae.getSource() == buttonErase) {
 			MousePanel.getInstance().setButton(7);
 		}

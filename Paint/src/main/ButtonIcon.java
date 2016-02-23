@@ -4,8 +4,8 @@ import java.awt.*;
 import javax.swing.Icon;
 
 public class ButtonIcon implements Icon{
-	private int shape = 0;
-	private final int HEIGHT = 12;
+	private int shape = 0;					//shape indicator
+	private final int HEIGHT = 12;			//icon dimensions
 	private final int WIDTH = 17;
 
 	public ButtonIcon(int shape) {
@@ -20,7 +20,7 @@ public class ButtonIcon implements Icon{
 	}
 
 	@Override
-	public void paintIcon(Component c, Graphics g, int x, int y) {
+	public void paintIcon(Component c, Graphics g, int x, int y) {		//sets all the shapes as icons on buttons
 		switch(shape) {
 		case 1: 
 			g.setColor(ColorPanel.getInstance().getColor(0)); 

@@ -83,7 +83,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 
 	public void clearAll(boolean bg) { 							//clears mousepanel by painting over the background image
 		Graphics buffer = bufferImg.createGraphics();
-		if (bg) buffer.setColor(ColorPanel.getInstance().getColor(2)); 
+		if (bg) buffer.setColor(ColorPanel.getInstance().getColor(2)); 	//if not clearing whole thing, sets bg image to bg color
 		else buffer.setColor(Color.WHITE);
 		buffer.fillRect(0, 0, bufferImg.getWidth(), bufferImg.getHeight());
 		repaint();
@@ -101,7 +101,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 				sPoint.y = ePoint.y;
 				ePoint.y = sTemp; } } }
 
-	public static BufferedImage deepCopy(BufferedImage bi) 
+	public static BufferedImage deepCopy(BufferedImage bi) 			//for generating a stack of buffered images for live draw, redo and undo later
 	{
 		ColorModel cm = bi.getColorModel();
 		boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
@@ -114,11 +114,10 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		e.consume();
 		sPoint.x = e.getX();  						// Sets start points
 		sPoint.y = e.getY();
-		paintStatusFlag = true;
+		paintStatusFlag = true;						// starts painting live preview
+	}										
 
-	}					// Starts painting the live preview
-
-	public void mouseDragged(MouseEvent e) { 		//makes the shape a live-drag
+	public void mouseDragged(MouseEvent e) { 		// makes the shape a live-drag
 		bufferImgLive = deepCopy(bufferImg);
 		Graphics buffer2 = bufferImgLive.createGraphics();
 		e.consume();  
@@ -156,7 +155,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		case 5: line(1, sPoint.x, sPoint.y, ePoint.x, ePoint.y); break;
 		default: break; }
 		buffer2.dispose();
-		System.gc(); 	//Solves the issue of having a ton of Buffered Images stuck in the memory for the live preview.  I wish there was a better way
+		System.gc(); 	//Solves the issue of having a ton of Buffered Images stuck in the memory for the live preview
 		repaint();
 	}
 	public void mouseReleased(MouseEvent e){		//Final coords for shape
@@ -165,7 +164,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		ePoint.x = e.getX();  
 		ePoint.y = e.getY();
 		fixDirections();
-		switch(button){   //Switch on which button was pressed
+		switch(button){   							//Switch on which button was pressed
 		case 0: break;
 		case 1: rect(0, 1, sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); break;		// Draw filled rectangle
 		case 2: rect(0, 0, sPoint.x, sPoint.y, ePoint.x-sPoint.x, ePoint.y-sPoint.y); break; 		// Draw empty rectangle
@@ -175,7 +174,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		default: break; } 
 	}
 
-	//Undo and Redo start here
+	//Undo and Redo start here...coming soon!
 
 	public void undo(){
 	}
@@ -206,7 +205,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		return false;
 	}
 
-	public boolean load() throws IOException {
+	public boolean load() throws IOException {				//opens a file
 		JFileChooser chooser = new JFileChooser();
 		FileNameExtensionFilter filter = new FileNameExtensionFilter(
 				"JPG & PNG Images", "jpg", "png");
@@ -223,7 +222,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 
 	// Shape Methods start here
 
-	public void rect(int lv, int f, int x, int y, int width, int height) {
+	public void rect(int lv, int f, int x, int y, int width, int height) {			//draw rectangles!
 		Graphics buffer = bufferImg.createGraphics();
 		Graphics buffer2 = bufferImgLive.createGraphics();
 		if (lv == 0) {			//if lv (for live) is false - this part for drawing in mouseReleased()
@@ -251,7 +250,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 			} 
 		}
 	}
-	public void oval(int lv, int f, int x, int y, int width, int height) {
+	public void oval(int lv, int f, int x, int y, int width, int height) {		//for drawing ovals!
 		Graphics buffer = bufferImg.createGraphics();
 		Graphics buffer2 = bufferImgLive.createGraphics();
 		if (lv == 0) {
@@ -279,7 +278,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 			}
 		}
 	}
-	public void line(int lv, int x1, int y1, int x2, int y2) {
+	public void line(int lv, int x1, int y1, int x2, int y2) {				//drawing lines!
 		Graphics buffer = bufferImg.createGraphics();
 		Graphics buffer2 = bufferImgLive.createGraphics();
 		if (lv == 0) {
@@ -291,7 +290,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 			buffer2.drawLine(x1, y1, x2, y2);
 		}
 	}
-	public void mouseMoved(MouseEvent e) {} 
+	public void mouseMoved(MouseEvent e) {} 			//these here for later...
 
 	public void mouseExited(MouseEvent e){}
 

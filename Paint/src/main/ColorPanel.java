@@ -30,25 +30,25 @@ public class ColorPanel extends JPanel implements ActionListener  {
 
 	{
 		setAlignmentX(Component.CENTER_ALIGNMENT); 				// Button alignment within panel
-		buttonBColor = new JButton("BG", new ButtonIcon(6));								//Color button
+		buttonBColor = new JButton("BG", new ButtonIcon(6));								//Color buttons
 		add(buttonBColor);
 		buttonBColor.setPreferredSize(PREF);
 		buttonBColor.addActionListener(this);
 		buttonBColor.setToolTipText("Choose a background color"); 
 
-		buttonOColor = new JButton("OtLn", new ButtonIcon(7));								//Color button
+		buttonOColor = new JButton("OtLn", new ButtonIcon(7));								
 		add(buttonOColor);
 		buttonOColor.setPreferredSize(PREF);
 		buttonOColor.addActionListener(this);
 		buttonOColor.setToolTipText("Choose an outline color"); 
 
-		buttonFColor = new JButton("Fill", new ButtonIcon(8));								//Color button
+		buttonFColor = new JButton("Fill", new ButtonIcon(8));								
 		add(buttonFColor);
 		buttonFColor.setPreferredSize(PREF);
 		buttonFColor.addActionListener(this);
 		buttonFColor.setToolTipText("Choose a fill color"); 
 
-		buttonRST = new JButton("Reset");								//Color button
+		buttonRST = new JButton("Reset");												
 		add(buttonRST);
 		buttonRST.setPreferredSize(PREF2);
 		buttonRST.addActionListener(this);
@@ -61,7 +61,7 @@ public class ColorPanel extends JPanel implements ActionListener  {
 		return colorP; }
 
 	public void actionPerformed(ActionEvent arg0) {
-		Color fColorTemp = fColor;  // These are here, just in case the user clicks cancel
+		Color fColorTemp = fColor;  // These are here just in case the user clicks cancel
 		Color oColorTemp = oColor;
 		Color bColorTemp = bColor;
 		Object bt = arg0.getSource();

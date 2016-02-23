@@ -7,7 +7,6 @@ import javax.swing.*;
 
 public class AboutUs implements ActionListener {
 	private final Point BPOS = new Point(280,125);    	// Button Position
-
 	private JLabel text;
 	private JDialog about = new JDialog(null, "About", Dialog.ModalityType.APPLICATION_MODAL);
 	private JButton bOkay = new JButton("OK");
