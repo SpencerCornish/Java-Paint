@@ -10,6 +10,8 @@ package main;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
@@ -43,6 +45,13 @@ public class Frame extends JFrame implements ActionListener
 	{
 		super("Canvas");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  						// Exit on close
+		try {
+			Image img = ImageIO.read(this.getClass().getResource("Icon.gif"));
+			setIconImage(img);
+		} catch (IOException e) {
+			System.out.println("There was an issue importing my Logo!! is the file in the main package??");
+			e.printStackTrace();
+		}
 		Container c = getContentPane(); 										// Returns frame
 		JPanel westContainer = new JPanel();
 		makeMenu();
@@ -143,6 +152,7 @@ public class Frame extends JFrame implements ActionListener
 	public void actionPerformed(ActionEvent arg0) {
 		String btn = ((JMenuItem) arg0.getSource()).getText();	// Drop down menu stuff
 		if(btn.equals("New")){
+			setStatus("New File Created");
 			MousePanel.getInstance().clearAll(false);
 			ColorPanel.getInstance().rstColors(true);
 			saved = false;

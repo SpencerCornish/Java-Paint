@@ -4,7 +4,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -19,9 +18,16 @@ public class AboutUs implements ActionListener {
 	private JLabel picLabel = new JLabel();
 	public AboutUs() throws IOException
 	{
+		try {
+			Image img = ImageIO.read(this.getClass().getResource("Icon.gif"));
+			about.setIconImage(img);
+		} catch (IOException e) {
+			System.out.println("There was an issue importing my Logo!! is the file in the main package??");
+			e.printStackTrace();
+		}
 		about.setLayout(null);	// Decided to do manual alignment, since there were to be so few elements on a fixed size window
 
-		BufferedImage pic = ImageIO.read(this.getClass().getResource("Logo.png"));
+		BufferedImage pic = ImageIO.read(this.getClass().getResource("Logo.gif"));
 		Image dPic = pic.getScaledInstance(180, 150, Image.SCALE_SMOOTH);
 		picLabel = new JLabel(new ImageIcon(dPic));
 		picLabel.setBounds(10, 10, 180, 150);
