@@ -47,7 +47,7 @@ public class Frame extends JFrame implements ActionListener
 		JPanel westContainer = new JPanel();
 		makeMenu();
 		
-		setMinimumSize(MINSIZE);  								// Minimum window size allowed, subject to change
+		setMinimumSize(MINSIZE);  												// Minimum window size allowed, subject to change
 		setSize(MINSIZE);
 		ColorPanel.getInstance().setBorder(CTITLE);		
 		ButtonPanel.getInstance().setBorder(BTITLE);
