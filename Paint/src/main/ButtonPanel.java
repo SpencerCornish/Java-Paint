@@ -113,16 +113,36 @@ public class ButtonPanel extends JPanel implements ActionListener {
 			MousePanel.getInstance().setCursor(CDEF);
 			MousePanel.getInstance().clearAll(false);
 			ColorPanel.getInstance().rstColors(true);
+			Frame.getInstance().setStatus("Canvas Cleared!");
 		}
-		else if(ae.getSource() == buttonRectangleF) MousePanel.getInstance().setButton(1);
-		else if(ae.getSource() == buttonRectangleE) MousePanel.getInstance().setButton(2);		//feeds button 2 (because it's a rectangle) to button variable in MousePanel class
-		else if(ae.getSource() == buttonOvalF) MousePanel.getInstance().setButton(3);
-		else if(ae.getSource() == buttonOvalE) MousePanel.getInstance().setButton(4);
-		else if(ae.getSource() == buttonLineD) MousePanel.getInstance().setButton(5);
-		else if(ae.getSource() == buttonFree) MousePanel.getInstance().setButton(6);
+		else if(ae.getSource() == buttonRectangleF) {
+			MousePanel.getInstance().setButton(1);
+			Frame.getInstance().setStatus("Filled Rectangle Tool");
+		}
+		else if(ae.getSource() == buttonRectangleE){ 
+			MousePanel.getInstance().setButton(2);		//feeds button 2 (because it's a rectangle) to button variable in MousePanel class
+			Frame.getInstance().setStatus("Empty Rectangle Tool");
+		}
+		else if(ae.getSource() == buttonOvalF) {
+			MousePanel.getInstance().setButton(3);
+			Frame.getInstance().setStatus("Filled Oval Tool");
+		}
+		else if(ae.getSource() == buttonOvalE) {
+			MousePanel.getInstance().setButton(4);
+			Frame.getInstance().setStatus("Empty Oval Tool");
+		}
+		else if(ae.getSource() == buttonLineD) {
+			MousePanel.getInstance().setButton(5);
+			Frame.getInstance().setStatus("Line Tool");
+		}
+		else if(ae.getSource() == buttonFree) {
+			MousePanel.getInstance().setButton(6);
+			Frame.getInstance().setStatus("Free Draw Tool");
+		}
 		else if(ae.getSource() == buttonOpt) {}	//coming soon!
 		else if(ae.getSource() == buttonErase) {
 			MousePanel.getInstance().setButton(7);
+			Frame.getInstance().setStatus("Eraser Tool");
 		}
 
 	}

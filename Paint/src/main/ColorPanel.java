@@ -65,19 +65,21 @@ public class ColorPanel extends JPanel implements ActionListener  {
 		Color oColorTemp = oColor;
 		Color bColorTemp = bColor;
 		Object bt = arg0.getSource();
-		if(bt == buttonRST){
-			rstColors(false);
-		} else if(bt == buttonFColor){
+		if(bt == buttonRST) rstColors(false);
+		else if(bt == buttonFColor){
 			fColor = JColorChooser.showDialog(null, "Pick a Fill Color", fColor);
 			if(fColor == null) fColor = fColorTemp; // If the user clicks cancel in the color panel
+			else Frame.getInstance().setStatus("Fill Color Changed!");
 		}
 		else if(bt == buttonOColor){
 			oColor = JColorChooser.showDialog(null, "Pick an Outline Color", oColor);
 			if(oColor == null) oColor = oColorTemp;
+			else Frame.getInstance().setStatus("OL Color Changed!");
 		}
 		else if(bt == buttonBColor){
 			bColor = JColorChooser.showDialog(null, "Pick a Background Color", bColor);
 			if(bColor == null) bColor = bColorTemp;
+			else Frame.getInstance().setStatus("BG Color Changed!");
 			MousePanel.getInstance().clearAll(true);
 		}
 	}
@@ -100,6 +102,7 @@ public class ColorPanel extends JPanel implements ActionListener  {
 			fColor = FDEF; 
 			oColor = ODEF;
 			repaint();
+			Frame.getInstance().setStatus("Colors Reset!");
 		}
 	}
 }

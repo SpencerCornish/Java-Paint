@@ -76,7 +76,7 @@ public class Frame extends JFrame implements ActionListener
 		
 		statusBox.setBorder(BorderFactory.createLoweredBevelBorder());
 		statusBox.setLayout(new BorderLayout());
-		statusBox.setPreferredSize(new Dimension(90, 20));
+		statusBox.setPreferredSize(new Dimension(135, 20));
 		statusLabel.setBorder(new EmptyBorder( 3, 3, 3, 3 ) );
 		statusBox.add(statusLabel, BorderLayout.CENTER);
 		
