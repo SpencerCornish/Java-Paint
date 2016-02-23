@@ -142,7 +142,6 @@ public class Frame extends JFrame implements ActionListener
 	}
 	public void actionPerformed(ActionEvent arg0) {
 		String btn = ((JMenuItem) arg0.getSource()).getText();	// Drop down menu stuff
-		System.out.println(btn);
 		if(btn.equals("New")){
 			MousePanel.getInstance().clearAll(false);
 			ColorPanel.getInstance().rstColors(true);
