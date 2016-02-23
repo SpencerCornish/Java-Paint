@@ -46,7 +46,7 @@ public class Frame extends JFrame implements ActionListener
 		Container c = getContentPane(); 										// Returns frame
 		JPanel westContainer = new JPanel();
 		makeMenu();
-		
+
 		setMinimumSize(MINSIZE);  												// Minimum window size allowed, subject to change
 		setSize(MINSIZE);
 		ColorPanel.getInstance().setBorder(CTITLE);		
@@ -61,10 +61,10 @@ public class Frame extends JFrame implements ActionListener
 		ColorPanel.getInstance().setPreferredSize(CPSIZE); 
 		c.add(westContainer, BorderLayout.WEST); 								// Puts ButtonPanel West
 		c.add(MousePanel.getInstance(), BorderLayout.CENTER); 					// Centers canvas
-		
+
 		makeStatusBar();
 		c.add(statusBar, BorderLayout.SOUTH);
-		
+
 		pack();
 		setVisible(true);
 		setStatus("Ready!");
@@ -73,13 +73,13 @@ public class Frame extends JFrame implements ActionListener
 		statusBar.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
 		statusBar.setPreferredSize(new Dimension(MINSIZE.width-CPSIZE.width, 29));
 		statusBar.setLayout(new BorderLayout());
-		
+
 		statusBox.setBorder(BorderFactory.createLoweredBevelBorder());
 		statusBox.setLayout(new BorderLayout());
 		statusBox.setPreferredSize(new Dimension(135, 20));
 		statusLabel.setBorder(new EmptyBorder( 3, 3, 3, 3 ) );
 		statusBox.add(statusLabel, BorderLayout.CENTER);
-		
+
 		statusBar.add(statusBox, BorderLayout.EAST);
 	}
 	public void setStatus(String sts)

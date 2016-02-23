@@ -19,7 +19,7 @@ public class ButtonPanel extends JPanel implements ActionListener {
 
 	private final Cursor CRSHAIR = Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR); 		// Crosshair cursor
 	private final Cursor CDEF = Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR); 				// Default cursor
-	
+
 	private final Dimension PREF = new Dimension(40,26); 						// The preferred button dimensions
 	private final Dimension PREF2 = new Dimension(85, 26);
 
@@ -34,7 +34,7 @@ public class ButtonPanel extends JPanel implements ActionListener {
 	private JButton buttonOpt;				// Options Panel
 	private JButton buttonErase;			// Options Panel
 
-	
+
 
 	public ButtonPanel() {
 		buttonRectangleF = new JButton(new ButtonIcon(1));					//button 1
@@ -73,22 +73,22 @@ public class ButtonPanel extends JPanel implements ActionListener {
 		buttonFree.addActionListener(this);  
 		buttonFree.setEnabled(false);
 		buttonFree.setToolTipText("Free draw - Coming Soon!");
-		
-		
+
+
 		buttonOpt = new JButton("Options");									//button 8
 		add(buttonOpt);
 		buttonOpt.setPreferredSize(PREF2);
 		buttonOpt.addActionListener(this);
 		buttonOpt.setEnabled(false);
 		buttonOpt.setToolTipText("Change Line Thickness, etc.");
-		
+
 
 		buttonClear = new JButton("Clear");									//button 0
 		add(buttonClear);
 		buttonClear.setPreferredSize(PREF2);
 		buttonClear.addActionListener(this);
 		buttonClear.setToolTipText("Clear the canvas");		
-		
+
 		buttonErase = new JButton(new ButtonIcon(9));						//button 7
 		add(buttonErase);
 		buttonErase.setPreferredSize(PREF);

@@ -59,7 +59,7 @@ public class ButtonIcon implements Icon{
 			g.fillRoundRect(x, y, getIconWidth() - 3, getIconHeight() - 3, 3, 3);
 			break;
 		}
-		
+
 		ButtonPanel.getInstance().repaint();		//updates colors of icons
 	}
 }

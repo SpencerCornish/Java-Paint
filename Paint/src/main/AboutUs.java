@@ -20,13 +20,13 @@ public class AboutUs implements ActionListener {
 	public AboutUs() throws IOException
 	{
 		about.setLayout(null);	// Decided to do manual alignment, since there were to be so few elements on a fixed size window
-		
+
 		BufferedImage pic = ImageIO.read(this.getClass().getResource("Logo.png"));
 		Image dPic = pic.getScaledInstance(180, 150, Image.SCALE_SMOOTH);
 		picLabel = new JLabel(new ImageIcon(dPic));
 		picLabel.setBounds(10, 10, 180, 150);
 		about.add(picLabel);
-		
+
 		prefS = bOkay.getPreferredSize();
 		bOkay.setBounds(BPOS.x, BPOS.y, prefS.width, prefS.height);
 		bOkay.addActionListener(this);
