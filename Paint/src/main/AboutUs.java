@@ -2,6 +2,10 @@ package main;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 
@@ -15,6 +19,12 @@ public class AboutUs implements ActionListener {
 	public AboutUs()
 	{
 		about.setLayout(null);	// Decided to do manual alignment, since there were to be so few elements on a fixed size window
+		
+		
+		BufferedImage myPicture = ImageIO.read(new File("path-to-file"));
+		JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+		about.add(picLabel);
+		
 		prefS = bOkay.getPreferredSize();
 		bOkay.setBounds(BPOS.x, BPOS.y, prefS.width, prefS.height);
 		bOkay.addActionListener(this);
