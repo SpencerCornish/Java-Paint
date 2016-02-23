@@ -43,7 +43,7 @@ public class Frame extends JFrame implements ActionListener
 
 	public Frame()
 	{
-		super("Canvas");
+		super("NS Paint");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  						// Exit on close
 		try {
 			Image img = ImageIO.read(this.getClass().getResource("Icon.gif"));
