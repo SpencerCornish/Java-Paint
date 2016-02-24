@@ -46,7 +46,7 @@ public class Frame extends JFrame implements ActionListener
 		super("NS Paint");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  						// Exit on close
 		try {
-			Image img = ImageIO.read(this.getClass().getResource("Icon.gif"));
+			Image img = ImageIO.read(this.getClass().getResource("images/Icon.gif"));
 			setIconImage(img);
 		} catch (IOException e) {
 			System.out.println("There was an issue importing my Logo!! is the file in the main package??");

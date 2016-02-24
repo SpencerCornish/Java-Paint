@@ -59,7 +59,7 @@ public class ButtonIcon implements Icon{
 			break;
 		case 9: 
 			try {
-				Image img = ImageIO.read(this.getClass().getResource("Eraser.gif"));
+				Image img = ImageIO.read(this.getClass().getResource("images/Eraser.gif"));
 				g.drawImage(img, 10,3, null);
 			} catch (IOException e) {
 				System.out.println("There was an issue importing the Eraser!! is the file in the main package??");
@@ -68,7 +68,7 @@ public class ButtonIcon implements Icon{
 			break;
 		case 10:
 			try {
-				Image img = ImageIO.read(this.getClass().getResource("Pencil.gif"));
+				Image img = ImageIO.read(this.getClass().getResource("images/Pencil.gif"));
 				g.drawImage(img, 13,3, null);
 			} catch (IOException e) {
 				System.out.println("There was an issue importing the Pencil!! is the file in the main package??");

@@ -19,15 +19,15 @@ public class AboutUs implements ActionListener {
 	public AboutUs() throws IOException
 	{
 		try {
-			Image img = ImageIO.read(this.getClass().getResource("Icon.gif"));
+			Image img = ImageIO.read(this.getClass().getResource("images/Icon.gif"));
 			about.setIconImage(img);
 		} catch (IOException e) {
 			System.out.println("There was an issue importing my Logo!! is the file in the main package??");
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		about.setLayout(null);	// Decided to do manual alignment, since there were to be so few elements on a fixed size window
 
-		BufferedImage pic = ImageIO.read(this.getClass().getResource("Logo.gif"));
+		BufferedImage pic = ImageIO.read(this.getClass().getResource("images/Logo.gif"));
 		Image dPic = pic.getScaledInstance(180, 150, Image.SCALE_SMOOTH);
 		picLabel = new JLabel(new ImageIcon(dPic));
 		picLabel.setBounds(10, 10, 180, 150);
