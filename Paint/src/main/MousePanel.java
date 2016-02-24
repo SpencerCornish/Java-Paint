@@ -45,6 +45,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		return mouseP; }
 
 	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
 		if (bufferImg == null) 
 		{					//fills the buffer if it hasn't been filled already
 			bufferImg = new BufferedImage(this.getWidth(), this.getHeight(), BufferedImage.TYPE_INT_ARGB);
@@ -151,8 +152,8 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 		case 4: oval(1, 0, x1, y1, width, height); break;
 		case 5: line(1, sPoint.x, sPoint.y, ePoint.x, ePoint.y); break;
 		default: break; }
+		bufferImgLive.flush();
 		buffer2.dispose();
-		System.gc(); 	//Solves the issue of having a ton of Buffered Images stuck in the memory for the live preview
 		repaint();
 	}
 	public void mouseReleased(MouseEvent e){		//Final coords for shape
